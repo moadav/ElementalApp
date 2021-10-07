@@ -40,12 +40,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liftOnScroll="true"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
+        android:backgroundTint="@color/design_default_color_primary"
+
         >
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/main_Toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"></androidx.appcompat.widget.Toolbar>
+            android:layout_height="wrap_content"
+            app:expandedTitleGravity="bottom"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="?attr/colorPrimary"
+            app:scrimAnimationDuration="50"
+
+
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@mipmap/picturetrainer"
+                android:scaleType="centerCrop"
+                />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/main_Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+
+                />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
 
