@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_baseline_sports_24"
         />
 
-    <item android:id="@+id/Calendar_check"
+    <item android:id="@+id/calendar_check"
         android:title="@string/Calendar"
         android:icon="@drawable/ic_baseline_calendar_today_24"
         />
