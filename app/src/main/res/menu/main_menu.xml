@@ -2,7 +2,8 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/Bmi" />
-    <item android:title="@string/Bmi" />
-    <item android:title="@string/Bmi" />
+    <item android:title="@string/Options" android:id="@+id/options_app"/>
+    <item android:title="@string/Profile" android:id="@+id/profile_app"/>
+
+
 </menu>

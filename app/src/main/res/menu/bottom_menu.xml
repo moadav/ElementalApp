@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+    <item android:id="@+id/bmi_check"
+        android:title="@string/Bmi"
+        android:icon="@drawable/ic_baseline_sports_24"
+        />
+
+    <item android:id="@+id/Calendar_check"
+        android:title="@string/Calendar"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        />
+
+    <item android:id="@+id/sport_check"
+        android:title="@string/Sport"
+        android:icon="@drawable/ic_baseline_sports_handball_24"
+        />
+
+</menu>

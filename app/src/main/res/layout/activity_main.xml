@@ -52,8 +52,6 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="?attr/colorPrimary"
             app:scrimAnimationDuration="50"
-
-
             >
 
             <ImageView
@@ -77,5 +75,14 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Bottom_navigation"
+        android:layout_marginTop="675dp"
+        app:menu="@menu/bottom_menu"
+        android:background="#E91E"
+            />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
