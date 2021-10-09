@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -38,15 +40,14 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
 
-
-        bottomNavigation = (BottomNavigationView) findViewById(R.id.Bottom_navigation);
-
+        bottomNavigation = findViewById(R.id.Bottom_navigation);
         bottomNavigation.setOnItemSelectedListener(this);
 
 
 
     }
-    
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -60,18 +61,15 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.sport_check:
-                getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,sportTipsFragment).commit();
-                Log.d("asdasdasda","DICK DICK DICK");
+                getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,sportTipsFragment).addToBackStack(null).commit();
                 return true;
 
             case R.id.calendar_check:
-                getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,calendarFragment).commit();
-                Log.d("asdasdasda","DICK DICK DICK");
-
+                getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,calendarFragment).addToBackStack(null).commit();
                 return true;
+
             case R.id.bmi_check:
-                getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,bmiKalkulatorFragment).commit();
-                Log.d("asdasdasda","DICK DICK DICK");
+                getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,bmiKalkulatorFragment).addToBackStack(null).commit();
                 return true;
 
         }
