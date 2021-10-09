@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.elemental.Fragments.BMIKalkulatorFragment;
 import com.example.elemental.Fragments.CalendarFragment;
+import com.example.elemental.Fragments.HomeFragment;
 import com.example.elemental.Fragments.SportTipsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     private BMIKalkulatorFragment bmiKalkulatorFragment = new BMIKalkulatorFragment();
     private CalendarFragment calendarFragment = new CalendarFragment();
     private SportTipsFragment sportTipsFragment = new SportTipsFragment();
+    private HomeFragment homeFragment = new HomeFragment();
     private BottomNavigationView bottomNavigation;
 
     @Override
@@ -77,9 +79,11 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 return true;
 
             case R.id.home_check:
-                Intent intent = new Intent(this,MainActivity.class);
+                if (getSupportFragmentManager().findFragmentById(R.id.Nav_container) !=  homeFragment)
+                    getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,homeFragment).addToBackStack(null).commit();
+
                 Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+
                 return true;
 
         }
