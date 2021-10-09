@@ -61,14 +61,18 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.sport_check:
+                if (getSupportFragmentManager().findFragmentById(R.id.Nav_container) !=  sportTipsFragment)
                 getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,sportTipsFragment).addToBackStack(null).commit();
+
                 return true;
 
             case R.id.calendar_check:
+                if (getSupportFragmentManager().findFragmentById(R.id.Nav_container) !=  calendarFragment)
                 getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,calendarFragment).addToBackStack(null).commit();
                 return true;
 
             case R.id.bmi_check:
+                if (getSupportFragmentManager().findFragmentById(R.id.Nav_container) !=  bmiKalkulatorFragment)
                 getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,bmiKalkulatorFragment).addToBackStack(null).commit();
                 return true;
 
