@@ -1,14 +1,25 @@
 package com.example.elemental.Fragments;
 
+import static android.content.ContentValues.TAG;
+import static java.lang.Float.parseFloat;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.elemental.R;
+
+import java.lang.ref.PhantomReference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +36,11 @@ public class BMIKalkulatorFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private String resultBMI;
+    private  Button button;
+    private TextView editResult;
+    private EditText editHeight;
+    private EditText editWeight;
     public BMIKalkulatorFragment() {
         // Required empty public constructor
     }
@@ -54,13 +69,48 @@ public class BMIKalkulatorFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view2 = inflater.inflate(R.layout.fragment_b_m_i_kalkulator, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_b_m_i_kalkulator, container, false);
+
+
+
+        return view2;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        button = getView().findViewById(R.id.button_id);
+        editResult = getView().findViewById(R.id.Bmi_Result);
+        editHeight = getView().findViewById(R.id.height_result);
+        editWeight = getView().findViewById(R.id.weight_result);
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                float weight = Float.valueOf(editWeight.getText().toString());
+
+                float height =  Float.valueOf(editHeight.getText().toString()) / 100;
+
+                float result = weight / (height * height);
+
+                resultBMI = Float.toString(result);
+                Toast.makeText(getContext(), resultBMI, Toast.LENGTH_SHORT).show();
+                editResult.setText("Your BMI is: " + resultBMI);
+
+            }
+        });
     }
 }

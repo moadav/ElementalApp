@@ -7,6 +7,11 @@
     <string name="Calendar">Calendar</string>
     <string name="Sport">Sport</string>
     <string name="Home">Home</string>
+    <string name="BMIKalkulator">BMI Calculator</string>
+    <string name="Weight">Your weight (kg):</string>
+    <string name="Height">Your height (cm):</string>
+    <string name="ButtonBMI">Calculate your BMI:</string>
+    <string name="BMIresult">Your Result:</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

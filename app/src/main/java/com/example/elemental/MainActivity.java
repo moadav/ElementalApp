@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                     getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,homeFragment).addToBackStack(null).commit();
 
                 Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
-
                 return true;
 
         }
