@@ -76,6 +76,12 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,bmiKalkulatorFragment).addToBackStack(null).commit();
                 return true;
 
+            case R.id.home_check:
+                Intent intent = new Intent(this,MainActivity.class);
+                Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                return true;
+
         }
 
         return false;
