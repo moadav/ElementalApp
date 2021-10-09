@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
         toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
-        //replaceFragment(calendarFragment);
+
 
         bottomNavigation = (BottomNavigationView) findViewById(R.id.Bottom_navigation);
 
@@ -46,23 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
 
     }
-    private void replaceFragment(Fragment fragment){
-
-
-
-
-
-
-
-
-
-        if(fragment != null){
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.Nav_container, fragment);
-            fragmentTransaction.commit();
-
-        }
-    }
+    
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
