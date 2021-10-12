@@ -48,7 +48,7 @@
             <ImageView
                 android:id="@+id/ImageParallax"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:src="@mipmap/picturetrainer"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"

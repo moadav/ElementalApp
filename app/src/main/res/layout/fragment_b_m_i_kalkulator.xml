@@ -18,13 +18,14 @@
         android:textSize="50dp"
         android:textColor="#000"
         android:layout_marginVertical="30dp"
-
+        app:layout_constraintTop_toTopOf="parent"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/Weight"
         android:layout_marginHorizontal="30dp"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <EditText
@@ -36,6 +37,7 @@
         android:inputType="numberDecimal"
         android:layout_marginVertical="15dp"
         android:background="@drawable/edittext_shape"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
 
@@ -46,6 +48,7 @@
         android:text="@string/Height"
         android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="15dp"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <EditText
@@ -56,6 +59,7 @@
         android:padding="15dp"
         android:inputType="numberDecimal"
         android:background="@drawable/edittext_shape"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <Button
@@ -66,6 +70,7 @@
         android:layout_marginVertical="15dp"
         android:text="@string/ButtonBMI"
         android:background="@drawable/button_shape"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
 
@@ -76,6 +81,7 @@
         android:textAlignment="center"
         android:textSize="23dp"
         android:textColor="#000"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <TextView
@@ -85,5 +91,6 @@
         android:textAlignment="center"
         android:textSize="25dp"
         android:textColor="#000"
+        app:layout_constraintTop_toTopOf="parent"
         />
 </LinearLayout>
