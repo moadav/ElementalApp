@@ -7,13 +7,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-
     >
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         >
 
 
@@ -70,18 +68,28 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Bottom_navigation"
-        android:layout_marginTop="675dp"
-        app:menu="@menu/bottom_menu"
-        android:background="#E91E"
-            />
-
     <FrameLayout
         android:id="@+id/Nav_container"
         android:layout_width="match_parent"
-        android:layout_height="649dp" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/Bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemBackground="@color/purple_700"
+        android:foreground="?attr/selectableItemBackground"
+        app:itemIconTint="@android:color/tab_indicator_text"
+        app:itemTextColor="@android:color/tab_indicator_text"
+        app:menu="@menu/bottom_menu"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="labeled"
+
+        />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

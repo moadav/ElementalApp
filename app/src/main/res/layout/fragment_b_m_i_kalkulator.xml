@@ -9,6 +9,7 @@
     tools:context=".Fragments.BMIKalkulatorFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/bmi_text"
         android:layout_width="wrap_content"
@@ -17,8 +18,8 @@
         android:textSize="50dp"
         android:textColor="#000"
         android:layout_marginVertical="30dp"
-         />
 
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

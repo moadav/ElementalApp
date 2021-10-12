@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-
+    <item android:id="@+id/home_check"
+        android:title="@string/Home"
+        android:icon="@drawable/ic_baseline_house_24"
+        />
 
     <item android:id="@+id/bmi_check"
         android:title="@string/Bmi"
@@ -20,9 +22,6 @@
         />
 
 
-    <item android:id="@+id/home_check"
-        android:title="@string/Home"
-        android:icon="@drawable/ic_baseline_house_24"
-        />
+
 
 </menu>

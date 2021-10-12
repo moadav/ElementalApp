@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.elemental.Fragments.BMIKalkulatorFragment;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     private HomeFragment homeFragment = new HomeFragment();
     private BottomNavigationView bottomNavigation;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +43,11 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
         toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
-
+        loadFragmentPage(homeFragment);
         bottomNavigation = findViewById(R.id.Bottom_navigation);
         bottomNavigation.setOnItemSelectedListener(this);
 
-
-
     }
-
 
 
     @Override
@@ -63,25 +62,19 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.sport_check:
-                if (getSupportFragmentManager().findFragmentById(R.id.Nav_container) !=  sportTipsFragment)
-                getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,sportTipsFragment).addToBackStack(null).commit();
-
+                loadFragmentPage(sportTipsFragment);
                 return true;
 
             case R.id.calendar_check:
-                if (getSupportFragmentManager().findFragmentById(R.id.Nav_container) !=  calendarFragment)
-                getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,calendarFragment).addToBackStack(null).commit();
+                loadFragmentPage(calendarFragment);
                 return true;
 
             case R.id.bmi_check:
-                if (getSupportFragmentManager().findFragmentById(R.id.Nav_container) !=  bmiKalkulatorFragment)
-                getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,bmiKalkulatorFragment).addToBackStack(null).commit();
+                loadFragmentPage(bmiKalkulatorFragment);
                 return true;
 
             case R.id.home_check:
-                if (getSupportFragmentManager().findFragmentById(R.id.Nav_container) !=  homeFragment)
-                    getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,homeFragment).addToBackStack(null).commit();
-
+                loadFragmentPage(homeFragment);
                 Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
                 return true;
 
@@ -89,4 +82,11 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
         return false;
     }
+
+
+    private void loadFragmentPage(Fragment fragment){
+        if (getSupportFragmentManager().findFragmentById(R.id.Nav_container) !=  fragment)
+            getSupportFragmentManager().beginTransaction().replace(R.id.Nav_container,fragment).addToBackStack(null).commit();
+    }
+
 }
