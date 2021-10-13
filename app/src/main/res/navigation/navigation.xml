@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/BMIKalkulatorFragment"
+        android:name="com.example.elemental.Fragments.BMIKalkulatorFragment"
+        android:label="fragment_b_m_i_kalkulator"
+        tools:layout="@layout/fragment_b_m_i_kalkulator"
+        >
+
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.elemental.Fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.elemental.Fragments.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/sportTipsFragment"
+        android:name="com.example.elemental.Fragments.SportTipsFragment"
+        android:label="fragment_sport_tips"
+        tools:layout="@layout/fragment_sport_tips" >
+
+
+    </fragment>
+</navigation>
