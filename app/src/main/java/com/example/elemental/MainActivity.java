@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity  {
 
         toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
-
+        
         BottomNavigationView bottomNavigationView = findViewById(R.id.Bottom_navigation);
         NavController navController = Navigation.findNavController(this,  R.id.Nav_container);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
         NavigationUI.setupActionBarWithNavController(this, navController);
-
+        getSupportActionBar().setTitle("Elemental");
     }
 
 
