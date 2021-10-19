@@ -12,14 +12,19 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
 
 
         <TextView
+            android:id="@+id/nestedscrollid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="512dp"
-            android:paddingBottom="512dp" />
+            android:paddingBottom="512dp"
+
+            />
 
     </androidx.core.widget.NestedScrollView>
 
@@ -39,7 +44,6 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="?attr/colorPrimary"
             app:scrimAnimationDuration="50"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >
 
             <ImageView
@@ -88,8 +92,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:layout_anchor="@+id/nestedScrollView"
-        app:layout_anchorGravity="center"
         app:navGraph="@navigation/navigation"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
