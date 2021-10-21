@@ -3,10 +3,13 @@ package com.example.elemental.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.elemental.R;
 
@@ -15,7 +18,7 @@ import com.example.elemental.R;
  * Use the {@link RegisterAccountFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RegisterAccountFragment extends Fragment {
+public class RegisterAccountFragment extends Fragment implements View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,12 +58,36 @@ public class RegisterAccountFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_register_account, container, false);
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        ImageView imageView = (ImageView) getView().findViewById(R.id.imageView2);
+        imageView.setOnClickListener(this);
+
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.imageView2:
+                Navigation.findNavController(view).navigate(R.id.action_registerAccountFragment_to_loginFragment);
+
+                break;
+        }
     }
 }
