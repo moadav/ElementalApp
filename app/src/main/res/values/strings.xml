@@ -23,5 +23,6 @@
     <string name="forgotpass">Forgot your password?</string>
     <string name="register">Register an account</string>
     <string name="changelife">Do you want to make a difference?</string>
+    <string name="registerbutton">Register</string>
 
 </resources>
