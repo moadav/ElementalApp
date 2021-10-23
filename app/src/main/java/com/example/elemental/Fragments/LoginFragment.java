@@ -2,16 +2,27 @@ package com.example.elemental.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.elemental.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +39,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView register;
+    private EditText emailadr,passord;
+    private Button login;
+    private FirebaseAuth mAuth;
+    private ProgressBar progresscircle;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -75,8 +91,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
 
-        TextView register = (TextView) getView().findViewById(R.id.registeraccount);
+        register = (TextView) getView().findViewById(R.id.registeraccount);
         register.setOnClickListener(this);
+
+        login = (Button) getView().findViewById(R.id.login);
+        login.setOnClickListener(this);
+
+        emailadr = (EditText) getView().findViewById(R.id.emailadr);
+        passord = (EditText) getView().findViewById(R.id.passord);
+
+        progresscircle = (ProgressBar) getView().findViewById(R.id.progresscircle);
+        mAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -86,6 +111,57 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             case R.id.registeraccount:
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerAccountFragment);
                 break;
+            case R.id.login:
+                Login();
+                break;
         }
+    }
+
+    private void Login() {
+        String email = emailadr.getText().toString().trim();
+        String password = passord.getText().toString().trim();
+
+        if(email.isEmpty()){
+            emailadr.setError("Input is required");
+            emailadr.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            emailadr.setError("Please provide a valid email");
+            emailadr.requestFocus();
+            return;
+        }
+
+        if(password.isEmpty()){
+            passord.setError("Input is required");
+            passord.requestFocus();
+            return;
+        }
+
+
+        progresscircle.setVisibility(View.VISIBLE);
+
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if(user.isEmailVerified()){
+                        Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
+
+                    }else{
+                        user.sendEmailVerification();
+                        Toast.makeText(getActivity(), "Your email is not verified! Verification has been sendt to your email!", Toast.LENGTH_LONG).show();
+                    }
+
+                }else  {
+                    Toast.makeText(getActivity(), "Failed to login! Please provide correct input", Toast.LENGTH_LONG).show();
+
+                }
+                progresscircle.setVisibility(View.GONE);
+            }
+        });
+
     }
 }

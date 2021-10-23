@@ -24,5 +24,6 @@
     <string name="register">Register an account</string>
     <string name="changelife">Do you want to make a difference?</string>
     <string name="registerbutton">Register</string>
+    <string name="Logout">Log out</string>
 
 </resources>

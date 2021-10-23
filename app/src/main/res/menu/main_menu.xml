@@ -4,6 +4,7 @@
 
     <item android:title="@string/Options" android:id="@+id/options_app"/>
     <item android:title="@string/Profile" android:id="@+id/profile_app"/>
+    <item android:title="@string/Logout" android:id="@+id/logout_app"/>
 
 
 </menu>

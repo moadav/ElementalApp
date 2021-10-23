@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -125,6 +127,14 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
         }
     }
 
+    private void emptyTexts(){
+        username.setText("");
+        password.setText("");
+        email.setText("");
+        height.setText("");
+        weight.setText("");
+    }
+
     private void registerUser() {
 
         String emailText = email.getText().toString().trim();
@@ -180,22 +190,29 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
 
                 if(task.isSuccessful()){
 
-                    User user = new User(weightText,heightText,usernameText,emailText);
+                    User user = new User(weightText,heightText,usernameText,emailText,passwordText);
 
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                            if(task.isSuccessful()) {
+                                emptyTexts();
                                 Toast.makeText(getActivity(), "User has been registered!", Toast.LENGTH_LONG).show();
-                                progresscircle.setVisibility(View.GONE);
-                            }else{
-                                Toast.makeText(getActivity(), "Failed to register! Please try again", Toast.LENGTH_LONG).show();
-                                progresscircle.setVisibility(View.GONE);
                             }
+                            else
+                                Toast.makeText(getActivity(), "Failed to register! Please try again", Toast.LENGTH_LONG).show();
+
+                            progresscircle.setVisibility(View.GONE);
                         }
                     });
+                }else{
+                    Toast.makeText(getActivity(), "Fault with the authentication!", Toast.LENGTH_LONG).show();
+                    progresscircle.setVisibility(View.GONE);
+                    FirebaseAuthException e = (FirebaseAuthException)task.getException();
+                    Log.e("LoginActivity", "Failed Registration", e);
                 }
             }
+
         });
 
     }
