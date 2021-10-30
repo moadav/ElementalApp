@@ -15,12 +15,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.core.View;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -56,8 +56,9 @@ public class MainActivity extends AppCompatActivity  {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.logout_app:
+
                 FirebaseAuth.getInstance().signOut();
-                Navigation.findNavController(item.getActionView()).navigate(R.id.action_homeFragment_to_loginActivity);
+                Navigation.findNavController(this,R.id.Nav_container).navigate(R.id.action_homeFragment_to_loginActivity);
                 break;
         }
         return super.onOptionsItemSelected(item);

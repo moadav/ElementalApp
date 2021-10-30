@@ -6,13 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +22,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,9 +43,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private TextView register;
+    private TextView register,forgotpass;
     private EditText emailadr,passord;
     private Button login;
+    private FirebaseFirestore fireStore;
     private FirebaseAuth mAuth;
     private ProgressBar progresscircle;
 
@@ -97,10 +102,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         login = (Button) getView().findViewById(R.id.login);
         login.setOnClickListener(this);
 
+        forgotpass = (TextView) getView().findViewById(R.id.forgotpassword) ;
+        forgotpass.setOnClickListener(this);
+
         emailadr = (EditText) getView().findViewById(R.id.emailadr);
         passord = (EditText) getView().findViewById(R.id.passord);
 
         progresscircle = (ProgressBar) getView().findViewById(R.id.progresscircle);
+        fireStore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
     }
@@ -113,6 +122,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.login:
                 Login();
+                break;
+            case R.id.forgotpassword:
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_forgotPasswordFragment);
                 break;
         }
     }
@@ -145,23 +157,41 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    fireStore.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
 
-                    if(user.isEmailVerified()){
-                        Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                    }else{
-                        user.sendEmailVerification();
-                        Toast.makeText(getActivity(), "Your email is not verified! Verification has been sendt to your email!", Toast.LENGTH_LONG).show();
-                    }
+                                if(user.isEmailVerified()){
+                                    Toast.makeText(getActivity(), "Logging on...", Toast.LENGTH_LONG).show();
+                                    Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
+                                }else{
+                                    user.sendEmailVerification();
+                                    Toast.makeText(getActivity(), "Please verify your account! Verification has been sendt to your email", Toast.LENGTH_LONG).show();
+                                }
 
-                }else  {
-                    Toast.makeText(getActivity(), "Failed to login! Please provide correct input", Toast.LENGTH_LONG).show();
+                            }else{
+                                Toast.makeText(getActivity(), "Failed to login! Please provide correct input", Toast.LENGTH_LONG).show();
+                            }
+                            progresscircle.setVisibility(View.GONE);
+                        }
+
+                    });
+
+                }else{
+                    Toast.makeText(getActivity(), "Fault with the authentication!", Toast.LENGTH_LONG).show();
+                    progresscircle.setVisibility(View.GONE);
+                    FirebaseAuthException e = (FirebaseAuthException)task.getException();
+                    Log.e("LoginActivity", "Failed Registration", e);
 
                 }
-                progresscircle.setVisibility(View.GONE);
+
             }
         });
+
+
 
     }
 }

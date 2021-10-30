@@ -25,5 +25,6 @@
     <string name="changelife">Do you want to make a difference?</string>
     <string name="registerbutton">Register</string>
     <string name="Logout">Log out</string>
+    <string name="resetPass">Reset your password</string>
 
 </resources>

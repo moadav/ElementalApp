@@ -15,18 +15,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elemental.R;
 import com.example.elemental.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,6 +53,7 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
     private Button registerbutton;
     private ImageView imageView2;
 
+    private FirebaseFirestore fireBase;
     private FirebaseAuth mAuth;
 
 
@@ -108,6 +112,7 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
 
         progresscircle = (ProgressBar) getView().findViewById(R.id.progresscircle);
 
+        fireBase = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -143,39 +148,39 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
         String heightText = height.getText().toString().trim();
         String passwordText = password.getText().toString().trim();
 
-        if(emailText.isEmpty()){
+        if (emailText.isEmpty()) {
             email.setError("Email is required");
             email.requestFocus();
             return;
         }
-        if(usernameText.isEmpty()){
+        if (usernameText.isEmpty()) {
             username.setError("Username is required");
             username.requestFocus();
             return;
         }
-        if(weightText.isEmpty()){
+        if (weightText.isEmpty()) {
             weight.setError("Weight is required");
             weight.requestFocus();
             return;
         }
-        if(heightText.isEmpty()){
+        if (heightText.isEmpty()) {
             height.setError("Height is required");
             height.requestFocus();
             return;
         }
-        if(passwordText.isEmpty()){
+        if (passwordText.isEmpty()) {
             password.setError("Password is required");
             password.requestFocus();
             return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
             email.setError("Please provide a valid email");
             email.requestFocus();
             return;
         }
 
-        if(passwordText.length() < 6){
+        if (passwordText.length() < 6) {
             password.setError("Password should have atleast 6 characters!");
             password.requestFocus();
             return;
@@ -183,36 +188,62 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
 
         progresscircle.setVisibility(View.VISIBLE);
 
-        mAuth.createUserWithEmailAndPassword(emailText,passwordText)
-        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+        User user = new User(weightText, heightText, usernameText, emailText);
+
+
+
+        fireBase.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
-
-                    User user = new User(weightText,heightText,usernameText,emailText,passwordText);
-
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()) {
-                                emptyTexts();
-                                Toast.makeText(getActivity(), "User has been registered!", Toast.LENGTH_LONG).show();
-                            }
-                            else
-                                Toast.makeText(getActivity(), "Failed to register! Please try again", Toast.LENGTH_LONG).show();
-
+                    for(QueryDocumentSnapshot document : task.getResult()){
+                        if(document.getData().containsValue(user.username)){
+                            Toast.makeText(getActivity(), "This username is already taken!", Toast.LENGTH_LONG).show();
                             progresscircle.setVisibility(View.GONE);
+                            return;
+                        }
+                    }
+
+                    mAuth.createUserWithEmailAndPassword(emailText,passwordText).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+
+                                fireBase.collection("users")
+                                        .add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        emptyTexts();
+                                        Toast.makeText(getActivity(), "User has been registered!", Toast.LENGTH_LONG).show();
+                                        progresscircle.setVisibility(View.GONE);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getActivity(), "Failed to register! Please try again", Toast.LENGTH_LONG).show();
+                                        Log.e("LoginActivity", "Failed Registration", e);
+                                        progresscircle.setVisibility(View.GONE);
+                                    }
+                                });
+
+                            }else{
+                                Toast.makeText(getActivity(), "Fault with the authentication!", Toast.LENGTH_LONG).show();
+                                progresscircle.setVisibility(View.GONE);
+                                FirebaseAuthException e = (FirebaseAuthException)task.getException();
+                                Log.e("LoginActivity", "Failed Registration", e);
+
+                            }
                         }
                     });
-                }else{
-                    Toast.makeText(getActivity(), "Fault with the authentication!", Toast.LENGTH_LONG).show();
-                    progresscircle.setVisibility(View.GONE);
-                    FirebaseAuthException e = (FirebaseAuthException)task.getException();
-                    Log.e("LoginActivity", "Failed Registration", e);
-                }
-            }
 
+
+                }else{
+                    Toast.makeText(getActivity(), "Error getting data from database", Toast.LENGTH_LONG).show();
+                }
+
+
+            }
         });
 
     }

@@ -28,7 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment  {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,11 +79,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    @Override
-    public void onClick(View view) {
-
-
-    }
 
 
 
