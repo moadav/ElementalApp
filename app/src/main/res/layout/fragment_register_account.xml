@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:hint="Username"
+        android:inputType="text"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +49,7 @@
         android:layout_marginVertical="20dp"
         android:hint="@string/Email"
         android:textAlignment="center"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
@@ -58,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:hint="@string/passord"
+        android:inputType="textPassword"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +72,7 @@
         android:layout_marginVertical="20dp"
         android:hint="@string/Weight"
         android:textAlignment="center"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -79,6 +83,7 @@
         android:layout_marginVertical="20dp"
         android:hint="@string/Height"
         android:textAlignment="center"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weight" />
