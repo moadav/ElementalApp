@@ -3,23 +3,19 @@ package com.example.elemental.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.elemental.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SportTipsFragment#newInstance} factory method to
+ * Use the {@link HomeWorkoutFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SportTipsFragment extends Fragment implements View.OnClickListener{
+public class HomeWorkoutFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,9 +25,8 @@ public class SportTipsFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ImageButton imagebuttonOutside, imagebuttonHome;
 
-    public SportTipsFragment() {
+    public HomeWorkoutFragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +36,11 @@ public class SportTipsFragment extends Fragment implements View.OnClickListener{
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SportTipsFragment.
+     * @return A new instance of fragment HomeWorkoutFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SportTipsFragment newInstance(String param1, String param2) {
-        SportTipsFragment fragment = new SportTipsFragment();
+    public static HomeWorkoutFragment newInstance(String param1, String param2) {
+        HomeWorkoutFragment fragment = new HomeWorkoutFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,34 +61,6 @@ public class SportTipsFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sport_tips, container, false);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        imagebuttonOutside = (ImageButton) getView().findViewById(R.id.imagebuttonOutside);
-        imagebuttonOutside.setOnClickListener(this);
-
-        imagebuttonHome =  (ImageButton) getView().findViewById(R.id.imagebuttonHome);
-        imagebuttonHome.setOnClickListener(this);
-
-
-    }
-
-    @Override
-    public void onClick(View view) {
-
-        switch (view.getId()){
-            case R.id.imagebuttonOutside:
-                Toast.makeText(getActivity(), "outsideworkout listfragment", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.imagebuttonHome:
-                Toast.makeText(getActivity(), "home workout listfragment", Toast.LENGTH_LONG).show();
-                break;
-
-        }
-
-
+        return inflater.inflate(R.layout.fragment_home_workout, container, false);
     }
 }

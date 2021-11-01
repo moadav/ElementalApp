@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -58,7 +59,9 @@ public class MainActivity extends AppCompatActivity  {
             case R.id.logout_app:
 
                 FirebaseAuth.getInstance().signOut();
-                Navigation.findNavController(this,R.id.Nav_container).navigate(R.id.action_homeFragment_to_loginActivity);
+                Intent login = new Intent(this,LoginActivity.class);
+                startActivity(login);
+
                 break;
         }
         return super.onOptionsItemSelected(item);

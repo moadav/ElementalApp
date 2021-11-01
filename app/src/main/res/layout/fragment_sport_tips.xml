@@ -8,37 +8,52 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Sport"
-        android:textAlignment="center"
-        android:textSize="45dp"
-        app:layout_constraintBottom_toTopOf="@+id/OutsideWorkoutTitle"
+
+    <ImageButton
+        android:id="@+id/imagebuttonHome"
+        android:layout_width="286dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="108dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/homework"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
-        android:id="@+id/HomeWorkoutTitle"
-        android:layout_width="match_parent"
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="216dp"
         android:text="@string/HomeWorkout"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imagebuttonHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagebuttonHome" />
+
+    <ImageButton
+        android:id="@+id/imagebuttonOutside"
+        android:layout_width="286dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="96dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/outsidework"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagebuttonHome" />
 
     <TextView
-        android:id="@+id/OutsideWorkoutTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/OutsideWorkout"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/HomeWorkoutTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679"
-        tools:layout_editor_absoluteX="0dp" />
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imagebuttonOutside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagebuttonOutside" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
