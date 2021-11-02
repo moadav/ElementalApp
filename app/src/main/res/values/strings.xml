@@ -26,5 +26,7 @@
     <string name="registerbutton">Register</string>
     <string name="Logout">Log out</string>
     <string name="resetPass">Reset your password</string>
-
+    <string name="calves">Calves</string>
+    <string name="walkingcalves">Walk forward and push your toe into the ground, lift your heel off the ground each step and tense your muscle repeat on each leg and walk forward slowly</string>
+<string name="walkingcalfraises">Walking Calf Raises</string>
 </resources>

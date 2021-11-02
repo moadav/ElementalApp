@@ -39,10 +39,26 @@
         tools:layout="@layout/fragment_sport_tips" >
 
 
+        <action
+            android:id="@+id/action_sportTipsFragment_to_outsideWorkoutFragment"
+            app:destination="@id/outsideWorkoutFragment" />
+        <action
+            android:id="@+id/action_sportTipsFragment_to_homeWorkoutFragment"
+            app:destination="@id/homeWorkoutFragment" />
     </fragment>
     <activity
         android:id="@+id/loginActivity"
         android:name="com.example.elemental.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/outsideWorkoutFragment"
+        android:name="com.example.elemental.Fragments.OutsideWorkoutFragment"
+        android:label="fragment_outside_workout"
+        tools:layout="@layout/fragment_outside_workout" />
+    <fragment
+        android:id="@+id/homeWorkoutFragment"
+        android:name="com.example.elemental.Fragments.HomeWorkoutFragment"
+        android:label="fragment_home_workout"
+        tools:layout="@layout/fragment_home_workout" />
 </navigation>

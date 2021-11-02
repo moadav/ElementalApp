@@ -89,7 +89,7 @@ public class SportTipsFragment extends Fragment implements View.OnClickListener{
                 Toast.makeText(getActivity(), "outsideworkout listfragment", Toast.LENGTH_LONG).show();
                 break;
             case R.id.imagebuttonHome:
-                Toast.makeText(getActivity(), "home workout listfragment", Toast.LENGTH_LONG).show();
+                Navigation.findNavController(view).navigate(R.id.action_sportTipsFragment_to_homeWorkoutFragment);
                 break;
 
         }
