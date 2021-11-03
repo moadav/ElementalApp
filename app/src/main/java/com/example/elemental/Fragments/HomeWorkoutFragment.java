@@ -93,8 +93,7 @@ public class HomeWorkoutFragment extends Fragment implements View.OnClickListene
         abdomin = (ImageButton) getView().findViewById(R.id.abdominpic);
         abdomin.setOnClickListener(this);
 
-        AppBarLayout appBarLayout = (AppBarLayout) getView().findViewById(R.id.appbarlayout);
-        appBarLayout.setExpanded(true,true);
+       
 
     }
 
