@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.CalvesFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/calves"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/walkingcalfraises"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                >
+
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="@string/walkingcalves"
+                    android:textAlignment="center"
+                    android:textSize="13sp"
+                    />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:src="@drawable/walkingcalf" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tiptoe"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp">
+
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="@string/tiptoewalking"
+                    android:textAlignment="center"
+                    android:textSize="13sp"
+                    />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:src="@drawable/tiptoe" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Calfraises"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp">
+
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="@string/calfraisesexercise"
+                    android:textAlignment="center"
+                    android:textSize="13sp"
+                    />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:src="@drawable/calfraises" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>
