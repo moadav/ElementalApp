@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CalvesFragment">
+    tools:context=".Fragments.HomeWorkout.QuadsHomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
@@ -18,13 +18,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/calves"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/walkingcalfraises"
+                android:text="@string/squat"
                 android:textAlignment="center"
                 android:textSize="12sp" />
 
@@ -38,7 +32,7 @@
                     android:layout_width="190dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="@string/walkingcalves"
+                    android:text="@string/squater"
                     android:textAlignment="center"
                     android:textSize="13sp"
                     />
@@ -46,13 +40,13 @@
                 <pl.droidsonroids.gif.GifImageView
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
-                    android:src="@drawable/walkingcalf" />
+                    android:src="@drawable/squat" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tiptoe"
+                android:text="@string/forwardlung"
                 android:textAlignment="center"
                 android:textSize="12sp" />
             <LinearLayout
@@ -64,7 +58,7 @@
                     android:layout_width="190dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="@string/tiptoewalking"
+                    android:text="@string/forwardlunging"
                     android:textAlignment="center"
                     android:textSize="13sp"
                     />
@@ -72,13 +66,13 @@
                 <pl.droidsonroids.gif.GifImageView
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
-                    android:src="@drawable/tiptoe" />
+                    android:src="@drawable/forwardlung" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Calfraises"
+                android:text="@string/jumpsquat"
                 android:textAlignment="center"
                 android:textSize="12sp" />
             <LinearLayout
@@ -90,7 +84,7 @@
                     android:layout_width="190dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="@string/calfraisesexercise"
+                    android:text="@string/jumpsquating"
                     android:textAlignment="center"
                     android:textSize="13sp"
                     />
@@ -98,7 +92,7 @@
                 <pl.droidsonroids.gif.GifImageView
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
-                    android:src="@drawable/calfraises" />
+                    android:src="@drawable/jumpsquat" />
             </LinearLayout>
 
         </LinearLayout>

@@ -64,10 +64,58 @@
         <action
             android:id="@+id/action_homeWorkoutFragment_to_calvesFragment"
             app:destination="@id/calvesFragment" />
+        <action
+            android:id="@+id/action_homeWorkoutFragment_to_quadsHomeFragment"
+            app:destination="@id/quadsHomeFragment" />
+        <action
+            android:id="@+id/action_homeWorkoutFragment_to_chestHomeFragment"
+            app:destination="@id/chestHomeFragment" />
+        <action
+            android:id="@+id/action_homeWorkoutFragment_to_tricepsHomeFragment"
+            app:destination="@id/tricepsHomeFragment" />
+        <action
+            android:id="@+id/action_homeWorkoutFragment_to_shoulderHomeFragment"
+            app:destination="@id/shoulderHomeFragment" />
+        <action
+            android:id="@+id/action_homeWorkoutFragment_to_abdominalHomeFragment"
+            app:destination="@id/abdominalHomeFragment" />
+        <action
+            android:id="@+id/action_homeWorkoutFragment_to_trapsHomeFragment"
+            app:destination="@id/trapsHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/calvesFragment"
-        android:name="com.example.elemental.Fragments.CalvesFragment"
+        android:name="com.example.elemental.Fragments.HomeWorkout.CalvesHomeFragment"
         android:label="fragment_calves"
-        tools:layout="@layout/fragment_calves" />
+        tools:layout="@layout/fragment_calves_home" />
+    <fragment
+        android:id="@+id/abdominalHomeFragment"
+        android:name="com.example.elemental.Fragments.HomeWorkout.AbdominalHomeFragment"
+        android:label="fragment_abdominal_home"
+        tools:layout="@layout/fragment_abdominal_home" />
+    <fragment
+        android:id="@+id/chestHomeFragment"
+        android:name="com.example.elemental.Fragments.HomeWorkout.ChestHomeFragment"
+        android:label="fragment_chest_home"
+        tools:layout="@layout/fragment_chest_home" />
+    <fragment
+        android:id="@+id/quadsHomeFragment"
+        android:name="com.example.elemental.Fragments.HomeWorkout.QuadsHomeFragment"
+        android:label="fragment_quads_home"
+        tools:layout="@layout/fragment_quads_home" />
+    <fragment
+        android:id="@+id/shoulderHomeFragment"
+        android:name="com.example.elemental.Fragments.HomeWorkout.ShoulderHomeFragment"
+        android:label="fragment_shoulder_home"
+        tools:layout="@layout/fragment_shoulder_home" />
+    <fragment
+        android:id="@+id/trapsHomeFragment"
+        android:name="com.example.elemental.Fragments.HomeWorkout.TrapsHomeFragment"
+        android:label="fragment_traps_home"
+        tools:layout="@layout/fragment_traps_home" />
+    <fragment
+        android:id="@+id/tricepsHomeFragment"
+        android:name="com.example.elemental.Fragments.HomeWorkout.TricepsHomeFragment"
+        android:label="fragment_triceps_home"
+        tools:layout="@layout/fragment_triceps_home" />
 </navigation>

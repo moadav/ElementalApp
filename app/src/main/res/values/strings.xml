@@ -41,4 +41,30 @@
     <string name="traps">Traps</string>
     <string name="triceps">Triceps</string>
     <string name="hamstrings">Hamstrings</string>
+    <string name="squat">Squat</string>
+    <string name="squater">stand with your feet at shoulder-width apart. Flex your knees and hips and sit back into the squat while lowering your body</string>
+    <string name="forwardlung">Forward lunges</string>
+    <string name="forwardlunging">step forward with one leg,Lower your body until your knee nearly touches the ground.Push off the floor with your front foot until you return to the starting position and switch legs.</string>
+    <string name="jumpsquat">Jump Squats</string>
+    <string name="jumpsquating">Stand with your feet shoulder-width apart.Start by doing a regular squat, then jump up. When you land, lower your body back into the squat position.</string>
+    <string name="crunches">Crunches</string>
+    <string name="crunchinfo">Lay flat on your back with your knees bent and your feet flat on the ground. Raise your head and shoulders off the floor. Return to starting position and repeat.</string>
+    <string name="legraises">Laying Leg Raises</string>
+    <string name="legraisesinfo">Lay on your back. Keep your legs together and as straight as possible.Slowly raise your legs as high as you can, pause at this position, and then slowly lower your legs back down.</string>
+    <string name="plank">Forearm Plank</string>
+    <string name="plankinfo">Place forearms on the ground with your elbows bent at a 90° angle. Lift your belly off the floor and form a straight line from your heels to the crown of your head and hold</string>
+    <string name="dips">Dips</string>
+    <string name="dipsinfo">Hold your body with arms locked above the equipment. Lower your body slowly while leaning forward.Raise your body above the bars until your arms are locked.</string>
+    <string name="pushup">Push Up</string>
+    <string name="pushupinfo">Place your hands directly under shoulders,Flatten your back so your entire body is straight and slowly lower your body. Exhale as you push back to the starting position.</string>
+    <string name="declinepushup">Decline Push-Up</string>
+    <string name="declinepushupinfo">Put your hands slightly wider than shoulder-width.Slowly lower your body until your chest almost touches the ground.Raise your body until you almost lock your elbows.</string>
+    <string name="Elevatedpike">Elevated Pike Press</string>
+    <string name="Elevatedpikeinfo">Lower your head towards the floor by bending your elbows. Push through your hands and return to the starting pike position. Repeat</string>
+    <string name="Elevatedpikeshoulder">Elevated Pike Shoulder Shrug</string>
+    <string name="Elevatedpikeshoulderinfo">Slowly lower your body while keeping your elbows locked. Slowly raise your body back to the start position.</string>
+    <string name="benchdip">Bench Dips</string>
+    <string name="benchdipinfo">Grip the edge of the bench with your hands, Keep your feet together and legs straight.Lower your body straight down.Slowly press back up to the starting point.</string>
+
+
 </resources>

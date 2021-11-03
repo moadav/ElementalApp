@@ -1,14 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.OutsideWorkoutFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/calves"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    />
+                <ImageButton
+                    android:id="@+id/calvespic"
+                    android:layout_width="match_parent"
+                    android:layout_height="171dp"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/calvespic"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quads"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    />
+                <ImageButton
+                    android:id="@+id/quadpic"
+                    android:layout_width="match_parent"
+                    android:layout_height="171dp"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/quadpic"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/abdomin"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    />
+                <ImageButton
+                    android:id="@+id/abdominpic"
+                    android:layout_width="match_parent"
+                    android:layout_height="171dp"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/abdominalrealpic"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/chest"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+
+                <ImageButton
+                    android:id="@+id/chestpic"
+                    android:layout_width="match_parent"
+                    android:layout_height="171dp"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/chestrealpic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/shoulders"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    />
+                <ImageButton
+                    android:id="@+id/shoulderpic"
+                    android:layout_width="match_parent"
+                    android:layout_height="171dp"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/shoulderpicreal"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/traps"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    />
+                <ImageButton
+                    android:id="@+id/trappic"
+                    android:layout_width="match_parent"
+                    android:layout_height="171dp"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/trapspic"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/triceps"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    />
+                <ImageButton
+                    android:id="@+id/triceppic"
+                    android:layout_width="match_parent"
+                    android:layout_height="171dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="125dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/triceppic"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

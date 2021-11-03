@@ -103,7 +103,25 @@ public class HomeWorkoutFragment extends Fragment implements View.OnClickListene
             case R.id.calvespic:
                 Navigation.findNavController(view).navigate(R.id.action_homeWorkoutFragment_to_calvesFragment);
                 break;
-            
+            case R.id.quadpic:
+                Navigation.findNavController(view).navigate(R.id.action_homeWorkoutFragment_to_quadsHomeFragment);
+                break;
+            case R.id.shoulderpic:
+                Navigation.findNavController(view).navigate(R.id.action_homeWorkoutFragment_to_shoulderHomeFragment);
+                break;
+            case R.id.abdominpic:
+                Navigation.findNavController(view).navigate(R.id.action_homeWorkoutFragment_to_abdominalHomeFragment);
+                break;
+            case R.id.triceppic:
+                Navigation.findNavController(view).navigate(R.id.action_homeWorkoutFragment_to_tricepsHomeFragment);
+                break;
+            case R.id.chestpic:
+                Navigation.findNavController(view).navigate(R.id.action_homeWorkoutFragment_to_chestHomeFragment);
+                break;
+            case R.id.trappic:
+                Navigation.findNavController(view).navigate(R.id.action_homeWorkoutFragment_to_trapsHomeFragment);
+                break;
+
 
         }
 

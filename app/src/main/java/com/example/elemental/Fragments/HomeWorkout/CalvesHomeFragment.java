@@ -1,4 +1,4 @@
-package com.example.elemental.Fragments;
+package com.example.elemental.Fragments.HomeWorkout;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.example.elemental.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CalvesFragment#newInstance} factory method to
+ * Use the {@link CalvesHomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CalvesFragment extends Fragment {
+public class CalvesHomeFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class CalvesFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public CalvesFragment() {
+    public CalvesHomeFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class CalvesFragment extends Fragment {
      * @return A new instance of fragment CalvesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CalvesFragment newInstance(String param1, String param2) {
-        CalvesFragment fragment = new CalvesFragment();
+    public static CalvesHomeFragment newInstance(String param1, String param2) {
+        CalvesHomeFragment fragment = new CalvesHomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class CalvesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calves, container, false);
+        return inflater.inflate(R.layout.fragment_calves_home, container, false);
     }
 }
