@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.elemental.R;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -92,8 +93,6 @@ public class HomeWorkoutFragment extends Fragment implements View.OnClickListene
 
         abdomin = (ImageButton) getView().findViewById(R.id.abdominpic);
         abdomin.setOnClickListener(this);
-
-       
 
     }
 

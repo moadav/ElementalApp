@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 
 import com.example.elemental.R;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 /**
  * A simple {@link Fragment} subclass.

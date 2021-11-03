@@ -39,6 +39,7 @@
         android:backgroundTint="@color/design_default_color_primary">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsintool"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:expandedTitleGravity="bottom"
