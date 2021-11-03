@@ -86,7 +86,7 @@ public class SportTipsFragment extends Fragment implements View.OnClickListener{
 
         switch (view.getId()){
             case R.id.imagebuttonOutside:
-                Toast.makeText(getActivity(), "outsideworkout listfragment", Toast.LENGTH_LONG).show();
+                Navigation.findNavController(view).navigate(R.id.action_sportTipsFragment_to_outsideWorkoutFragment);
                 break;
             case R.id.imagebuttonHome:
                 Navigation.findNavController(view).navigate(R.id.action_sportTipsFragment_to_homeWorkoutFragment);

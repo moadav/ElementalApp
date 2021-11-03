@@ -34,12 +34,12 @@
                     android:textSize="24sp"
                     />
                 <ImageButton
-                    android:id="@+id/imagebuttonHome"
+                    android:id="@+id/calvespic"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/homework"
+                    android:src="@mipmap/calvespic"
                    />
 
             </LinearLayout>
@@ -59,12 +59,12 @@
                     android:textSize="24sp"
                     />
                 <ImageButton
-                    android:id="@+id/imagebuttonHome5"
+                    android:id="@+id/quadpic"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/homework"
+                    android:src="@mipmap/quadpic"
                     />
 
             </LinearLayout>
@@ -83,39 +83,39 @@
                     android:textSize="24sp"
                     />
                 <ImageButton
-                    android:id="@+id/imagebuttonHome4"
+                    android:id="@+id/abdominpic"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/homework"
+                    android:src="@mipmap/abdominalrealpic"
                     />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="@string/chest"
                     android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:textSize="24sp"
-                    />
+                    android:textSize="24sp" />
+
                 <ImageButton
-                    android:id="@+id/imagebuttonHome3"
+                    android:id="@+id/chestpic"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/homework"
-                    />
+                    android:src="@mipmap/chestrealpic" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,12 +131,12 @@
                     android:textSize="24sp"
                     />
                 <ImageButton
-                    android:id="@+id/imagebuttonHome2"
+                    android:id="@+id/shoulderpic"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/homework"
+                    android:src="@mipmap/shoulderpicreal"
                     />
 
             </LinearLayout>
@@ -156,12 +156,12 @@
                     android:textSize="24sp"
                     />
                 <ImageButton
-                    android:id="@+id/imagebuttonHome7"
+                    android:id="@+id/trappic"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/homework"
+                    android:src="@mipmap/trapspic"
                     />
 
             </LinearLayout>
@@ -181,38 +181,12 @@
                     android:textSize="24sp"
                     />
                 <ImageButton
-                    android:id="@+id/imagebuttonHome17"
+                    android:id="@+id/triceppic"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/homework"
-                    />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hamstrings"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:textSize="24sp"
-                    />
-                <ImageButton
-                    android:id="@+id/imagebuttonHome127"
-                    android:layout_width="match_parent"
-                    android:layout_height="171dp"
-                    android:layout_marginTop="15dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/homework"
+                    android:src="@mipmap/triceppic"
                     />
 
             </LinearLayout>

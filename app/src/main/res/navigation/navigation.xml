@@ -60,5 +60,14 @@
         android:id="@+id/homeWorkoutFragment"
         android:name="com.example.elemental.Fragments.HomeWorkoutFragment"
         android:label="fragment_home_workout"
-        tools:layout="@layout/fragment_home_workout" />
+        tools:layout="@layout/fragment_home_workout" >
+        <action
+            android:id="@+id/action_homeWorkoutFragment_to_calvesFragment"
+            app:destination="@id/calvesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calvesFragment"
+        android:name="com.example.elemental.Fragments.CalvesFragment"
+        android:label="fragment_calves"
+        tools:layout="@layout/fragment_calves" />
 </navigation>
