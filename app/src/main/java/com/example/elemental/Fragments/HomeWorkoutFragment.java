@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.elemental.R;
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -92,6 +93,8 @@ public class HomeWorkoutFragment extends Fragment implements View.OnClickListene
         abdomin = (ImageButton) getView().findViewById(R.id.abdominpic);
         abdomin.setOnClickListener(this);
 
+        AppBarLayout appBarLayout = (AppBarLayout) getView().findViewById(R.id.appbarlayout);
+        appBarLayout.setExpanded(true,true);
 
     }
 

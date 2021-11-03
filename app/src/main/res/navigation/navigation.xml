@@ -55,7 +55,29 @@
         android:id="@+id/outsideWorkoutFragment"
         android:name="com.example.elemental.Fragments.OutsideWorkoutFragment"
         android:label="fragment_outside_workout"
-        tools:layout="@layout/fragment_outside_workout" />
+        tools:layout="@layout/fragment_outside_workout" >
+        <action
+            android:id="@+id/action_outsideWorkoutFragment_to_trapsOutsideFragment"
+            app:destination="@id/trapsOutsideFragment" />
+        <action
+            android:id="@+id/action_outsideWorkoutFragment_to_shoulderOutsideFragment"
+            app:destination="@id/shoulderOutsideFragment" />
+        <action
+            android:id="@+id/action_outsideWorkoutFragment_to_abdominalOutsideFragment"
+            app:destination="@id/abdominalOutsideFragment" />
+        <action
+            android:id="@+id/action_outsideWorkoutFragment_to_calvesOutsideFragment"
+            app:destination="@id/calvesOutsideFragment" />
+        <action
+            android:id="@+id/action_outsideWorkoutFragment_to_chestOutsideFragment"
+            app:destination="@id/chestOutsideFragment" />
+        <action
+            android:id="@+id/action_outsideWorkoutFragment_to_quadsOutsideFragment"
+            app:destination="@id/quadsOutsideFragment" />
+        <action
+            android:id="@+id/action_outsideWorkoutFragment_to_tricepsOutsideFragment"
+            app:destination="@id/tricepsOutsideFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeWorkoutFragment"
         android:name="com.example.elemental.Fragments.HomeWorkoutFragment"
@@ -118,4 +140,39 @@
         android:name="com.example.elemental.Fragments.HomeWorkout.TricepsHomeFragment"
         android:label="fragment_triceps_home"
         tools:layout="@layout/fragment_triceps_home" />
+    <fragment
+        android:id="@+id/abdominalOutsideFragment"
+        android:name="com.example.elemental.Fragments.OutsideWorkout.AbdominalOutsideFragment"
+        android:label="fragment_abdominal_outside"
+        tools:layout="@layout/fragment_abdominal_outside" />
+    <fragment
+        android:id="@+id/calvesOutsideFragment"
+        android:name="com.example.elemental.Fragments.OutsideWorkout.CalvesOutsideFragment"
+        android:label="fragment_calves_outside"
+        tools:layout="@layout/fragment_calves_outside" />
+    <fragment
+        android:id="@+id/chestOutsideFragment"
+        android:name="com.example.elemental.Fragments.OutsideWorkout.ChestOutsideFragment"
+        android:label="fragment_chest_outside"
+        tools:layout="@layout/fragment_chest_outside" />
+    <fragment
+        android:id="@+id/quadsOutsideFragment"
+        android:name="com.example.elemental.Fragments.OutsideWorkout.QuadsOutsideFragment"
+        android:label="fragment_quads_outside"
+        tools:layout="@layout/fragment_quads_outside" />
+    <fragment
+        android:id="@+id/shoulderOutsideFragment"
+        android:name="com.example.elemental.Fragments.OutsideWorkout.ShoulderOutsideFragment"
+        android:label="fragment_shoulder_outside"
+        tools:layout="@layout/fragment_shoulder_outside" />
+    <fragment
+        android:id="@+id/trapsOutsideFragment"
+        android:name="com.example.elemental.Fragments.OutsideWorkout.TrapsOutsideFragment"
+        android:label="fragment_traps_outside"
+        tools:layout="@layout/fragment_traps_outside" />
+    <fragment
+        android:id="@+id/tricepsOutsideFragment"
+        android:name="com.example.elemental.Fragments.OutsideWorkout.TricepsOutsideFragment"
+        android:label="fragment_triceps_outside"
+        tools:layout="@layout/fragment_triceps_outside" />
 </navigation>

@@ -3,19 +3,22 @@ package com.example.elemental.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.elemental.R;
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link OutsideWorkoutFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OutsideWorkoutFragment extends Fragment {
+public class OutsideWorkoutFragment extends Fragment implements View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +28,7 @@ public class OutsideWorkoutFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private ImageButton calves,quads,abdomin,shoulder,traps,triceps,chest;
     public OutsideWorkoutFragment() {
         // Required empty public constructor
     }
@@ -62,5 +65,62 @@ public class OutsideWorkoutFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_outside_workout, container, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        quads = (ImageButton) getView().findViewById(R.id.quadpic);
+        quads.setOnClickListener(this);
+
+        calves = (ImageButton) getView().findViewById(R.id.calvespic);
+        calves.setOnClickListener(this);
+
+        shoulder = (ImageButton) getView().findViewById(R.id.shoulderpic);
+        shoulder.setOnClickListener(this);
+
+        traps = (ImageButton) getView().findViewById(R.id.trappic);
+        traps.setOnClickListener(this);
+
+        chest = (ImageButton) getView().findViewById(R.id.chestpic);
+        chest.setOnClickListener(this);
+
+        triceps = (ImageButton) getView().findViewById(R.id.triceppic);
+        triceps.setOnClickListener(this);
+
+        abdomin = (ImageButton) getView().findViewById(R.id.abdominpic);
+        abdomin.setOnClickListener(this);
+
+        AppBarLayout appBarLayout = (AppBarLayout) getView().findViewById(R.id.appbarlayout);
+        appBarLayout.setExpanded(true,true);
+
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.calvespic:
+                Navigation.findNavController(view).navigate(R.id.action_outsideWorkoutFragment_to_calvesOutsideFragment);
+                break;
+            case R.id.quadpic:
+                Navigation.findNavController(view).navigate(R.id.action_outsideWorkoutFragment_to_quadsOutsideFragment);
+                break;
+            case R.id.shoulderpic:
+                Navigation.findNavController(view).navigate(R.id.action_outsideWorkoutFragment_to_shoulderOutsideFragment);
+                break;
+            case R.id.abdominpic:
+                Navigation.findNavController(view).navigate(R.id.action_outsideWorkoutFragment_to_abdominalOutsideFragment);
+                break;
+            case R.id.triceppic:
+                Navigation.findNavController(view).navigate(R.id.action_outsideWorkoutFragment_to_tricepsOutsideFragment);
+                break;
+            case R.id.chestpic:
+                Navigation.findNavController(view).navigate(R.id.action_outsideWorkoutFragment_to_chestOutsideFragment);
+                break;
+            case R.id.trappic:
+                Navigation.findNavController(view).navigate(R.id.action_outsideWorkoutFragment_to_trapsOutsideFragment);
+                break;
+        }
     }
 }

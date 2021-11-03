@@ -65,6 +65,28 @@
     <string name="Elevatedpikeshoulderinfo">Slowly lower your body while keeping your elbows locked. Slowly raise your body back to the start position.</string>
     <string name="benchdip">Bench Dips</string>
     <string name="benchdipinfo">Grip the edge of the bench with your hands, Keep your feet together and legs straight.Lower your body straight down.Slowly press back up to the starting point.</string>
+    <string name="barbellcalf">Barbell Calf Raises</string>
+    <string name="barbellcalfinfo">Place the bar on your back.Extend your heels upwards while keeping your knees stationary, and pause at the contracted position. Slowly return to the starting position.</string>
+    <string name="barbellsquat">Squat</string>
+    <string name="barbellsquatinfo">Stand with your feet shoulder-width apart. Maintain the arch in your back. Bend your knees as you lower the weight without altering the form of your back until your hips are below your knees.</string>
+    <string name="barbellcurtsy">Barbell Curtsy Lunge</string>
+    <string name="barbellcurtsyinfo">Place the barbell on your back. Step your foot back and around while simultaneously bringing the weight down. Return to start and repeat on other leg.</string>
+    <string name="barbellroll">Barbell Roll-Outs</string>
+    <string name="barbellrollinfo">Hold the Barbell and kneel on the floor. Slowly roll the Barbell straight forward, stretching your body into a straight position. start slowly pulling yourself back to the starting position</string>
+    <string name="barbelllandmine">Barbell Landmine Side Bend</string>
+    <string name="barbelllandmineinfo">Stand straight and hold the end of the Barbell, Keep your hips and shoulders facing forward, bend to one side slowly. Return to the upright position. Switch hands and repeat.</string>
+    <string name="barbelloverhead">Barbell Overhead Press</string>
+    <string name="barbelloverheadinfo">Start the barbell across your upper chest below your chin. Raise the barbell upwards and pause at the contracted position above your head. Lower the weights back to starting position.</string>
+    <string name="barbellbench">Barbell Bench Press</string>
+    <string name="barbellbenchinfo">Lay flat on the bench with your feet on the ground. Lower the bar to your mid chest. Raise the bar until youve locked your elbows</string>
+    <string name="inclinebarbellbench">Incline Barbell Bench</string>
+    <string name="inclinebarbellbenchinfo">Position the bench between 30 and 45 degrees. Lower the bar to your mid chest. Raise the bar until youve locked your elbows.</string>
+    <string name="barbellsilverback">Barbell Silverback Shrug</string>
+    <string name="barbellsilverbackinfo">Bend forward at the hips with a slight bend in your knees, keeping your back straight. Engage your shoulder blades, as if you are trying to touch them together. Repeat</string>
+    <string name="layingtriceps">Laying Triceps Extensions</string>
+    <string name="layingtricepsinfo">Fully extend your elbows until the barbell is directly over your chest. Begin to flex your elbows and allow the barbell to nearly touch your forehead. Repeat</string>
+    <string name="closegripbench">Close Grip Bench Press</string>
+    <string name="closegripbenchinfo">hold the bench with a narrow grip, straighten your arms. Lower the bar to your lower-mid chest. Slowly raise the bar until you've locked your elbows.</string>
 
 
 </resources>
