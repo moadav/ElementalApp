@@ -87,6 +87,7 @@
     <string name="layingtricepsinfo">Fully extend your elbows until the barbell is directly over your chest. Begin to flex your elbows and allow the barbell to nearly touch your forehead. Repeat</string>
     <string name="closegripbench">Close Grip Bench Press</string>
     <string name="closegripbenchinfo">hold the bench with a narrow grip, straighten your arms. Lower the bar to your lower-mid chest. Slowly raise the bar until youve locked your elbows.</string>
-
+    <string name="close_drawer">Close navigation</string>
+    <string name="open_drawer">Open navigation</string>
 
 </resources>

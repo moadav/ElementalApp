@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/group"
+        android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/item"
+            android:icon="@drawable/ic_baseline_assignment_return_24"
+            android:title="jees"
+            android:checked="true"
+            />
+        <item
+            android:id="@+id/item2"
+            android:icon="@drawable/ic_baseline_assignment_return_24"
+            android:title="jees"
+
+            />
+        <item
+            android:id="@+id/item3"
+            android:icon="@drawable/ic_baseline_calendar_today_24"
+            android:title="jees"
+
+            />
+
+
+    </group>
+
+
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/subtitle"
+            android:title="Subtitle">
+            <menu>
+                <item
+                    android:id="@+id/item4"
+                    android:icon="@drawable/ic_baseline_sports_24"
+                    android:title="Item 4"
+                    />
+
+                <item
+                    android:id="@+id/item5"
+                    android:icon="@drawable/ic_baseline_calendar_today_24"
+                    android:title="Item 5" />
+
+            </menu>
+        </item>
+    </group>
+
+</menu>
