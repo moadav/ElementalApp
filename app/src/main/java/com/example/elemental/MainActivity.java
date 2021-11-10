@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarToggle;
-    NestedScrollView nestedScrollView;
     NavigationView navigationView;
 
     @Override
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         BottomNavigationView bottomNavigationView = findViewById(R.id.Bottom_navigation);
         NavController navController = Navigation.findNavController(this,  R.id.Nav_container);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
-
         bottomNavigationView.setOnItemSelectedListener(this);
 
 
