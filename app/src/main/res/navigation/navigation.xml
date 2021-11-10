@@ -24,6 +24,15 @@
         <action
             android:id="@+id/action_homeFragment_to_loginActivity"
             app:destination="@id/loginActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_BMIKalkulatorFragment"
+            app:destination="@id/BMIKalkulatorFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_sportTipsFragment"
+            app:destination="@id/sportTipsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"

@@ -6,6 +6,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import androidx.core.view.GravityCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -15,83 +17,29 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.core.View;
+
+import java.util.Objects;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnItemSelectedListener {
 
     private Toolbar toolbar;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarToggle;
-
-    /*
-       <androidx.drawerlayout.widget.DrawerLayout
-    android:id="@+id/drawerLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:openDrawer="start">
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
-            android:fitsSystemWindows="true">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="ttt"
-                app:navigationIcon="@drawable/ic_baseline_menu_24"
-                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
-                android:background="@android:color/transparent"
-                android:elevation="0dp" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <!-- Screen content -->
-        <!-- Use app:layout_behavior="@string/appbar_scrolling_view_behavior" to fit below top app bar -->
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
-</androidx.drawerlayout.widget.DrawerLayout>
-
-
- <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="ttt"
-
-                />
-
-<com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="ttt"
-                app:navigationIcon="@drawable/ic_baseline_menu_24"
-                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
-                android:background="@android:color/transparent"
-                android:elevation="0dp" />
-     */
-
+    NestedScrollView nestedScrollView;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,14 +48,20 @@ public class MainActivity extends AppCompatActivity  {
 
         toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
+        navigationView = findViewById(R.id.navigview);
 
 
-
+        navigationView.bringToFront();
         BottomNavigationView bottomNavigationView = findViewById(R.id.Bottom_navigation);
         NavController navController = Navigation.findNavController(this,  R.id.Nav_container);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
-        NavigationUI.setupActionBarWithNavController(this, navController);
+
+        bottomNavigationView.setOnItemSelectedListener(this);
+
+
         getSupportActionBar().setTitle("Elemental");
+
+
 
     }
 
@@ -117,32 +71,12 @@ public class MainActivity extends AppCompatActivity  {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.myDrawerMenu);
 
-
         actionBarToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open_drawer,R.string.close_drawer);
         actionBarToggle.setDrawerIndicatorEnabled(true);
         drawerLayout.addDrawerListener(actionBarToggle);
         actionBarToggle.syncState();
-        NavigationView navigationView = findViewById(R.id.navigview);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-
-                    case R.id.item:
-                        Toast.makeText(getApplicationContext(), "Failed to register! Please try again", Toast.LENGTH_LONG).show();
-                        break;
-
-                }
-
-
-
-                return false;
-            }
-        });
-
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(this);
 
 
 
@@ -158,6 +92,8 @@ public class MainActivity extends AppCompatActivity  {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+
         switch (item.getItemId()){
             case R.id.logout_app:
 
@@ -167,13 +103,68 @@ public class MainActivity extends AppCompatActivity  {
 
                 break;
         }
+
         return super.onOptionsItemSelected(item) || actionBarToggle.onOptionsItemSelected(item);
 
     }
 
     @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        super.onBackPressed();
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
         return super.onSupportNavigateUp();
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+
+            //Bottom navigation navigation
+            case R.id.sportTipsFragment:
+                navigationView.setCheckedItem(R.id.sportdrawmenu);
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.sportTipsFragment);
+                break;
+
+            case R.id.homeFragment:
+                navigationView.setCheckedItem(R.id.homedrawmenu);
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.homeFragment);
+                break;
+
+            case R.id.BMIKalkulatorFragment:
+                navigationView.setCheckedItem(R.id.bmidrawmenu);
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.BMIKalkulatorFragment);
+                break;
+
+            case R.id.calendarFragment:
+                navigationView.setCheckedItem(R.id.calendardrawmenu);
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.calendarFragment);
+                break;
+
+                //navigation drawer navigation
+            case R.id.homedrawmenu:
+                navigationView.setCheckedItem(R.id.homedrawmenu);
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.homeFragment);
+                break;
+            case R.id.sportdrawmenu:
+                navigationView.setCheckedItem(R.id.sportdrawmenu);
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.sportTipsFragment);
+                break;
+            case R.id.bmidrawmenu:
+                navigationView.setCheckedItem(R.id.bmidrawmenu);
+                Navigation.findNavController(this, R.id.Nav_container).navigate(R.id.BMIKalkulatorFragment);
+                break;
+            case R.id.calendardrawmenu:
+                navigationView.setCheckedItem(R.id.calendardrawmenu);
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.calendarFragment);
+                break;
+
+        }
+        return false;
     }
 }
