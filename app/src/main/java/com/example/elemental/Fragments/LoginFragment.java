@@ -138,8 +138,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private void Login() {
 
-        sharedPreferences = getContext().getSharedPreferences("Preferences", 0);
-
         String emailRemember = sharedPreferences.getString("email", null);
         String passwordRemember = sharedPreferences.getString("password", null);
 

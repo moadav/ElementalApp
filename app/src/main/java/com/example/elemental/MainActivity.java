@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()){
             case R.id.logout_app:
-
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.remove("password");
                 editor.remove("email");
