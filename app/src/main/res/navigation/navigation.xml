@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_homeFragment_to_calendarFragment"
             app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -40,6 +43,9 @@
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" >
 
+        <action
+            android:id="@+id/action_calendarFragment_to_workoutPlanFragment"
+            app:destination="@id/workoutPlanFragment" />
     </fragment>
     <fragment
         android:id="@+id/sportTipsFragment"
@@ -184,4 +190,18 @@
         android:name="com.example.elemental.Fragments.OutsideWorkout.TricepsOutsideFragment"
         android:label="fragment_triceps_outside"
         tools:layout="@layout/fragment_triceps_outside" />
+    <fragment
+        android:id="@+id/workoutPlanFragment"
+        android:name="com.example.elemental.Fragments.WorkoutPlanFragment"
+        android:label="fragment_workout_plan"
+        tools:layout="@layout/fragment_workout_plan" >
+        <action
+            android:id="@+id/action_workoutPlanFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.elemental.Fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

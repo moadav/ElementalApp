@@ -89,5 +89,7 @@
     <string name="closegripbenchinfo">hold the bench with a narrow grip, straighten your arms. Lower the bar to your lower-mid chest. Slowly raise the bar until youve locked your elbows.</string>
     <string name="close_drawer">Close navigation</string>
     <string name="open_drawer">Open navigation</string>
+    <string name="submit">Submit</string>
+    <string name="your_workouts">Your Workouts:</string>
 
 </resources>

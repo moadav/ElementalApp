@@ -15,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elemental.CalendarAdapter;
+import com.example.elemental.OnItemListener;
 import com.example.elemental.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -27,21 +29,21 @@ import java.util.ArrayList;
  * Use the {@link CalendarFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CalendarFragment extends Fragment implements CalendarAdapter.OnItemListener,View.OnClickListener {
+public class CalendarFragment extends Fragment implements OnItemListener,View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
-    private Button lastWeekButton,nextWeekButton, workoutplan,foodplan;
+    private Button lastWeekButton,nextWeekButton;
+    FloatingActionButton workoutplan;
     private TextView MonthYear;
     private RecyclerView calenderRecyclerView;
-    private LocalDate selectedDate;
-
+    public static LocalDate selectedDate;
     public CalendarFragment() {
         // Required empty public constructor
     }
@@ -85,15 +87,23 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     public void onResume() {
         super.onResume();
 
+        workoutplan = getView().findViewById(R.id.workoutplan);
+        workoutplan.setOnClickListener(this);
+
         calenderRecyclerView = getView().findViewById(R.id.recyclerview);
+
         MonthYear = getView().findViewById(R.id.MonthYear);
+
         selectedDate = LocalDate.now();
+
         lastWeekButton = getView().findViewById(R.id.LastWeekButton);
         lastWeekButton.setOnClickListener(this);
 
         nextWeekButton = getView().findViewById(R.id.nextWeekButton);
         nextWeekButton.setOnClickListener(this);
+
         setMonthView();
+
     }
 
     private String monthYearFromDate(LocalDate date)
@@ -102,22 +112,22 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         return date.format(formatter);
     }
 
-    public void previousMonthAction(View view)
+    public void previousMonthAction()
     {
         selectedDate = selectedDate.minusMonths(1);
         setMonthView();
     }
 
-    public void nextMonthAction(View view)
+    public void nextMonthAction()
     {
         selectedDate = selectedDate.plusMonths(1);
         setMonthView();
     }
 
 
-    private ArrayList<String> daysInMonthArray(LocalDate date)
+    private ArrayList<LocalDate> daysInMonthArray(LocalDate date)
     {
-        ArrayList<String> daysInMonthArray = new ArrayList<>();
+        ArrayList<LocalDate> daysInMonthArray = new ArrayList<>();
         YearMonth yearMonth = YearMonth.from(date);
 
         int daysInMonth = yearMonth.lengthOfMonth();
@@ -128,13 +138,9 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         for(int i = 1; i <= 42; i++)
         {
             if(i <= dayOfWeek || i > daysInMonth + dayOfWeek)
-            {
-                daysInMonthArray.add("");
-            }
+                daysInMonthArray.add(null);
             else
-            {
-                daysInMonthArray.add(String.valueOf(i - dayOfWeek));
-            }
+                daysInMonthArray.add(LocalDate.of(selectedDate.getYear(),selectedDate.getMonth(),i - dayOfWeek));
         }
         return  daysInMonthArray;
     }
@@ -143,35 +149,43 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     private void setMonthView()
     {
         MonthYear.setText(monthYearFromDate(selectedDate));
-        ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
+        ArrayList<LocalDate> daysInMonth = daysInMonthArray(selectedDate);
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 7);
         calenderRecyclerView.setLayoutManager(layoutManager);
         calenderRecyclerView.setAdapter(calendarAdapter);
+
     }
 
     @Override
-    public void onItemClick(int position, String day) {
+    public void onItemClick(int position, LocalDate day) {
         if(!day.equals(""))
         {
+            CalendarFragment.selectedDate = day;
             String message = "Selected Date " + day + " " + monthYearFromDate(selectedDate);
             Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+            setMonthView();
         }
     }
+
+
+
+
+
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.nextWeekButton:
-               nextMonthAction(view);
+               nextMonthAction();
                 break;
             case R.id.LastWeekButton:
-                previousMonthAction(view);
+                previousMonthAction();
                 break;
-
-
-
+            case R.id.workoutplan:
+                Navigation.findNavController(view).navigate(R.id.action_calendarFragment_to_workoutPlanFragment);
+                break;
         }
     }
 }

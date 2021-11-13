@@ -11,11 +11,13 @@
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/activity_login.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/appbar_collapsingtool.xml" value="0.13" />
+        <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/calendar_comments.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/calendarcell.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_abdominal_home.xml" value="0.196875" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_abdominal_outside.xml" value="0.196875" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_b_m_i_kalkulator.xml" value="0.18489583333333334" />
-        <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_calendar.xml" value="0.18489583333333334" />
+        <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_calendar.xml" value="0.10084033613445378" />
+        <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_calendar_date.xml" value="0.15" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_calves.xml" value="0.196875" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_calves_home.xml" value="0.196875" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_calves_outside.xml" value="0.196875" />
@@ -28,6 +30,7 @@
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_login.xml" value="0.19375" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_outside_workout.xml" value="0.1953125" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_outside_workout_info.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_profile.xml" value="0.12" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_quads_home.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_quads_outside.xml" value="0.196875" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_register_account.xml" value="0.18645833333333334" />
@@ -39,8 +42,10 @@
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_traps_outside.xml" value="0.196875" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_triceps_home.xml" value="0.196875" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_triceps_outside.xml" value="0.196875" />
+        <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/fragment_workout_plan.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/navigation_drawer_header.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/nested_scroll_page.xml" value="0.2046875" />
+        <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/layout/weekdays.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/menu/bottom_menu.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/menu/main_menu.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Mohammed Ali Davami/Desktop/Elemental/app/src/main/res/menu/navigation_drawer_menu.xml" value="0.18229166666666666" />

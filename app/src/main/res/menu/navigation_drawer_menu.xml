@@ -8,9 +8,9 @@
         android:checkableBehavior="single"
         >
         <item
-            android:id="@+id/item"
+            android:id="@+id/profile"
             android:icon="@drawable/ic_baseline_assignment_return_24"
-            android:title="jeees"
+            android:title="Profile"
             android:checked="true"
             />
         <item
@@ -25,8 +25,6 @@
             android:title="jees"
 
             />
-
-
     </group>
 
 
@@ -41,21 +39,21 @@
                 <item
                     android:id="@+id/homedrawmenu"
                     android:icon="@drawable/ic_baseline_house_24"
-                    android:title="Item 4"
+                    android:title="@string/Home"
                     />
 
                 <item
                     android:id="@+id/calendardrawmenu"
                     android:icon="@drawable/ic_baseline_calendar_today_24"
-                    android:title="Item 5" />
+                    android:title="@string/Calendar" />
                 <item
                     android:id="@+id/sportdrawmenu"
                     android:icon="@drawable/ic_baseline_sports_handball_24"
-                    android:title="Item 5" />
+                    android:title="@string/Sport" />
                 <item
                     android:id="@+id/bmidrawmenu"
                     android:icon="@drawable/ic_baseline_sports_24"
-                    android:title="Item 5" />
+                    android:title="@string/BMIKalkulator" />
                 </group>
             </menu>
         </item>

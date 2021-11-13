@@ -15,7 +15,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarToggle;
     NavigationView navigationView;
-
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        sharedPreferences = getApplicationContext().getSharedPreferences("userLogin", Context.MODE_PRIVATE);
 
     }
 
@@ -95,10 +97,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
             case R.id.logout_app:
 
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("password");
+                editor.remove("email");
+                editor.apply();
+
                 FirebaseAuth.getInstance().signOut();
                 Intent login = new Intent(this,LoginActivity.class);
                 startActivity(login);
-
+                break;
+            case R.id.profile_app:
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.profileFragment);
                 break;
         }
 
@@ -110,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START);
+        else
         super.onBackPressed();
     }
 
@@ -161,6 +171,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 navigationView.setCheckedItem(R.id.calendardrawmenu);
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.calendarFragment);
                 break;
+
+                case R.id.profile:
+                    Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.profileFragment);
+                    break;
 
         }
         return false;

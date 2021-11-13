@@ -1,11 +1,14 @@
 package com.example.elemental.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.os.Handler;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -49,6 +52,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private FirebaseFirestore fireStore;
     private FirebaseAuth mAuth;
     private ProgressBar progresscircle;
+    private SharedPreferences sharedPreferences;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -96,6 +100,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
 
+        sharedPreferences = getContext().getSharedPreferences("userLogin", Context.MODE_PRIVATE);
+
         register = (TextView) getView().findViewById(R.id.registeraccount);
         register.setOnClickListener(this);
 
@@ -111,8 +117,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         progresscircle = (ProgressBar) getView().findViewById(R.id.progresscircle);
         fireStore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-
+        Login();
     }
+
 
     @Override
     public void onClick(View view) {
@@ -130,68 +137,86 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
     private void Login() {
-        String email = emailadr.getText().toString().trim();
-        String password = passord.getText().toString().trim();
 
-        if(email.isEmpty()){
-            emailadr.setError("Input is required");
-            emailadr.requestFocus();
-            return;
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailadr.setError("Please provide a valid email");
-            emailadr.requestFocus();
-            return;
-        }
+        sharedPreferences = getContext().getSharedPreferences("Preferences", 0);
 
-        if(password.isEmpty()){
-            passord.setError("Input is required");
-            passord.requestFocus();
-            return;
-        }
+        String emailRemember = sharedPreferences.getString("email", null);
+        String passwordRemember = sharedPreferences.getString("password", null);
+
+        if (emailRemember != null || passwordRemember != null) {
+            Toast.makeText(getActivity(), "Logging on...", Toast.LENGTH_LONG).show();
+            Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
+        } else {
 
 
-        progresscircle.setVisibility(View.VISIBLE);
+            String email = emailadr.getText().toString().trim();
+            String password = passord.getText().toString().trim();
 
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    fireStore.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
+            if (email.isEmpty()) {
+                emailadr.setError("Input is required");
+                emailadr.requestFocus();
+                return;
+            }
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                emailadr.setError("Please provide a valid email");
+                emailadr.requestFocus();
+                return;
+            }
 
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (password.isEmpty()) {
+                passord.setError("Input is required");
+                passord.requestFocus();
+                return;
+            }
 
-                                if(user.isEmailVerified()){
-                                    Toast.makeText(getActivity(), "Logging on...", Toast.LENGTH_LONG).show();
-                                    Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
-                                }else{
-                                    user.sendEmailVerification();
-                                    Toast.makeText(getActivity(), "Please verify your account! Verification has been sendt to your email", Toast.LENGTH_LONG).show();
+
+            progresscircle.setVisibility(View.VISIBLE);
+
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        fireStore.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                    if (user.isEmailVerified()) {
+                                        Toast.makeText(getActivity(), "Logging on...", Toast.LENGTH_LONG).show();
+
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString("email", emailadr.getText().toString());
+                                        editor.putString("password", passord.getText().toString());
+                                        editor.commit();
+
+                                        Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
+                                    } else {
+                                        user.sendEmailVerification();
+                                        Toast.makeText(getActivity(), "Please verify your account! Verification has been sendt to your email", Toast.LENGTH_LONG).show();
+                                    }
+
+                                } else {
+                                    Toast.makeText(getActivity(), "Failed to login! Please provide correct input", Toast.LENGTH_LONG).show();
                                 }
-
-                            }else{
-                                Toast.makeText(getActivity(), "Failed to login! Please provide correct input", Toast.LENGTH_LONG).show();
+                                progresscircle.setVisibility(View.GONE);
                             }
-                            progresscircle.setVisibility(View.GONE);
-                        }
 
-                    });
+                        });
 
-                }else{
-                    Toast.makeText(getActivity(), "Fault with the authentication!", Toast.LENGTH_LONG).show();
-                    progresscircle.setVisibility(View.GONE);
-                    FirebaseAuthException e = (FirebaseAuthException)task.getException();
-                    Log.e("LoginActivity", "Failed Registration", e);
+                    } else {
+                        Toast.makeText(getActivity(), "Fault with the authentication!", Toast.LENGTH_LONG).show();
+                        progresscircle.setVisibility(View.GONE);
+                        FirebaseAuthException e = (FirebaseAuthException) task.getException();
+                        Log.e("LoginActivity", "Failed Registration", e);
+
+                    }
 
                 }
-
-            }
-        });
+            });
 
 
-
+        }
     }
 }
