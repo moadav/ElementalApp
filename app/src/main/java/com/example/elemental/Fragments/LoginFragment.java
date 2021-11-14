@@ -1,6 +1,7 @@
 package com.example.elemental.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elemental.R;
+import com.example.elemental.Service;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -142,7 +144,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         String passwordRemember = sharedPreferences.getString("password", null);
 
         if (emailRemember != null || passwordRemember != null) {
+
+
             Toast.makeText(getActivity(), "Logging on...", Toast.LENGTH_LONG).show();
+
             Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
         } else {
 
