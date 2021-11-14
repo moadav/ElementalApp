@@ -15,10 +15,15 @@ import androidx.navigation.Navigation;
 
 import androidx.navigation.ui.NavigationUI;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -28,6 +33,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.elemental.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -43,12 +49,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle actionBarToggle;
     NavigationView navigationView;
     private SharedPreferences sharedPreferences;
+    private PendingIntent pendingIntent;
+
+    private AlarmManager alarmManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         startService(new Intent(getApplicationContext(),Service.class));
-
+        te();
         toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.navigview);
@@ -64,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setTitle("Elemental");
 
 
-
+alarm();
     }
 
     @Override
@@ -83,6 +94,48 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sharedPreferences = getApplicationContext().getSharedPreferences("userLogin", Context.MODE_PRIVATE);
 
     }
+    private void alarm(){
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        Intent intent = new Intent(this,AlarmBroadcastReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP,60000,pendingIntent);
+
+        Toast.makeText(this, "Alarm is set!", Toast.LENGTH_SHORT).show();
+
+    }
+    private void chancel(){
+        Intent intent = new Intent(this,AlarmBroadcastReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+
+        if (alarmManager == null){
+            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        }
+
+        alarmManager.cancel(pendingIntent);
+
+    }
+
+    private void te(){
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            String name = "workoutålanspasd";
+
+            String desk = "testng alarm";
+
+            int important = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("workoutandroid",name,important);
+            channel.setDescription(desk);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+
+        }
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,20 +145,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
 
         switch (item.getItemId()){
             case R.id.logout_app:
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.remove("password");
-                editor.remove("email");
-                editor.apply();
-
-                FirebaseAuth.getInstance().signOut();
-                Intent login = new Intent(this,LoginActivity.class);
-                startActivity(login);
+                removeSharedPreference();
+                stopService();
+                signOut();
                 break;
             case R.id.profile_app:
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.profileFragment);
@@ -117,6 +166,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    private void removeSharedPreference(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("password");
+        editor.remove("email");
+        editor.apply();
+    }
+
+
+    private void stopService(){
+        stopService(new Intent(getApplicationContext(),Service.class));
+    }
+
+    private void signOut(){
+        FirebaseAuth.getInstance().signOut();
+        Intent login = new Intent(this,LoginActivity.class);
+        startActivity(login);
+    }
 
 
     @Override
