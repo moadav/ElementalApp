@@ -33,7 +33,6 @@
         app:layout_constraintTop_toBottomOf="@+id/plantitle"
         />
 
-
     <EditText
         android:id="@+id/myplanedittext"
         android:layout_width="wrap_content"
@@ -74,6 +73,19 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timebutton" />
+
+
+    <ProgressBar
+        android:id="@+id/progresscircle"
+        android:layout_width="111dp"
+        android:layout_height="85dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:indeterminateTint="#E2DCE5"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

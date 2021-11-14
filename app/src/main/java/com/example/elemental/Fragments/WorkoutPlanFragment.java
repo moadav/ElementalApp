@@ -2,6 +2,8 @@ package com.example.elemental.Fragments;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -21,13 +24,16 @@ import com.example.elemental.R;
 import com.example.elemental.WorkoutPlan;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.LocalDate;
 import java.util.Locale;
 
 /**
@@ -49,7 +55,8 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
     private int hour,minute;
     public static EditText titleEditText,PlantEditText;
     private FirebaseFirestore db;
-
+    private SharedPreferences sharedPreferences;
+    private ProgressBar progresscircle;
 
     public WorkoutPlanFragment() {
         // Required empty public constructor
@@ -85,7 +92,10 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
+
         db = FirebaseFirestore.getInstance();
+
+        progresscircle = (ProgressBar) getView().findViewById(R.id.progresscircle);
 
         timebutton = getView().findViewById(R.id.timebutton);
         timebutton.setOnClickListener(this);
@@ -96,7 +106,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
         titleEditText = getView().findViewById(R.id.titleEditText);
         PlantEditText = getView().findViewById(R.id.myplanedittext);
 
-
+        sharedPreferences = getContext().getSharedPreferences("userLogin", Context.MODE_PRIVATE);
     }
 
     @Override
@@ -121,50 +131,34 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
     }
 
     private void saveWorkout(){
-        WorkoutPlan workoutPlan = new WorkoutPlan(titleEditText.getText().toString(),CalendarFragment.selectedDate, PlantEditText.getText().toString(), timebutton.getText().toString());
+        WorkoutPlan workoutPlan = new WorkoutPlan(titleEditText.getText().toString(),CalendarFragment.selectedDate.toString(), PlantEditText.getText().toString(), timebutton.getText().toString());
         WorkoutPlan.workoutPlans.add(workoutPlan);
+        progresscircle.setVisibility(View.VISIBLE);
 
-       db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-           @Override
-           public void onComplete(@NonNull Task<QuerySnapshot> task) {
-               if(task.isSuccessful()){
-                   for(QueryDocumentSnapshot document : task.getResult()){
-
-                   }
-
-               }
-           }
-       });
-
-
-
-
-
-
-
-
-
-
-        db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("workoutplans").add(workoutPlan).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-
+        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(getContext(), "Task saved!", Toast.LENGTH_LONG).show();
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (document.getData().containsValue(sharedPreferences.getString("email",null))) {
 
+                            db.collection("users").document(document.getId()).collection("workouts").add(workoutPlan).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getActivity(), "Workout has noy been saved", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                            progresscircle.setVisibility(View.GONE);
 
-                }else
-                    Toast.makeText(getContext(), "Task not saved!", Toast.LENGTH_LONG).show();
-
-
-
-
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Failed to retrieve database", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                    }
+                }
             }
         });
     }

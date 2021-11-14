@@ -1,12 +1,14 @@
 package com.example.elemental;
 
+import com.google.firebase.database.Exclude;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class WorkoutPlan {
 
     private String name;
-    private LocalDate date;
+    private String date;
     private String description;
     private String time;
 
@@ -16,7 +18,8 @@ public class WorkoutPlan {
     public static ArrayList<WorkoutPlan> getWorkoutPlans(){
         return  workoutPlans;
     }
-    public WorkoutPlan(String name,LocalDate date, String description,String time) {
+
+    public WorkoutPlan(String name,String date, String description,String time) {
         this.name = name;
         this.date = date;
         this.description = description;
@@ -24,14 +27,13 @@ public class WorkoutPlan {
     }
 
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
-
 
     public String getDescription() {
         return description;
