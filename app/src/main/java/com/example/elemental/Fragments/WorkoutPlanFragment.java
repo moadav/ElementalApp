@@ -124,6 +124,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.savebutton:
                 saveWorkout();
+                Navigation.findNavController(view).navigate(R.id.action_workoutPlanFragment_to_calendarFragment);
                 break;
 
 
@@ -150,7 +151,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getActivity(), "Workout has noy been saved", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getActivity(), "Workout has not been saved", Toast.LENGTH_LONG).show();
                                 }
                             });
                             progresscircle.setVisibility(View.GONE);
@@ -161,6 +162,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                 }
             }
         });
+
     }
 
 
