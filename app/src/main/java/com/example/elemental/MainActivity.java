@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarToggle;
     NavigationView navigationView;
-    private SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences;
     private PendingIntent pendingIntent;
     private Calendar calendar;
     private AlarmManager alarmManager;
@@ -165,6 +165,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void getWorkouts(){
+
+
         db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -175,14 +177,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(!task.getResult().isEmpty()) {
 
-                                    for (QueryDocumentSnapshot document : task.getResult()){
-                                        String date = document.getString("date");
-                                        String desc = document.getString("description");
-                                        String name = document.getString("name");
-                                        String time = document.getString("time");
-                                        WorkoutPlan workoutPlan = new WorkoutPlan(name,date,desc,time);
-                                        WorkoutPlan.workoutPlans.add(workoutPlan);
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            String date = document.getString("date");
+                                            String desc = document.getString("description");
+                                            String name = document.getString("name");
+                                            String time = document.getString("time");
+                                            long workoutNumber = document.getLong("workoutNumber");
+                                            WorkoutPlan workoutPlan = new WorkoutPlan(name, date, desc, time, workoutNumber);
+                                            WorkoutPlan.workoutPlans.add(workoutPlan);
+                                        }
                                     }
 
                                 }

@@ -4,7 +4,6 @@ public class User {
 
 public String weight, height, username, email;
 
-
 public User(String weight, String height, String username, String email){
 
     this.weight = weight;

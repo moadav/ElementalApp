@@ -142,7 +142,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
     }
 
     private void saveWorkout(){
-        WorkoutPlan workoutPlan = new WorkoutPlan(titleEditText.getText().toString(),CalendarFragment.selectedDate.toString(), PlantEditText.getText().toString(), timebutton.getText().toString());
+        WorkoutPlan workoutPlan = new WorkoutPlan(titleEditText.getText().toString(),CalendarFragment.selectedDate.toString(), PlantEditText.getText().toString(), timebutton.getText().toString(), (long) WorkoutPlan.workoutPlans.size());
         progresscircle.setVisibility(View.VISIBLE);
 
 

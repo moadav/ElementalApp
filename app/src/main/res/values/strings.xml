@@ -91,5 +91,6 @@
     <string name="open_drawer">Open navigation</string>
     <string name="submit">Submit</string>
     <string name="your_workouts">Your Workouts:</string>
+    <string name="your_plans">Your Plans</string>
 
 </resources>

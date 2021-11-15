@@ -11,6 +11,7 @@ public class WorkoutPlan {
     private String date;
     private String description;
     private String time;
+    private long workoutNumber;
 
     public static ArrayList<WorkoutPlan> workoutPlans = new ArrayList<>();
 
@@ -19,16 +20,25 @@ public class WorkoutPlan {
         return  workoutPlans;
     }
 
-    public WorkoutPlan(String name,String date, String description,String time) {
+    public WorkoutPlan(String name,String date, String description,String time, long workoutNumber) {
         this.name = name;
         this.date = date;
         this.description = description;
         this.time = time;
+        this.workoutNumber = workoutNumber;
     }
 
 
     public String getDate() {
         return date;
+    }
+
+    public long getWorkoutNumber() {
+        return workoutNumber;
+    }
+
+    public void setWorkoutNumber(long workoutNumber) {
+        this.workoutNumber = workoutNumber;
     }
 
     public void setDate(String date) {
