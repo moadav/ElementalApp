@@ -43,7 +43,7 @@ public class CalendarFragment extends Fragment implements OnItemListener,View.On
     FloatingActionButton workoutplan;
     private TextView MonthYear;
     private RecyclerView calenderRecyclerView;
-    public static LocalDate selectedDate;
+    public static LocalDate  selectedDate = LocalDate.now();
     public CalendarFragment() {
         // Required empty public constructor
     }
@@ -94,7 +94,7 @@ public class CalendarFragment extends Fragment implements OnItemListener,View.On
 
         MonthYear = getView().findViewById(R.id.MonthYear);
 
-        selectedDate = LocalDate.now();
+
 
         lastWeekButton = getView().findViewById(R.id.LastWeekButton);
         lastWeekButton.setOnClickListener(this);

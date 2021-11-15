@@ -33,12 +33,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.elemental.Fragments.CalendarFragment;
 import com.example.elemental.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 
@@ -50,20 +58,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     private SharedPreferences sharedPreferences;
     private PendingIntent pendingIntent;
-
+    private Calendar calendar;
     private AlarmManager alarmManager;
+    private FirebaseFirestore  db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+      //  workoutplansChannel();
+
         setContentView(R.layout.activity_main);
         startService(new Intent(getApplicationContext(),Service.class));
-        te();
+
         toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.navigview);
-
+        getWorkouts();
 
         navigationView.bringToFront();
         BottomNavigationView bottomNavigationView = findViewById(R.id.Bottom_navigation);
@@ -75,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setTitle("Elemental");
 
 
-alarm();
+//alarm();
     }
 
     @Override
@@ -100,29 +111,35 @@ alarm();
         Intent intent = new Intent(this,AlarmBroadcastReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
 
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP,60000,pendingIntent);
 
-        Toast.makeText(this, "Alarm is set!", Toast.LENGTH_SHORT).show();
+
+        calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,13);
+        calendar.set(Calendar.MINUTE,33);
+
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+
+        Toast.makeText(this, "Alarm is set!" , Toast.LENGTH_SHORT).show();
 
     }
     private void chancel(){
+         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this,AlarmBroadcastReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
 
-        if (alarmManager == null){
-            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        }
 
         alarmManager.cancel(pendingIntent);
 
     }
 
-    private void te(){
+    private void workoutplansChannel(){
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            String name = "workoutålanspasd";
+            String name = "workoutplansChannel";
 
-            String desk = "testng alarm";
+            String desk = "channel for workouts";
 
             int important = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel("workoutandroid",name,important);
@@ -143,6 +160,52 @@ alarm();
         menuInflater.inflate(R.menu.main_menu,menu);
 
         return true;
+    }
+
+
+
+    private void getWorkouts(){
+        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (document.getData().containsValue(sharedPreferences.getString("email",null))) {
+
+                            db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                                    for (QueryDocumentSnapshot document : task.getResult()){
+                                        String date = document.getString("date");
+                                        String desc = document.getString("description");
+                                        String name = document.getString("name");
+                                        String time = document.getString("time");
+                                        WorkoutPlan workoutPlan = new WorkoutPlan(name,date,desc,time);
+                                        WorkoutPlan.workoutPlans.add(workoutPlan);
+                                    }
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d("error",e.toString(),null);
+                                }
+                            });
+                            return;
+                        }
+                    }
+                }
+            }
+        });
+
+
+
+
+
+
+
+
     }
 
 

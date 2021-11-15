@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.elemental.R;
+import com.example.elemental.Service;
 import com.example.elemental.WorkoutPlan;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,6 +36,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -53,10 +57,13 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
     private String mParam2;
     private Button timebutton,savebutton;
     private int hour,minute;
+    Date currentTime = Calendar.getInstance().getTime();
+    Calendar calendar = Calendar.getInstance();
     public static EditText titleEditText,PlantEditText;
     private FirebaseFirestore db;
     private SharedPreferences sharedPreferences;
     private ProgressBar progresscircle;
+
 
     public WorkoutPlanFragment() {
         // Required empty public constructor
@@ -109,6 +116,9 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
         sharedPreferences = getContext().getSharedPreferences("userLogin", Context.MODE_PRIVATE);
     }
 
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -133,8 +143,9 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
 
     private void saveWorkout(){
         WorkoutPlan workoutPlan = new WorkoutPlan(titleEditText.getText().toString(),CalendarFragment.selectedDate.toString(), PlantEditText.getText().toString(), timebutton.getText().toString());
-        WorkoutPlan.workoutPlans.add(workoutPlan);
         progresscircle.setVisibility(View.VISIBLE);
+
+
 
         db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -143,17 +154,35 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         if (document.getData().containsValue(sharedPreferences.getString("email",null))) {
 
-                            db.collection("users").document(document.getId()).collection("workouts").add(workoutPlan).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (CalendarFragment.selectedDate.isBefore(LocalDate.now())){
+                                        Toast.makeText(getActivity(), "Workout failed to save. Please pick a better date", Toast.LENGTH_LONG).show();
+                                    }else{
+
+                                        db.collection("users").document(document.getId()).collection("workouts").add(workoutPlan).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                WorkoutPlan.workoutPlans.add(workoutPlan);
+                                                Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(getActivity(), "Workout has not been saved", Toast.LENGTH_LONG).show();
+                                            }
+                                        });
+                                    }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getActivity(), "Workout has not been saved", Toast.LENGTH_LONG).show();
+                                    Log.d("error",e.toString(),null);
                                 }
                             });
+
+
                             progresscircle.setVisibility(View.GONE);
 
                             return;
@@ -175,12 +204,15 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                 minute = selectedMinute;
                 timebutton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour,minute));
 
+
+
             }
         };
 
-        int style = R.style.ThemeOverlay_AppCompat_Dark;
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),style,onTimeSetListener,hour,minute,true);
+
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),onTimeSetListener,hour,minute,true);
         timePickerDialog.setTitle("Select Time");
         timePickerDialog.show();
     }
