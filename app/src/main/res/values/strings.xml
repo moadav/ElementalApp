@@ -100,5 +100,12 @@
     <string name="settings">Settings</string>
     <string name="welcome">Welcome</string>
     <string name="your_fitness_application">Your fitness application</string>
+    <string name="get_goals">get goals</string>
+
+    <string-array name="activitylevel">
+        <item> No exercise</item>
+        <item> 3 or less times a week</item>
+        <item> 5 or more times a week</item>
+    </string-array>
 
 </resources>
