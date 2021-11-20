@@ -159,7 +159,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             weight = Float.parseFloat(document.getString("weight"));
                             height = Float.parseFloat(document.getString("height")) / 100;
                             result = weight / (height * height);
-                            yourbmi.setText("Your Bmi is: "+result);
+                            yourbmi.setText("Your Bmi is: "+format.format(result));
                             displayIfUserHealhty();
                         }
                     }
