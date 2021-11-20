@@ -150,10 +150,6 @@ public static Date returnTime(String time){
 
                                         LocalDate localDate = LocalDate.parse(documentSnapshot.getString("date"));
 
-
-
-
-
                                         if(LocalDate.now().isBefore(localDate) || returnTime(currentTime).before(returnTime(documentSnapshot.getString("time"))) )
                                         fixPendingintent(documentSnapshot.getLong("workoutNumber"),localDate.getMonth().getValue(),returnTime(documentSnapshot.getString("time")).getTime(),localDate.getDayOfMonth(),localDate.getYear());
                                     }

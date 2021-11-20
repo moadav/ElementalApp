@@ -37,6 +37,7 @@
         android:layout_marginVertical="20dp"
         android:hint="Username"
         android:inputType="text"
+        android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,8 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:hint="@string/Email"
-        android:textAlignment="center"
         android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
@@ -61,29 +63,34 @@
         android:layout_marginVertical="20dp"
         android:hint="@string/passord"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
+
     <EditText
         android:id="@+id/weight"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:hint="@string/Weight"
-        android:textAlignment="center"
         android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
+
     <EditText
         android:id="@+id/height"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:hint="@string/Height"
-        android:textAlignment="center"
         android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weight" />

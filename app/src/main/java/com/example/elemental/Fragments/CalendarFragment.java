@@ -160,7 +160,7 @@ public class CalendarFragment extends Fragment implements OnItemListener,View.On
 
     @Override
     public void onItemClick(int position, LocalDate day) {
-        if(!day.equals(""))
+        if(!(day == null))
         {
             CalendarFragment.selectedDate = day;
             String message = "Selected Date " + day + " " + monthYearFromDate(selectedDate);
