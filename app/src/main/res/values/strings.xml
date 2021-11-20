@@ -95,5 +95,10 @@
     <string name="last_month">Last Month</string>
     <string name="next_month">Next month</string>
     <string name="username">Username</string>
+    <string name="pictureofgirlsquating">pictureofgirlsquating</string>
+    <string name="girl_checking_phone">Girl checking phone</string>
+    <string name="settings">Settings</string>
+    <string name="welcome">Welcome</string>
+    <string name="your_fitness_application">Your fitness application</string>
 
 </resources>

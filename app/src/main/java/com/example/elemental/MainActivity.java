@@ -57,11 +57,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle actionBarToggle;
     NavigationView navigationView;
     public static SharedPreferences sharedPreferences;
-    private PendingIntent pendingIntent;
-    private Calendar calendar;
-    private AlarmManager alarmManager;
-    private FirebaseFirestore  db = FirebaseFirestore.getInstance();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.navigview);
-        getWorkouts();
-
         navigationView.bringToFront();
         BottomNavigationView bottomNavigationView = findViewById(R.id.Bottom_navigation);
         NavController navController = Navigation.findNavController(this,  R.id.Nav_container);
@@ -105,54 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sharedPreferences = getApplicationContext().getSharedPreferences("userLogin", Context.MODE_PRIVATE);
 
     }
-    private void alarm(){
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        Intent intent = new Intent(this,AlarmBroadcastReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
-
-
-
-        calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,13);
-        calendar.set(Calendar.MINUTE,33);
-
-
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-
-
-        Toast.makeText(this, "Alarm is set!" , Toast.LENGTH_SHORT).show();
-
-    }
-    private void chancel(){
-         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this,AlarmBroadcastReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
-
-
-        alarmManager.cancel(pendingIntent);
-
-    }
-
-    private void workoutplansChannel(){
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            String name = "workoutplansChannel";
-
-            String desk = "channel for workouts";
-
-            int important = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("workoutandroid",name,important);
-            channel.setDescription(desk);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-
-
-        }
-
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -161,58 +107,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return true;
     }
-
-
-
-    private void getWorkouts(){
-
-
-        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        if (document.getData().containsValue(sharedPreferences.getString("email",null))) {
-
-                            db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if(!task.getResult().isEmpty()) {
-
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                            String date = document.getString("date");
-                                            String desc = document.getString("description");
-                                            String name = document.getString("name");
-                                            String time = document.getString("time");
-                                            long workoutNumber = document.getLong("workoutNumber");
-                                            WorkoutPlan workoutPlan = new WorkoutPlan(name, date, desc, time, workoutNumber);
-                                            WorkoutPlan.workoutPlans.add(workoutPlan);
-                                        }
-                                    }
-
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("error",e.toString(),null);
-                                }
-                            });
-                            return;
-                        }
-                    }
-                }
-            }
-        });
-
-
-
-
-
-
-
-
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -311,8 +205,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
                 case R.id.profile:
+                    navigationView.setCheckedItem(R.id.profile);
                     Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.profileFragment);
                     break;
+            case R.id.options:
+                navigationView.setCheckedItem(R.id.options);
+                Toast.makeText(getApplicationContext(), "NOT DONE", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.logout:
+                removeSharedPreference();
+                stopService();
+                signOut();
+                break;
 
         }
         return false;

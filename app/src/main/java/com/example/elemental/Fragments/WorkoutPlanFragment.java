@@ -57,8 +57,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
     private String mParam2;
     private Button timebutton,savebutton;
     private int hour,minute;
-    Date currentTime = Calendar.getInstance().getTime();
-    Calendar calendar = Calendar.getInstance();
+    private Service service = new Service();
     public static EditText titleEditText,PlantEditText;
     private FirebaseFirestore db;
     private SharedPreferences sharedPreferences;
@@ -165,6 +164,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                                             @Override
                                             public void onSuccess(DocumentReference documentReference) {
                                                 WorkoutPlan.workoutPlans.add(workoutPlan);
+                                                service.fixPendingintent(getContext(),workoutPlan.getWorkoutNumber(),CalendarFragment.selectedDate.getMonthValue(),hour,minute,CalendarFragment.selectedDate.getDayOfMonth(),CalendarFragment.selectedDate.getYear());
                                                 Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {

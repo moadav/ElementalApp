@@ -3,25 +3,20 @@ package com.example.elemental.Fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.elemental.MainActivity;
 import com.example.elemental.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,7 +33,14 @@ public class HomeFragment extends Fragment  {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button button;
+    private TextView welcometext,yourbmi;
+    private FirebaseFirestore db;
+    private float height,weight;
+    float result;
+    String test;
+
+
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -69,15 +71,40 @@ public class HomeFragment extends Fragment  {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        db = FirebaseFirestore.getInstance();
+        welcometext = getView().findViewById(R.id.welcometext);
+        yourbmi = getView().findViewById(R.id.yourbmi);
+        fixValuesFromDb();
     }
 
 
+    private void fixValuesFromDb(){
+        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (document.getData().containsValue(MainActivity.sharedPreferences.getString("email",null))) {
+                            welcometext.setText("Welcome " +document.getString("username"));
+                            weight = Float.parseFloat(document.getString("weight"));
+                            height = Float.parseFloat(document.getString("height")) / 100;
+                            result = weight / (height * height);
+                            yourbmi.setText("Your Bmi is: "+result);
+
+                        }
+                    }
+                }
+            }
+        });
+    }
 
 
 }

@@ -3,57 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+
     <group
         android:id="@+id/group"
         android:checkableBehavior="single"
         >
         <item
-            android:id="@+id/profile"
-            android:icon="@drawable/ic_baseline_assignment_return_24"
-            android:title="Profile"
+            android:id="@+id/homedrawmenu"
+            android:icon="@drawable/ic_baseline_house_24"
+            android:title="@string/Home"
             android:checked="true"
             />
-        <item
-            android:id="@+id/item2"
-            android:icon="@drawable/ic_baseline_assignment_return_24"
-            android:title="jees"
 
-            />
         <item
-            android:id="@+id/item3"
+            android:id="@+id/calendardrawmenu"
             android:icon="@drawable/ic_baseline_calendar_today_24"
-            android:title="jees"
-
-            />
-    </group>
-
-
-
+            android:title="@string/Calendar" />
         <item
-            android:title="Subtitle">
+            android:id="@+id/sportdrawmenu"
+            android:icon="@drawable/ic_baseline_sports_handball_24"
+            android:title="@string/Sport" />
+        <item
+            android:id="@+id/bmidrawmenu"
+            android:icon="@drawable/ic_baseline_sports_24"
+            android:title="@string/BMIKalkulator" />
+    </group>
+        <item
+            android:title="@string/settings">
 
             <menu>
                 <group
                     android:id="@+id/group2"
                     android:checkableBehavior="single">
-                <item
-                    android:id="@+id/homedrawmenu"
-                    android:icon="@drawable/ic_baseline_house_24"
-                    android:title="@string/Home"
-                    />
+                    <item
+                        android:id="@+id/profile"
+                        android:icon="@drawable/ic_baseline_supervisor_account_24"
+                        android:title="@string/Profile"
+                        />
+                    <item
+                        android:id="@+id/options"
+                        android:icon="@drawable/ic_baseline_settings_24"
+                        android:title="@string/Options"
+                        />
+                    <item
+                        android:id="@+id/logout"
+                        android:icon="@drawable/ic_baseline_assignment_return_24"
+                        android:title="@string/Logout"
+                        />
 
-                <item
-                    android:id="@+id/calendardrawmenu"
-                    android:icon="@drawable/ic_baseline_calendar_today_24"
-                    android:title="@string/Calendar" />
-                <item
-                    android:id="@+id/sportdrawmenu"
-                    android:icon="@drawable/ic_baseline_sports_handball_24"
-                    android:title="@string/Sport" />
-                <item
-                    android:id="@+id/bmidrawmenu"
-                    android:icon="@drawable/ic_baseline_sports_24"
-                    android:title="@string/BMIKalkulator" />
                 </group>
             </menu>
         </item>
