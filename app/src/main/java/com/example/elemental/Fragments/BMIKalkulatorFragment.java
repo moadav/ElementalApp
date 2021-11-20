@@ -6,6 +6,7 @@ import static java.lang.Float.parseFloat;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -17,7 +18,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.elemental.MainActivity;
 import com.example.elemental.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.ref.PhantomReference;
 
@@ -37,10 +45,12 @@ public class BMIKalkulatorFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private String resultBMI;
-    private  Button button;
+    private Button button;
     private TextView editResult;
     private EditText editHeight;
     private EditText editWeight;
+    private FirebaseFirestore db;
+    private String myWeight,myHeight;
     public BMIKalkulatorFragment() {
         // Required empty public constructor
     }
@@ -71,8 +81,6 @@ public class BMIKalkulatorFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
 
         }
-
-
     }
 
     @Override
@@ -90,26 +98,63 @@ public class BMIKalkulatorFragment extends Fragment {
     public void onResume(){
         super.onResume();
 
+        db = FirebaseFirestore.getInstance();
         button = getView().findViewById(R.id.button_id);
         editResult = getView().findViewById(R.id.Bmi_Result);
         editHeight = getView().findViewById(R.id.height_result);
         editWeight = getView().findViewById(R.id.weight_result);
+
 
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                float weight = Float.valueOf(editWeight.getText().toString());
+               Float  weight = Float.valueOf(editWeight.getText().toString());
 
-                float height =  Float.valueOf(editHeight.getText().toString()) / 100;
+               myWeight = editWeight.getText().toString();
+
+               Float  height =  Float.valueOf(editHeight.getText().toString()) / 100;
+
+               myHeight = editHeight.getText().toString();
 
                 float result = weight / (height * height);
 
                 resultBMI = Float.toString(result);
-                Toast.makeText(getContext(), resultBMI, Toast.LENGTH_SHORT).show();
                 editResult.setText("Your BMI is: " + resultBMI);
+                updateDb();
 
+            }
+        });
+    }
+
+
+    private void updateDb(){
+        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (document.getData().containsValue(MainActivity.sharedPreferences.getString("email", null))) {
+                            db.collection("users").document(document.getId()).update("weight", myWeight, "height", myHeight).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(getContext(), "Updated!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getContext(), "Failed to update!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("updatingDB","Failed to get database values");
             }
         });
     }
