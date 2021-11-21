@@ -113,19 +113,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    private void removeDarkmodeOptions(){
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        SharedPreferences.Editor editor = sharedPreferences2.edit();
+        editor.remove("night_mode");
+        editor.apply();
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
 
         switch (item.getItemId()){
             case R.id.logout_app:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                SharedPreferences.Editor editor = sharedPreferences2.edit();
-                editor.putBoolean("night_mode",false);
-                editor.commit();
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-
+                removeDarkmodeOptions();
                 removeSharedPreference();
                 stopService();
                 signOut();
