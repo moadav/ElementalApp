@@ -1,6 +1,7 @@
 package com.example.elemental;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,10 +27,13 @@ public class LoginActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_login);
 
 
+
     }
 
 
-
+public void killActivity(){
+        finish();
+}
 
 
 

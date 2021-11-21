@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.elemental.LoginActivity;
 import com.example.elemental.R;
 import com.example.elemental.Service;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -55,7 +56,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private ProgressBar progresscircle;
     private SharedPreferences sharedPreferences;
-
+    private LoginActivity loginActivity = new LoginActivity();
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -144,11 +145,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         String passwordRemember = sharedPreferences.getString("password", null);
 
         if (emailRemember != null || passwordRemember != null) {
-
-
             Toast.makeText(getActivity(), "Logging on...", Toast.LENGTH_LONG).show();
 
             Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
+
         } else {
 
 
@@ -195,6 +195,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                                         editor.commit();
 
                                         Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
+
                                     } else {
                                         user.sendEmailVerification();
                                         Toast.makeText(getActivity(), "Please verify your account! Verification has been sendt to your email", Toast.LENGTH_LONG).show();

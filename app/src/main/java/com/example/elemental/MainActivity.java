@@ -4,6 +4,7 @@ package com.example.elemental;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.core.app.NotificationCompat;
@@ -34,6 +35,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.elemental.Fragments.CalendarFragment;
+import com.example.elemental.Fragments.OptionFragment;
+import com.example.elemental.Fragments.ProfileFragment;
 import com.example.elemental.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -56,15 +59,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarToggle;
     NavigationView navigationView;
-    public static SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences,sharedPreferences2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-      //  workoutplansChannel();
-
         setContentView(R.layout.activity_main);
         startService(new Intent(getApplicationContext(),Service.class));
+
 
         toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
@@ -74,20 +75,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavController navController = Navigation.findNavController(this,  R.id.Nav_container);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
         bottomNavigationView.setOnItemSelectedListener(this);
-
-
         getSupportActionBar().setTitle("Elemental");
-
-
-//alarm();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         drawerLayout = (DrawerLayout) findViewById(R.id.myDrawerMenu);
-
+        nightmode();
         actionBarToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open_drawer,R.string.close_drawer);
         actionBarToggle.setDrawerIndicatorEnabled(true);
         drawerLayout.addDrawerListener(actionBarToggle);
@@ -99,6 +94,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
+    private void nightmode(){
+        sharedPreferences2 = getApplicationContext().getSharedPreferences("isNight",Context.MODE_PRIVATE);
+        Boolean nightmode = sharedPreferences2.getBoolean("night_mode",false);
+
+        if (nightmode)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        else
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,12 +119,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()){
             case R.id.logout_app:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                SharedPreferences.Editor editor = sharedPreferences2.edit();
+                editor.putBoolean("night_mode",false);
+                editor.commit();
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+
                 removeSharedPreference();
                 stopService();
                 signOut();
                 break;
             case R.id.profile_app:
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.profileFragment);
+                break;
+            case R.id.options_app:
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.optionFragment);
                 break;
         }
 
@@ -141,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void signOut(){
+
         FirebaseAuth.getInstance().signOut();
         Intent login = new Intent(this,LoginActivity.class);
         startActivity(login);
@@ -204,13 +220,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.calendarFragment);
                 break;
 
+
                 case R.id.profile:
                     navigationView.setCheckedItem(R.id.profile);
                     Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.profileFragment);
                     break;
+
             case R.id.options:
                 navigationView.setCheckedItem(R.id.options);
-                Toast.makeText(getApplicationContext(), "NOT DONE", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.optionFragment);
                 break;
             case R.id.logout:
                 removeSharedPreference();
