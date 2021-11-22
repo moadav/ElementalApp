@@ -10,9 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.elemental.MainActivity;
 import com.example.elemental.R;
 import com.example.elemental.WorkoutAdapter;
 import com.example.elemental.WorkoutPlan;
@@ -35,6 +33,7 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private ListView listView;
+    public static WorkoutPlan singleworkout;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -71,10 +70,10 @@ public class ProfileFragment extends Fragment {
         super.onResume();
 
         listView = getView().findViewById(R.id.workoutadapter);
-        test();
+        listAdapter();
     }
 
-    private void test(){
+    private void listAdapter(){
         ArrayList<WorkoutPlan> workoutPlans = WorkoutPlan.getWorkoutPlans();
 
         WorkoutAdapter workoutAdapter = new WorkoutAdapter(getContext(),workoutPlans);
@@ -82,10 +81,7 @@ public class ProfileFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
-
-                WorkoutPlan sas = workoutPlans.get(position);
-                Toast.makeText(getContext(), sas.getDate(), Toast.LENGTH_SHORT).show();
+                singleworkout = workoutPlans.get(position);
                 Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.workoutItemsFragment);
 
             }

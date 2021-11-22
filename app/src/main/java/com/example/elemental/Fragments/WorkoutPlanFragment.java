@@ -35,7 +35,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -144,54 +148,61 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
         WorkoutPlan workoutPlan = new WorkoutPlan(titleEditText.getText().toString(),CalendarFragment.selectedDate.toString(), PlantEditText.getText().toString(), timebutton.getText().toString(), (long) WorkoutPlan.workoutPlans.size());
         progresscircle.setVisibility(View.VISIBLE);
 
+        if(CalendarFragment.selectedDate.equals(LocalDate.now()) && LocalTime.now().isBefore(LocalTime.parse(timebutton.getText().toString()))){
+            Toast.makeText(getActivity(), "Please select a date later than todays time!", Toast.LENGTH_LONG).show();
+        }else {
 
+            if (timebutton.getText().equals("Select Time") || titleEditText.getText().toString().isEmpty() || PlantEditText.getText().toString().isEmpty()) {
+                Toast.makeText(getActivity(), "The fields cannot be left empty!!", Toast.LENGTH_LONG).show();
+            } else {
 
-        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        if (document.getData().containsValue(sharedPreferences.getString("email",null))) {
+                db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.getData().containsValue(sharedPreferences.getString("email", null))) {
 
-                            db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (CalendarFragment.selectedDate.isBefore(LocalDate.now())){
-                                        Toast.makeText(getActivity(), "Workout failed to save. Please pick a better date", Toast.LENGTH_LONG).show();
-                                    }else{
+                                    db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (CalendarFragment.selectedDate.isBefore(LocalDate.now())) {
+                                                Toast.makeText(getActivity(), "Workout failed to save. Please pick a better date", Toast.LENGTH_LONG).show();
+                                            } else {
 
-                                        db.collection("users").document(document.getId()).collection("workouts").add(workoutPlan).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                            @Override
-                                            public void onSuccess(DocumentReference documentReference) {
-                                                WorkoutPlan.workoutPlans.add(workoutPlan);
-                                                service.fixPendingintent(getContext(),workoutPlan.getWorkoutNumber(),CalendarFragment.selectedDate.getMonthValue(),hour,minute,CalendarFragment.selectedDate.getDayOfMonth(),CalendarFragment.selectedDate.getYear());
-                                                Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
+                                                db.collection("users").document(document.getId()).collection("workouts").add(workoutPlan).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentReference documentReference) {
+                                                        WorkoutPlan.workoutPlans.add(workoutPlan);
+                                                        service.fixPendingintent(getContext(), workoutPlan.getWorkoutNumber(), CalendarFragment.selectedDate.getMonthValue(), hour, minute, CalendarFragment.selectedDate.getDayOfMonth(), CalendarFragment.selectedDate.getYear());
+                                                        Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
+                                                    }
+                                                }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(getActivity(), "Workout has not been saved", Toast.LENGTH_LONG).show();
+                                                    }
+                                                });
                                             }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(getActivity(), "Workout has not been saved", Toast.LENGTH_LONG).show();
-                                            }
-                                        });
-                                    }
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d("error", e.toString(), null);
+                                        }
+                                    });
+
+
+                                    progresscircle.setVisibility(View.GONE);
+
+                                    return;
                                 }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("error",e.toString(),null);
-                                }
-                            });
-
-
-                            progresscircle.setVisibility(View.GONE);
-
-                            return;
+                            }
                         }
                     }
-                }
+                });
             }
-        });
-
+        }
     }
 
 
