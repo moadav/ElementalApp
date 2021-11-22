@@ -115,9 +115,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void removeDarkmodeOptions(){
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        SharedPreferences.Editor editor = sharedPreferences2.edit();
-        editor.remove("night_mode");
-        editor.apply();
     }
 
     @Override

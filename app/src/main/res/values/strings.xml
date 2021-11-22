@@ -104,6 +104,10 @@
     <string name="switch_lightmode">Switch Lightmode</string>
     <string name="reset_username">Reset Username</string>
     <string name="delete_account">Delete Account</string>
+    <string name="workout_plan">Workout Plan</string>
+    <string name="change_information">Change information</string>
+    <string name="edit_name">Edit name</string>
+    <string name="edit_description">Edit Description</string>
 
     <string-array name="activitylevel">
         <item> No exercise</item>

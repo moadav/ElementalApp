@@ -206,10 +206,23 @@
         android:id="@+id/profileFragment"
         android:name="com.example.elemental.Fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_workoutItemsFragment"
+            app:destination="@id/workoutItemsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/optionFragment"
         android:name="com.example.elemental.Fragments.OptionFragment"
         android:label="fragment_option"
         tools:layout="@layout/fragment_option" />
+    <fragment
+        android:id="@+id/workoutItemsFragment"
+        android:name="com.example.elemental.Fragments.WorkoutItemsFragment"
+        android:label="fragment_workout_items"
+        tools:layout="@layout/fragment_workout_items" >
+        <action
+            android:id="@+id/action_workoutItemsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>
