@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.app.AlarmManager;
@@ -58,8 +59,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarToggle;
-    NavigationView navigationView;
+    public NavigationView navigationView;
     public static SharedPreferences sharedPreferences,sharedPreferences2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +75,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.navigview);
         navigationView.bringToFront();
         BottomNavigationView bottomNavigationView = findViewById(R.id.Bottom_navigation);
-        NavController navController = Navigation.findNavController(this,  R.id.Nav_container);
+
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.Nav_container);
+        NavController navController = navHostFragment.getNavController();
+
+
+       // NavController navController = Navigation.findNavController(this,  R.id.Nav_container);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
         bottomNavigationView.setOnItemSelectedListener(this);
         getSupportActionBar().setTitle("Elemental");
@@ -129,9 +138,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 signOut();
                 break;
             case R.id.profile_app:
+                navigationView.setCheckedItem(R.id.profile);
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.profileFragment);
                 break;
             case R.id.options_app:
+                navigationView.setCheckedItem(R.id.options);
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.optionFragment);
                 break;
         }

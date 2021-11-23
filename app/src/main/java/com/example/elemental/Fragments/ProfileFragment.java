@@ -3,6 +3,7 @@ package com.example.elemental.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -32,8 +33,9 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ListView listView;
+    public ListView listView;
     public static WorkoutPlan singleworkout;
+    public static int workoutposition;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -58,6 +60,7 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -65,22 +68,30 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+
+
+
+
+
     @Override
     public void onResume() {
         super.onResume();
+
+       getParentFragmentManager().beginTransaction().detach(this).attach(this).commit();
 
         listView = getView().findViewById(R.id.workoutadapter);
         listAdapter();
     }
 
-    private void listAdapter(){
-        ArrayList<WorkoutPlan> workoutPlans = WorkoutPlan.getWorkoutPlans();
+    public void listAdapter(){
 
+        ArrayList<WorkoutPlan> workoutPlans = WorkoutPlan.getWorkoutPlans();
         WorkoutAdapter workoutAdapter = new WorkoutAdapter(getContext(),workoutPlans);
         listView.setAdapter(workoutAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                workoutposition = position;
                 singleworkout = workoutPlans.get(position);
                 Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.workoutItemsFragment);
 

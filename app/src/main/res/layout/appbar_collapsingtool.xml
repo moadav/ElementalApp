@@ -71,7 +71,7 @@
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_menu" />
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/Nav_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"

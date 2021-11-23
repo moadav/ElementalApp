@@ -108,6 +108,11 @@
     <string name="change_information">Change information</string>
     <string name="edit_name">Edit name</string>
     <string name="edit_description">Edit Description</string>
+    <string name="update">Update</string>
+    <string name="edit_workout_plan">Edit workout plan</string>
+    <string name="your_plan_title">Your plan Title</string>
+    <string name="your_new_description">Your new description</string>
+    <string name="your_description">Your description</string>
 
     <string-array name="activitylevel">
         <item> No exercise</item>
