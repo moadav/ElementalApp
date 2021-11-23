@@ -36,9 +36,13 @@ public class ProfileFragment extends Fragment {
     public ListView listView;
     public static WorkoutPlan singleworkout;
     public static int workoutposition;
+    public static WorkoutAdapter workoutAdapter;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
+
+
 
     /**
      * Use this factory method to create a new instance of
@@ -77,27 +81,30 @@ public class ProfileFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-       getParentFragmentManager().beginTransaction().detach(this).attach(this).commit();
-
+        getParentFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        workoutAdapter = new WorkoutAdapter(getContext(),WorkoutPlan.getWorkoutPlans());
         listView = getView().findViewById(R.id.workoutadapter);
         listAdapter();
+
     }
 
     public void listAdapter(){
 
-        ArrayList<WorkoutPlan> workoutPlans = WorkoutPlan.getWorkoutPlans();
-        WorkoutAdapter workoutAdapter = new WorkoutAdapter(getContext(),workoutPlans);
         listView.setAdapter(workoutAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 workoutposition = position;
-                singleworkout = workoutPlans.get(position);
+
+                singleworkout = WorkoutPlan.getWorkoutPlans().get(position);
                 Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.workoutItemsFragment);
 
+
+                workoutAdapter.notifyDataSetChanged();
             }
         });
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

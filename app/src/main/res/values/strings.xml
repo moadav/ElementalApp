@@ -114,6 +114,7 @@
     <string name="your_new_description">Your new description</string>
     <string name="your_description">Your description</string>
     <string name="save">save</string>
+    <string name="delete">Delete</string>
 
     <string-array name="activitylevel">
         <item> No exercise</item>

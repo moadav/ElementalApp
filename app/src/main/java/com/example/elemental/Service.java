@@ -38,10 +38,11 @@ public class Service extends android.app.Service {
         return null;
     }
 
-    private void cancelAlarm(int id){
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this,AlarmBroadcastReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+    public void cancelAlarm(int id,Context context){
+        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context,AlarmBroadcastReceiver.class);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context,id,intent,PendingIntent.FLAG_ONE_SHOT);
 
 
         alarmManager.cancel(pendingIntent);
@@ -51,6 +52,7 @@ public class Service extends android.app.Service {
     public void fixPendingintent(Context context,long id,int month,int hour, int minute,int day,int year){
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context,AlarmBroadcastReceiver.class);
+
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context,(int)id,intent,PendingIntent.FLAG_ONE_SHOT);
         calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY,hour);

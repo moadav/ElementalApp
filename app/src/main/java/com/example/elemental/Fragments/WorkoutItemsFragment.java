@@ -61,10 +61,12 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
     private String mParam2;
     private FirebaseFirestore db;
     private ProgressBar progresscircle;
-    private Button savebutton, timebutton;
+    private Button savebutton, timebutton,deleteworkout;
     private EditText myplanedittext,titleEditText;
     private TextView date,time,description,name;
     private Service service = new Service();
+    private ProfileFragment profileFragment = new ProfileFragment();
+    private ProfileFragment profileFragment2;
 
     public WorkoutItemsFragment() {
         // Required empty public constructor
@@ -107,8 +109,14 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
 
         savebutton = getView().findViewById(R.id.savebutton);
         savebutton.setOnClickListener(this);
+
         timebutton = getView().findViewById(R.id.timebutton);
         timebutton.setOnClickListener(this);
+
+        deleteworkout = getView().findViewById(R.id.deleteworkout);
+        deleteworkout.setOnClickListener(this);
+
+
         myplanedittext = getView().findViewById(R.id.myplanedittext);
         titleEditText = getView().findViewById(R.id.titleEditText);
 
@@ -199,11 +207,70 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
                 Update();
                 Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.profileFragment);
                 break;
+            case R.id.deleteworkout:
+                delete();
+                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.profileFragment);
+                break;
         }
     }
 
+    private void delete() {
+        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (document.getData().containsValue(MainActivity.sharedPreferences.getString("email",null))) {
+
+                            db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(!task.getResult().isEmpty()) {
+                                        for (QueryDocumentSnapshot document2 : task.getResult()) {
+                                            if (document2.getLong("workoutNumber") == ProfileFragment.singleworkout.getWorkoutNumber()) {
+
+                                                db.collection("users").document(document.getId()).collection("workouts").document(document2.getId()).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        service.cancelAlarm((int)WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).getWorkoutNumber(),getContext());
+                                                        WorkoutPlan.workoutPlans.remove(ProfileFragment.workoutposition);
+                                                        ProfileFragment.workoutAdapter.notifyDataSetChanged();
+                                                        Toast.makeText(getContext(), "Workout deleted!", Toast.LENGTH_SHORT).show();
 
 
+                                                    }
+                                                }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(getContext(), "Could not delete workout!", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+
+                                            }
+                                        }
+
+                                    }else
+                                        Toast.makeText(getContext(), "Error with updating data", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getContext(), "Error with saving data", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            return;
+                        }
+                    }
+                }
+            }
+        });
+
+
+
+
+
+    }
 
 
     private void timePicker(){

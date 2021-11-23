@@ -114,6 +114,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
         savebutton = getView().findViewById(R.id.savebutton);
         savebutton.setOnClickListener(this);
 
+
         titleEditText = getView().findViewById(R.id.titleEditText);
         PlantEditText = getView().findViewById(R.id.myplanedittext);
 
@@ -142,8 +143,10 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                 break;
 
 
+
         }
     }
+
 
     private void saveWorkout(){
         WorkoutPlan workoutPlan = new WorkoutPlan(titleEditText.getText().toString(),CalendarFragment.selectedDate.toString(), PlantEditText.getText().toString(), timebutton.getText().toString(), (long) WorkoutPlan.workoutPlans.size());
@@ -171,7 +174,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                 if (CalendarFragment.selectedDate.equals(LocalDate.now()) && time.isBefore(nowTime)) {
                     Toast.makeText(getContext(), "Time cannot be less than todays time!", Toast.LENGTH_SHORT).show();
                 } else {
-                    
+
                     db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
