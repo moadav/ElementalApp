@@ -38,6 +38,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
@@ -134,58 +135,79 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
 
 
     private void Update(){
+
         progresscircle.setVisibility(View.VISIBLE);
 
-        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        if (document.getData().containsValue(MainActivity.sharedPreferences.getString("email",null))) {
+        LocalDate theDate = LocalDate.parse(date.getText().toString());
 
-                            db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if(!task.getResult().isEmpty()) {
-                                        for (QueryDocumentSnapshot document2 : task.getResult()) {
-                                            if (document2.getLong("workoutNumber") == ProfileFragment.singleworkout.getWorkoutNumber()) {
-                                                String description = myplanedittext.getText().toString();
-                                                String name = titleEditText.getText().toString();
-                                                String time = timebutton.getText().toString();
-                                                long workoutNumber = document2.getLong("workoutNumber");
-                                                db.collection("users").document(document.getId()).collection("workouts").document(document2.getId()).update("description", description, "name", name, "time", time).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        LocalDate myDateForWorkout = LocalDate.parse(date.getText().toString());
-                                                        service.fixPendingintent(getContext(), workoutNumber, myDateForWorkout.getMonthValue(), hour, minute, myDateForWorkout.getDayOfMonth(), myDateForWorkout.getYear());
-                                                        WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).setDescription(description);
-                                                        WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).setName(name);
-                                                        WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).setTime(time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-                                                        Toast.makeText(getContext(), "Workout updated!", Toast.LENGTH_SHORT).show();
-                                                        return;
+        LocalTime time = LocalTime.parse(timebutton.getText().toString());
+
+        LocalTime nowTime = LocalTime.now();
+
+        time.format(formatter);
+        nowTime.format(formatter);
+
+        if (timebutton.getText().equals("Select Time") || titleEditText.getText().toString().isEmpty() || myplanedittext.getText().toString().isEmpty() ) {
+            Toast.makeText(getActivity(), "The fields cannot be left empty!!", Toast.LENGTH_LONG).show();
+        } else{
+            if(theDate.equals(LocalDate.now()) &&   time.isBefore(nowTime) ) {
+                Toast.makeText(getActivity(), "The time cannot be lower than todays time!", Toast.LENGTH_LONG).show();
+
+            }else {
+                db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.getData().containsValue(MainActivity.sharedPreferences.getString("email", null))) {
+
+                                    db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (!task.getResult().isEmpty()) {
+                                                for (QueryDocumentSnapshot document2 : task.getResult()) {
+                                                    if (document2.getLong("workoutNumber") == ProfileFragment.singleworkout.getWorkoutNumber()) {
+                                                        String description = myplanedittext.getText().toString();
+                                                        String name = titleEditText.getText().toString();
+                                                        String time = timebutton.getText().toString();
+                                                        long workoutNumber = document2.getLong("workoutNumber");
+                                                        db.collection("users").document(document.getId()).collection("workouts").document(document2.getId()).update("description", description, "name", name, "time", time).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                LocalDate myDateForWorkout = LocalDate.parse(date.getText().toString());
+                                                                service.fixPendingintent(getContext(), workoutNumber, myDateForWorkout.getMonthValue(), hour, minute, myDateForWorkout.getDayOfMonth(), myDateForWorkout.getYear());
+                                                                WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).setDescription(description);
+                                                                WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).setName(name);
+                                                                WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).setTime(time);
+
+                                                                Toast.makeText(getContext(), "Workout updated!", Toast.LENGTH_SHORT).show();
+                                                                return;
+                                                            }
+                                                        });
+
                                                     }
-                                                });
+                                                }
 
-                                            }
+                                            } else
+                                                Toast.makeText(getContext(), "Error with updating data", Toast.LENGTH_SHORT).show();
+
                                         }
-
-                                    }else
-                                        Toast.makeText(getContext(), "Error with updating data", Toast.LENGTH_SHORT).show();
-
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(getContext(), "Error with saving data", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    return;
                                 }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getContext(), "Error with saving data", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            return;
+                            }
                         }
                     }
-                }
+                });
             }
-        });
+        }
         progresscircle.setVisibility(View.GONE);
     }
 
