@@ -40,6 +40,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -147,60 +148,76 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
     private void saveWorkout(){
         WorkoutPlan workoutPlan = new WorkoutPlan(titleEditText.getText().toString(),CalendarFragment.selectedDate.toString(), PlantEditText.getText().toString(), timebutton.getText().toString(), (long) WorkoutPlan.workoutPlans.size());
         progresscircle.setVisibility(View.VISIBLE);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        if(CalendarFragment.selectedDate.equals(LocalDate.now()) && LocalTime.now().isBefore(LocalTime.parse(timebutton.getText().toString()))){
+        LocalTime time = LocalTime.parse(timebutton.getText().toString());
+
+        LocalTime nowTime = LocalTime.now();
+
+        time.format(formatter);
+        nowTime.format(formatter);
+
+
+
+        if(CalendarFragment.selectedDate.isBefore(LocalDate.now())){
             Toast.makeText(getActivity(), "Please select a date later than todays time!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), LocalTime.now().toString(), Toast.LENGTH_SHORT).show();
         }else {
 
             if (timebutton.getText().equals("Select Time") || titleEditText.getText().toString().isEmpty() || PlantEditText.getText().toString().isEmpty()) {
                 Toast.makeText(getActivity(), "The fields cannot be left empty!!", Toast.LENGTH_LONG).show();
             } else {
 
-                db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (document.getData().containsValue(sharedPreferences.getString("email", null))) {
+                if (CalendarFragment.selectedDate.equals(LocalDate.now()) && time.isBefore(nowTime)) {
+                    Toast.makeText(getContext(), "Time cannot be less than todays time!", Toast.LENGTH_SHORT).show();
+                } else {
+                    
+                    db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    if (document.getData().containsValue(sharedPreferences.getString("email", null))) {
 
-                                    db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                            if (CalendarFragment.selectedDate.isBefore(LocalDate.now())) {
-                                                Toast.makeText(getActivity(), "Workout failed to save. Please pick a better date", Toast.LENGTH_LONG).show();
-                                            } else {
+                                        db.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (CalendarFragment.selectedDate.isBefore(LocalDate.now())) {
+                                                    Toast.makeText(getActivity(), "Workout failed to save. Please pick a better date", Toast.LENGTH_LONG).show();
+                                                } else {
 
-                                                db.collection("users").document(document.getId()).collection("workouts").add(workoutPlan).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                    @Override
-                                                    public void onSuccess(DocumentReference documentReference) {
-                                                        WorkoutPlan.workoutPlans.add(workoutPlan);
-                                                        service.fixPendingintent(getContext(), workoutPlan.getWorkoutNumber(), CalendarFragment.selectedDate.getMonthValue(), hour, minute, CalendarFragment.selectedDate.getDayOfMonth(), CalendarFragment.selectedDate.getYear());
-                                                        Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
-                                                    }
-                                                }).addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getActivity(), "Workout has not been saved", Toast.LENGTH_LONG).show();
-                                                    }
-                                                });
+                                                    db.collection("users").document(document.getId()).collection("workouts").add(workoutPlan).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                        @Override
+                                                        public void onSuccess(DocumentReference documentReference) {
+                                                            WorkoutPlan.workoutPlans.add(workoutPlan);
+                                                            service.fixPendingintent(getContext(), workoutPlan.getWorkoutNumber(), CalendarFragment.selectedDate.getMonthValue(), hour, minute, CalendarFragment.selectedDate.getDayOfMonth(), CalendarFragment.selectedDate.getYear());
+                                                            Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(getActivity(), "Workout has not been saved", Toast.LENGTH_LONG).show();
+                                                        }
+                                                    });
+                                                }
                                             }
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Log.d("error", e.toString(), null);
-                                        }
-                                    });
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.d("error", e.toString(), null);
+                                            }
+                                        });
 
 
-                                    progresscircle.setVisibility(View.GONE);
+                                        progresscircle.setVisibility(View.GONE);
 
-                                    return;
+                                        return;
+                                    }
                                 }
                             }
                         }
-                    }
-                });
+                    });
+                }
             }
         }
     }

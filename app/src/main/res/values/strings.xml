@@ -113,6 +113,7 @@
     <string name="your_plan_title">Your plan Title</string>
     <string name="your_new_description">Your new description</string>
     <string name="your_description">Your description</string>
+    <string name="save">save</string>
 
     <string-array name="activitylevel">
         <item> No exercise</item>
