@@ -236,8 +236,6 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
                                                         WorkoutPlan.workoutPlans.remove(ProfileFragment.workoutposition);
                                                         ProfileFragment.workoutAdapter.notifyDataSetChanged();
                                                         Toast.makeText(getContext(), "Workout deleted!", Toast.LENGTH_SHORT).show();
-
-
                                                     }
                                                 }).addOnFailureListener(new OnFailureListener() {
                                                     @Override

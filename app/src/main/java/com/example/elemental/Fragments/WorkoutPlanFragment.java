@@ -35,6 +35,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -149,7 +150,9 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
 
 
     private void saveWorkout(){
-        WorkoutPlan workoutPlan = new WorkoutPlan(titleEditText.getText().toString(),CalendarFragment.selectedDate.toString(), PlantEditText.getText().toString(), timebutton.getText().toString(), (long) WorkoutPlan.workoutPlans.size());
+        Date now = new Date();
+        int id = Integer.parseInt(new SimpleDateFormat("HHmmss",  Locale.JAPAN).format(now));
+        WorkoutPlan workoutPlan = new WorkoutPlan(titleEditText.getText().toString(),CalendarFragment.selectedDate.toString(), PlantEditText.getText().toString(), timebutton.getText().toString(), id);
         progresscircle.setVisibility(View.VISIBLE);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -193,7 +196,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                                                         @Override
                                                         public void onSuccess(DocumentReference documentReference) {
                                                             WorkoutPlan.workoutPlans.add(workoutPlan);
-                                                            service.fixPendingintent(getContext(), workoutPlan.getWorkoutNumber(), CalendarFragment.selectedDate.getMonthValue(), hour, minute, CalendarFragment.selectedDate.getDayOfMonth(), CalendarFragment.selectedDate.getYear());
+                                                            service.fixPendingintent(getContext(), id, CalendarFragment.selectedDate.getMonthValue(), hour, minute, CalendarFragment.selectedDate.getDayOfMonth(), CalendarFragment.selectedDate.getYear());
                                                             Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
                                                         }
                                                     }).addOnFailureListener(new OnFailureListener() {
