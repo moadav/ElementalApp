@@ -98,8 +98,6 @@ public class ProfileFragment extends Fragment {
 
                 singleworkout = WorkoutPlan.getWorkoutPlans().get(position);
                 Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.workoutItemsFragment);
-
-
                 workoutAdapter.notifyDataSetChanged();
             }
         });

@@ -167,7 +167,6 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
 
         if(CalendarFragment.selectedDate.isBefore(LocalDate.now())){
             Toast.makeText(getActivity(), "Please select a date later than todays time!", Toast.LENGTH_LONG).show();
-            Toast.makeText(getContext(), LocalTime.now().toString(), Toast.LENGTH_SHORT).show();
         }else {
 
             if (timebutton.getText().equals("Select Time") || titleEditText.getText().toString().isEmpty() || PlantEditText.getText().toString().isEmpty()) {

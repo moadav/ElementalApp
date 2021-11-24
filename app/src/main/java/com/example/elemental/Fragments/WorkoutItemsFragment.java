@@ -181,7 +181,7 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
                                                                 WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).setDescription(description);
                                                                 WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).setName(name);
                                                                 WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).setTime(time);
-
+                                                                ProfileFragment.workoutAdapter.notifyDataSetChanged();
                                                                 Toast.makeText(getContext(), "Workout updated!", Toast.LENGTH_SHORT).show();
                                                                 return;
                                                             }
