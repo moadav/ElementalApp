@@ -26,7 +26,7 @@
         <item
             android:id="@+id/bmidrawmenu"
             android:icon="@drawable/ic_baseline_sports_24"
-            android:title="@string/BMIKalkulator" />
+            android:title="@string/bmi_schema" />
     </group>
         <item
             android:title="@string/settings">

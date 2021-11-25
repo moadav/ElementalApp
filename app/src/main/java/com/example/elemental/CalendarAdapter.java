@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elemental.Fragments.CalendarFragment;
@@ -33,6 +34,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
         View view = inflater.inflate(R.layout.calendarcell,parent,false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         layoutParams.height = (int) (parent.getHeight() * 0.13);
+
+
+
         return new CalendarViewHolder(view, onItemListener, daysOfMonth);
 
     }
@@ -49,6 +53,13 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
                 holder.parentView.setBackgroundColor(Color.CYAN);
         }
 
+
+        if( AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            holder.dayOfMonth.setTextColor(Color.WHITE);
+        }
+        else{
+            holder.dayOfMonth.setTextColor(Color.BLACK);
+        }
 
     }
 

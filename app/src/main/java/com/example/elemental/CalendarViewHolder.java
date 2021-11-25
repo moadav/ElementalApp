@@ -1,9 +1,11 @@
 package com.example.elemental;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;

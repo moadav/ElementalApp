@@ -46,7 +46,7 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private TextView resetyourpass,editusername,deleteAccount;
+    private TextView resetyourpass,editusername,deleteAccount,editBMI;
     private SwitchCompat lightmode;
     private SharedPreferences sharedPreferences;
     private FirebaseAuth mAuth;
@@ -96,15 +96,23 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
         super.onResume();
             sharedPreferences = getContext().getSharedPreferences("isNight", Context.MODE_PRIVATE);
             Boolean tet = sharedPreferences.getBoolean("night_mode",false);
+
         fireStore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+
         progressbar = getView().findViewById(R.id.progressbar);
+
          resetyourpass = getView().findViewById(R.id.resetyourpass);
          resetyourpass.setOnClickListener(this);
+
          editusername = getView().findViewById(R.id.editusername);
          editusername.setOnClickListener(this);
+
          deleteAccount = getView().findViewById(R.id.deleteAccount);
          deleteAccount.setOnClickListener(this);
+
+            editBMI = getView().findViewById(R.id.editBMI);
+            editBMI.setOnClickListener(this);
 
          lightmode = getView().findViewById(R.id.lightmode);
          lightmode.setOnCheckedChangeListener(this);
@@ -177,6 +185,9 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
         switch (view.getId()){
             case R.id.resetyourpass:
                 resetPass();
+                break;
+            case R.id.editBMI:
+                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.BMIKalkulatorFragment);
                 break;
 
         }

@@ -201,9 +201,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.homeFragment);
                 break;
 
-            case R.id.BMIKalkulatorFragment:
+            case R.id.BMISkjemaFragment:
                 navigationView.setCheckedItem(R.id.bmidrawmenu);
-                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.BMIKalkulatorFragment);
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.BMISkjemaFragment);
                 break;
 
             case R.id.calendarFragment:
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.bmidrawmenu:
                 navigationView.setCheckedItem(R.id.bmidrawmenu);
-                Navigation.findNavController(this, R.id.Nav_container).navigate(R.id.BMIKalkulatorFragment);
+                Navigation.findNavController(this, R.id.Nav_container).navigate(R.id.BMISkjemaFragment);
                 break;
             case R.id.calendardrawmenu:
                 navigationView.setCheckedItem(R.id.calendardrawmenu);

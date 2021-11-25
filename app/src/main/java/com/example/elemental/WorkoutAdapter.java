@@ -1,6 +1,7 @@
 package com.example.elemental;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.elemental.Fragments.CalendarFragment;
 import com.example.elemental.Fragments.WorkoutPlanFragment;
@@ -32,6 +34,8 @@ public class WorkoutAdapter extends ArrayAdapter<WorkoutPlan> {
         if (convertView == null )
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.calendarcell,parent,false);
         TextView cellDay = convertView.findViewById(R.id.cellDay);
+
+
 
         String workoutTitle ="Date: " + workoutPlan.getDate() + "\n" + "Title: " + workoutPlan.getName() + "\n" + "Description: " + workoutPlan.getDescription() + "\n" + "Time: " + workoutPlan.getTime();
         cellDay.setText(workoutTitle);
