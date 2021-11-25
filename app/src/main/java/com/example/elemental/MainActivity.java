@@ -25,6 +25,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,7 +85,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
        // NavController navController = Navigation.findNavController(this,  R.id.Nav_container);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
         bottomNavigationView.setOnItemSelectedListener(this);
-        getSupportActionBar().setTitle("Elemental");
+        getSupportActionBar().setTitle("ELEMENTAL");
+
+
     }
 
     @Override

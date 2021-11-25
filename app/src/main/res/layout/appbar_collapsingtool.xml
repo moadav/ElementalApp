@@ -29,10 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleGravity="bottom"
+            app:expandedTitleGravity="center"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:scrimAnimationDuration="50"
-
+            android:theme="@style/CustomToolbarTheme"
             >
 
             <ImageView
@@ -41,7 +41,7 @@
                 android:layout_height="250dp"
                 android:contentDescription="@string/appbar_scrolling_view_behavior"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/picturetrainer"
+                android:src="@mipmap/toolbarback"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.5" />
 
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-
+                android:theme="@style/CustomOptionTheme"
                 />
 
 
@@ -64,10 +64,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:foreground="?attr/selectableItemBackground"
-        app:itemBackground="@color/purple_700"
+        app:itemBackground="@color/black"
         app:itemIconTint="@android:color/tab_indicator_text"
         app:itemRippleColor="@android:color/transparent"
-        app:itemTextColor="@android:color/tab_indicator_text"
+        app:itemTextColor="#463F3F"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_menu" />
 

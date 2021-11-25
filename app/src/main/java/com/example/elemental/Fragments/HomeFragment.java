@@ -1,6 +1,7 @@
 package com.example.elemental.Fragments;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -88,14 +89,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+
+
         db = FirebaseFirestore.getInstance();
         welcometext = getView().findViewById(R.id.welcometext);
         yourbmi = getView().findViewById(R.id.yourbmi);
         healthyresult = getView().findViewById(R.id.healthyresult);
+
         myspinner = getView().findViewById(R.id.myspinner);
         calorie = getView().findViewById(R.id.calorie);
         getCalorie = getView().findViewById(R.id.getCalorie);
         getCalorie.setOnClickListener(this);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,getResources().getStringArray(R.array.activitylevel));
         myspinner.setAdapter(adapter);
         fixValuesFromDb();
@@ -109,6 +114,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private double getLoseWeightCalorie(double calorie){
         return calorie-500;
     }
+
     private double currentCalorisBodyWeight(int activty){
         Double newweight = weight * 2.2;
         return newweight * activty;
@@ -136,12 +142,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if(result > 25) {
             healthyresult.setText("You are considered overweight!");
             healthyresult.setBackgroundColor(Color.RED);
+            healthyresult.setBackgroundResource(R.drawable.textviewshape);
         }else if (result < 18){
             healthyresult.setText("You are considered underweight!");
             healthyresult.setBackgroundColor(Color.BLUE);
+            healthyresult.setBackgroundResource(R.drawable.textviewshape);
         }else{
             healthyresult.setText("You are considered normal!");
             healthyresult.setBackgroundColor(Color.GREEN);
+            healthyresult.setBackgroundResource(R.drawable.textviewshape);
         }
     }
 

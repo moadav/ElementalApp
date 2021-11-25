@@ -10,6 +10,8 @@
         android:name="com.example.elemental.Fragments.BMIKalkulatorFragment"
         android:label="fragment_b_m_i_kalkulator"
         tools:layout="@layout/fragment_b_m_i_kalkulator"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
         >
 
 
@@ -19,53 +21,92 @@
         android:id="@+id/homeFragment"
         android:name="com.example.elemental.Fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        >
 
         <action
             android:id="@+id/action_homeFragment_to_loginActivity"
-            app:destination="@id/loginActivity" />
+            app:destination="@id/loginActivity"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeFragment_to_BMIKalkulatorFragment"
-            app:destination="@id/BMIKalkulatorFragment" />
+            app:destination="@id/BMIKalkulatorFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeFragment_to_sportTipsFragment"
-            app:destination="@id/sportTipsFragment" />
+            app:destination="@id/sportTipsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeFragment_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
+            app:destination="@id/calendarFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeFragment_to_optionFragment"
-            app:destination="@id/optionFragment" />
+            app:destination="@id/optionFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeFragment_to_BMISkjemaFragment"
-            app:destination="@id/BMISkjemaFragment" />
+            app:destination="@id/BMISkjemaFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.example.elemental.Fragments.CalendarFragment"
         android:label="fragment_calendar"
-        tools:layout="@layout/fragment_calendar" >
+        tools:layout="@layout/fragment_calendar"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        >
 
         <action
             android:id="@+id/action_calendarFragment_to_workoutPlanFragment"
-            app:destination="@id/workoutPlanFragment" />
+            app:destination="@id/workoutPlanFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
     </fragment>
     <fragment
         android:id="@+id/sportTipsFragment"
         android:name="com.example.elemental.Fragments.SportTipsFragment"
         android:label="fragment_sport_tips"
-        tools:layout="@layout/fragment_sport_tips" >
+        tools:layout="@layout/fragment_sport_tips"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        >
 
 
         <action
             android:id="@+id/action_sportTipsFragment_to_outsideWorkoutFragment"
-            app:destination="@id/outsideWorkoutFragment" />
+            app:destination="@id/outsideWorkoutFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_sportTipsFragment_to_homeWorkoutFragment"
-            app:destination="@id/homeWorkoutFragment" />
+            app:destination="@id/homeWorkoutFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
     </fragment>
     <activity
         android:id="@+id/loginActivity"
@@ -76,149 +117,253 @@
         android:id="@+id/outsideWorkoutFragment"
         android:name="com.example.elemental.Fragments.OutsideWorkoutFragment"
         android:label="fragment_outside_workout"
-        tools:layout="@layout/fragment_outside_workout" >
+        tools:layout="@layout/fragment_outside_workout"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        >
         <action
             android:id="@+id/action_outsideWorkoutFragment_to_trapsOutsideFragment"
-            app:destination="@id/trapsOutsideFragment" />
+            app:destination="@id/trapsOutsideFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_outsideWorkoutFragment_to_shoulderOutsideFragment"
-            app:destination="@id/shoulderOutsideFragment" />
+            app:destination="@id/shoulderOutsideFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_outsideWorkoutFragment_to_abdominalOutsideFragment"
-            app:destination="@id/abdominalOutsideFragment" />
+            app:destination="@id/abdominalOutsideFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_outsideWorkoutFragment_to_calvesOutsideFragment"
-            app:destination="@id/calvesOutsideFragment" />
+            app:destination="@id/calvesOutsideFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_outsideWorkoutFragment_to_chestOutsideFragment"
-            app:destination="@id/chestOutsideFragment" />
+            app:destination="@id/chestOutsideFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_outsideWorkoutFragment_to_quadsOutsideFragment"
-            app:destination="@id/quadsOutsideFragment" />
+            app:destination="@id/quadsOutsideFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_outsideWorkoutFragment_to_tricepsOutsideFragment"
-            app:destination="@id/tricepsOutsideFragment" />
+            app:destination="@id/tricepsOutsideFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
     </fragment>
     <fragment
         android:id="@+id/homeWorkoutFragment"
         android:name="com.example.elemental.Fragments.HomeWorkoutFragment"
         android:label="fragment_home_workout"
-        tools:layout="@layout/fragment_home_workout" >
+        tools:layout="@layout/fragment_home_workout"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        >
         <action
             android:id="@+id/action_homeWorkoutFragment_to_calvesFragment"
-            app:destination="@id/calvesFragment" />
+            app:destination="@id/calvesFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeWorkoutFragment_to_quadsHomeFragment"
-            app:destination="@id/quadsHomeFragment" />
+            app:destination="@id/quadsHomeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"/>
         <action
             android:id="@+id/action_homeWorkoutFragment_to_chestHomeFragment"
-            app:destination="@id/chestHomeFragment" />
+            app:destination="@id/chestHomeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeWorkoutFragment_to_tricepsHomeFragment"
-            app:destination="@id/tricepsHomeFragment" />
+            app:destination="@id/tricepsHomeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeWorkoutFragment_to_shoulderHomeFragment"
-            app:destination="@id/shoulderHomeFragment" />
+            app:destination="@id/shoulderHomeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeWorkoutFragment_to_abdominalHomeFragment"
-            app:destination="@id/abdominalHomeFragment" />
+            app:destination="@id/abdominalHomeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <action
             android:id="@+id/action_homeWorkoutFragment_to_trapsHomeFragment"
-            app:destination="@id/trapsHomeFragment" />
+            app:destination="@id/trapsHomeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
     </fragment>
     <fragment
         android:id="@+id/calvesFragment"
         android:name="com.example.elemental.Fragments.HomeWorkout.CalvesHomeFragment"
         android:label="fragment_calves"
-        tools:layout="@layout/fragment_calves_home" />
+        tools:layout="@layout/fragment_calves_home"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/abdominalHomeFragment"
         android:name="com.example.elemental.Fragments.HomeWorkout.AbdominalHomeFragment"
         android:label="fragment_abdominal_home"
-        tools:layout="@layout/fragment_abdominal_home" />
+        tools:layout="@layout/fragment_abdominal_home"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/chestHomeFragment"
         android:name="com.example.elemental.Fragments.HomeWorkout.ChestHomeFragment"
         android:label="fragment_chest_home"
-        tools:layout="@layout/fragment_chest_home" />
+        tools:layout="@layout/fragment_chest_home"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/quadsHomeFragment"
         android:name="com.example.elemental.Fragments.HomeWorkout.QuadsHomeFragment"
         android:label="fragment_quads_home"
-        tools:layout="@layout/fragment_quads_home" />
+        tools:layout="@layout/fragment_quads_home"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/shoulderHomeFragment"
         android:name="com.example.elemental.Fragments.HomeWorkout.ShoulderHomeFragment"
         android:label="fragment_shoulder_home"
-        tools:layout="@layout/fragment_shoulder_home" />
+        tools:layout="@layout/fragment_shoulder_home"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/trapsHomeFragment"
         android:name="com.example.elemental.Fragments.HomeWorkout.TrapsHomeFragment"
         android:label="fragment_traps_home"
-        tools:layout="@layout/fragment_traps_home" />
+        tools:layout="@layout/fragment_traps_home"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/tricepsHomeFragment"
         android:name="com.example.elemental.Fragments.HomeWorkout.TricepsHomeFragment"
         android:label="fragment_triceps_home"
-        tools:layout="@layout/fragment_triceps_home" />
+        tools:layout="@layout/fragment_triceps_home"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/abdominalOutsideFragment"
         android:name="com.example.elemental.Fragments.OutsideWorkout.AbdominalOutsideFragment"
         android:label="fragment_abdominal_outside"
-        tools:layout="@layout/fragment_abdominal_outside" />
+        tools:layout="@layout/fragment_abdominal_outside"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/calvesOutsideFragment"
         android:name="com.example.elemental.Fragments.OutsideWorkout.CalvesOutsideFragment"
         android:label="fragment_calves_outside"
-        tools:layout="@layout/fragment_calves_outside" />
+        tools:layout="@layout/fragment_calves_outside"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/chestOutsideFragment"
         android:name="com.example.elemental.Fragments.OutsideWorkout.ChestOutsideFragment"
         android:label="fragment_chest_outside"
-        tools:layout="@layout/fragment_chest_outside" />
+        tools:layout="@layout/fragment_chest_outside"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/quadsOutsideFragment"
         android:name="com.example.elemental.Fragments.OutsideWorkout.QuadsOutsideFragment"
         android:label="fragment_quads_outside"
-        tools:layout="@layout/fragment_quads_outside" />
+        tools:layout="@layout/fragment_quads_outside"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/shoulderOutsideFragment"
         android:name="com.example.elemental.Fragments.OutsideWorkout.ShoulderOutsideFragment"
         android:label="fragment_shoulder_outside"
-        tools:layout="@layout/fragment_shoulder_outside" />
+        tools:layout="@layout/fragment_shoulder_outside"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/trapsOutsideFragment"
         android:name="com.example.elemental.Fragments.OutsideWorkout.TrapsOutsideFragment"
         android:label="fragment_traps_outside"
-        tools:layout="@layout/fragment_traps_outside" />
+        tools:layout="@layout/fragment_traps_outside"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/tricepsOutsideFragment"
         android:name="com.example.elemental.Fragments.OutsideWorkout.TricepsOutsideFragment"
         android:label="fragment_triceps_outside"
-        tools:layout="@layout/fragment_triceps_outside" />
+        tools:layout="@layout/fragment_triceps_outside"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/workoutPlanFragment"
         android:name="com.example.elemental.Fragments.WorkoutPlanFragment"
         android:label="fragment_workout_plan"
-        tools:layout="@layout/fragment_workout_plan" >
+        tools:layout="@layout/fragment_workout_plan"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        >
         <action
             android:id="@+id/action_workoutPlanFragment_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
+            app:destination="@id/calendarFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.elemental.Fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        >
         <action
             android:id="@+id/action_profileFragment_to_workoutItemsFragment"
-            app:destination="@id/workoutItemsFragment" />
+            app:destination="@id/workoutItemsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
     </fragment>
     <fragment
         android:id="@+id/optionFragment"
         android:name="com.example.elemental.Fragments.OptionFragment"
         android:label="fragment_option"
-        tools:layout="@layout/fragment_option" />
+        tools:layout="@layout/fragment_option"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
     <fragment
         android:id="@+id/workoutItemsFragment"
         android:name="com.example.elemental.Fragments.WorkoutItemsFragment"
@@ -226,11 +371,19 @@
         tools:layout="@layout/fragment_workout_items" >
         <action
             android:id="@+id/action_workoutItemsFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+
+
+            />
     </fragment>
     <fragment
         android:id="@+id/BMISkjemaFragment"
         android:name="com.example.elemental.Fragments.BMISkjemaFragment"
         android:label="fragment_b_m_i_skjema"
-        tools:layout="@layout/fragment_b_m_i_skjema" />
+        tools:layout="@layout/fragment_b_m_i_skjema"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        />
 </navigation>

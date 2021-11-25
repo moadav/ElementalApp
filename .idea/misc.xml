@@ -3,11 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/drawable/edittext_shape.xml" value="0.22552083333333334" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/drawable/item_select.xml" value="0.22552083333333334" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/drawable/textviewshape.xml" value="0.22552083333333334" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/appbar_collapsingtool.xml" value="0.16822916666666668" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_b_m_i_skjema.xml" value="0.16534391534391535" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_calendar_date.xml" value="0.17239858906525574" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_home.xml" value="0.17239858906525574" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_login.xml" value="0.2" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_option.xml" value="0.16822916666666668" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_profile.xml" value="0.17708333333333334" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_register_account.xml" value="0.18" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_shoulder_home.xml" value="0.16822916666666668" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_sport_tips.xml" value="0.16822916666666668" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_workout_items.xml" value="0.16822916666666668" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_workout_plan.xml" value="0.17708333333333334" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/activity_login.xml" value="0.19270833333333334" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/activity_main.xml" value="0.19270833333333334" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/appbar_collapsingtool.xml" value="0.1743659420289855" />
@@ -19,16 +29,30 @@
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_calendar_date.xml" value="0.14628623188405798" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_calves_home.xml" value="0.19270833333333334" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_calves_outside.xml" value="0.2078125" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_chest_home.xml" value="0.14628623188405798" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_chest_outside.xml" value="0.14628623188405798" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_edit_username.xml" value="0.1539855072463768" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_forgot_password.xml" value="0.19270833333333334" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_home.xml" value="0.2078125" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_home_workout.xml" value="0.14628623188405798" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_login.xml" value="0.18" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_option.xml" value="0.19270833333333334" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_outside_workout.xml" value="0.14628623188405798" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_profile.xml" value="0.19270833333333334" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_quads_home.xml" value="0.14628623188405798" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_quads_outside.xml" value="0.19270833333333334" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_register_account.xml" value="0.14" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_shoulder_home.xml" value="0.14628623188405798" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_shoulder_outside.xml" value="0.14628623188405798" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_sport_tips.xml" value="0.14628623188405798" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_traps_home.xml" value="0.14628623188405798" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_traps_outside.xml" value="0.14628623188405798" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_triceps_home.xml" value="0.14628623188405798" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_triceps_outside.xml" value="0.14628623188405798" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_workout_items.xml" value="0.19202898550724637" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/fragment_workout_plan.xml" value="0.19202898550724637" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/navigation_drawer_header.xml" value="0.19270833333333334" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout/nested_scroll_page.xml" value="0.1539855072463768" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/menu/bottom_menu.xml" value="0.20520833333333333" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/menu/main_menu.xml" value="0.20520833333333333" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/menu/navigation_drawer_menu.xml" value="0.19270833333333334" />

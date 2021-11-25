@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.WorkoutItemsFragment">
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
@@ -16,7 +29,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center"
+
+        />
 
 
     <TextView
@@ -27,7 +43,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        android:layout_gravity="center"
+        />
 
     <TextView
         android:id="@+id/description"
@@ -37,7 +55,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        android:layout_gravity="center"
+        />
 
     <TextView
         android:id="@+id/time"
@@ -47,7 +67,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        android:layout_gravity="center"
+        />
 
 
     <TextView
@@ -58,7 +80,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time" />
+        app:layout_constraintTop_toBottomOf="@+id/time"
+        android:layout_gravity="center"
+        />
 
 
     <TextView
@@ -69,7 +93,9 @@
         app:layout_constraintTop_toBottomOf="@+id/time"
         app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="174dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:layout_gravity="center"
+        />
 
     <EditText
         android:id="@+id/titleEditText"
@@ -83,25 +109,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        android:layout_gravity="center"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit_description"
-
         app:layout_constraintBottom_toTopOf="@+id/myplanedittext"
         app:layout_constraintTop_toBottomOf="@+id/titleEditText"
         app:layout_constraintVertical_bias="0.591"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="147dp" />
+        tools:layout_editor_absoluteX="147dp"
+        android:layout_gravity="center"
+        />
 
 
     <EditText
         android:id="@+id/myplanedittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="@string/your_new_description"
         android:inputType="text"
@@ -110,20 +139,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/titleEditText"
+        android:layout_gravity="center"
+        />
 
     <Button
         android:id="@+id/timebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="46dp"
         android:background="@drawable/button_shape"
         android:text="Select time"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/titleEditText"
+        android:layout_gravity="center"
+        />
 
     <Button
         android:id="@+id/savebutton"
@@ -135,12 +168,15 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timebutton" />
+        app:layout_constraintTop_toBottomOf="@+id/timebutton"
+        android:layout_gravity="center"
+        />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/deleteworkout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="30dp"
         android:background="@drawable/button_shape"
         android:text="@string/delete"
         android:backgroundTint="#FF0000"
@@ -149,7 +185,12 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/savebutton"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintVertical_bias="0.212"
+        android:layout_gravity="center"
+        />
+
+    </LinearLayout>
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progresscircle"

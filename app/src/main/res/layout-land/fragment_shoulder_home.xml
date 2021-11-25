@@ -3,10 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.HomeWorkout.ChestHomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.HomeWorkout.ShoulderHomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,21 +21,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/dips"
+                android:text="@string/Elevatedpike"
                 android:textAlignment="center"
                 android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
+                android:layout_marginVertical="20dp"
                 >
 
                 <TextView
                     android:layout_width="190dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="@string/dipsinfo"
+                    android:text="@string/Elevatedpikeinfo"
                     android:textAlignment="center"
                     android:textSize="13sp"
                     />
@@ -38,33 +43,7 @@
                 <pl.droidsonroids.gif.GifImageView
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
-                    android:src="@drawable/dips" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/pushup"
-                android:textAlignment="center"
-                android:textSize="12sp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
-
-                <TextView
-                    android:layout_width="190dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:text="@string/pushupinfo"
-                    android:textAlignment="center"
-                    android:textSize="13sp"
-                    />
-
-                <pl.droidsonroids.gif.GifImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="95dp"
-                    android:src="@drawable/pushup" />
+                    android:src="@drawable/pikepress" />
             </LinearLayout>
 
             <TextView
@@ -76,7 +55,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
+                android:layout_marginVertical="20dp">
 
                 <TextView
                     android:layout_width="190dp"
@@ -93,10 +72,60 @@
                     android:src="@drawable/declinepush" />
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/benchdip"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp">
+
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="@string/benchdipinfo"
+                    android:textAlignment="center"
+                    android:textSize="13sp"
+                    />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:src="@drawable/benchdip" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Elevatedpikeshoulder"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp">
+
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="@string/Elevatedpikeshoulderinfo"
+                    android:textAlignment="center"
+                    android:textSize="13sp"
+                    />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:src="@drawable/pikeshoulder" />
+            </LinearLayout>
         </LinearLayout>
 
-
-
+    </ScrollView>
 
 
 </androidx.core.widget.NestedScrollView>
