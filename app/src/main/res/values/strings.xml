@@ -120,6 +120,7 @@
     <string name="profile">Welcome to your profile! Here lies all your workouts that you have created. If you wish to edit any of these workouts, just click on the desired workout and you will be sendt to a new page</string>
 
     <string name="bmichart_text">This picture shows you an indication of how healthy you are in terms of bodyweight. Though the BMI calculation is not always correct. For example the bmi takes in your raw weight, which mean that it does not take your muscle weight and only gives u an estimation of your bmi.</string>
+    <string name="reset">Reset</string>
 
     <string-array name="activitylevel">
         <item> No exercise</item>

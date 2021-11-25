@@ -56,7 +56,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private ProgressBar progresscircle;
     private SharedPreferences sharedPreferences;
-    private LoginActivity loginActivity = new LoginActivity();
+
     public LoginFragment() {
         // Required empty public constructor
     }

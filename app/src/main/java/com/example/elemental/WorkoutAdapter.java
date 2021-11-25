@@ -37,6 +37,14 @@ public class WorkoutAdapter extends ArrayAdapter<WorkoutPlan> {
 
 
 
+        if( AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            cellDay.setTextColor(Color.WHITE);
+        }
+        else{
+            cellDay.setTextColor(Color.BLACK);
+        }
+
+
         String workoutTitle ="Date: " + workoutPlan.getDate() + "\n" + "Title: " + workoutPlan.getName() + "\n" + "Description: " + workoutPlan.getDescription() + "\n" + "Time: " + workoutPlan.getTime();
         cellDay.setText(workoutTitle);
         return convertView;

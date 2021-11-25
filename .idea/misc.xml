@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/drawable/button_shape.xml" value="0.22135416666666666" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/drawable/edittext_shape.xml" value="0.22552083333333334" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/drawable/item_select.xml" value="0.22552083333333334" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/drawable/textviewshape.xml" value="0.22552083333333334" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/appbar_collapsingtool.xml" value="0.16822916666666668" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_b_m_i_skjema.xml" value="0.16534391534391535" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_calendar_date.xml" value="0.17239858906525574" />
+        <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_edit_username.xml" value="0.16822916666666668" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_home.xml" value="0.17239858906525574" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_login.xml" value="0.2" />
         <entry key="..\:/Program Files (x86)/Elemental/app/src/main/res/layout-land/fragment_option.xml" value="0.16822916666666668" />

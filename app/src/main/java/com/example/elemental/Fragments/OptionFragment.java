@@ -189,7 +189,9 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
             case R.id.editBMI:
                 Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.BMIKalkulatorFragment);
                 break;
-
+            case R.id.editusername:
+                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.editUsernameFragment);
+                break;
         }
     }
 }
