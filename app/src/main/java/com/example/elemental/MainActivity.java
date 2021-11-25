@@ -157,6 +157,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.remove("password");
         editor.remove("email");
         editor.apply();
+
+        SharedPreferences.Editor editor2 = sharedPreferences2.edit();
+        editor2.remove("night_mode");
+        editor2.apply();
     }
 
 
@@ -165,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void signOut(){
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         FirebaseAuth.getInstance().signOut();
         Intent login = new Intent(this,LoginActivity.class);
         startActivity(login);
