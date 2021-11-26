@@ -111,8 +111,7 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
          deleteAccount = getView().findViewById(R.id.deleteAccount);
          deleteAccount.setOnClickListener(this);
 
-            editBMI = getView().findViewById(R.id.editBMI);
-            editBMI.setOnClickListener(this);
+
 
          lightmode = getView().findViewById(R.id.lightmode);
          lightmode.setOnCheckedChangeListener(this);
@@ -185,9 +184,6 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
         switch (view.getId()){
             case R.id.resetyourpass:
                 resetPass();
-                break;
-            case R.id.editBMI:
-                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.BMIKalkulatorFragment);
                 break;
             case R.id.editusername:
                 Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.editUsernameFragment);

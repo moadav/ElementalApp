@@ -44,9 +44,7 @@ public class BMIKalkulatorFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private String resultBMI;
     private Button button;
-    private TextView editResult;
     private EditText editHeight;
     private EditText editWeight;
     private FirebaseFirestore db;
@@ -100,7 +98,6 @@ public class BMIKalkulatorFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         button = getView().findViewById(R.id.button_id);
-        editResult = getView().findViewById(R.id.Bmi_Result);
         editHeight = getView().findViewById(R.id.height_result);
         editWeight = getView().findViewById(R.id.weight_result);
 
@@ -110,18 +107,32 @@ public class BMIKalkulatorFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-               Float  weight = Float.valueOf(editWeight.getText().toString());
 
-               myWeight = editWeight.getText().toString();
+                if(editHeight.getText().toString().isEmpty()){
+                    editHeight.setError("Height cannot be empty!");
+                    editHeight.requestFocus();
+                    return;
+                }else if (Integer.parseInt(editHeight.getText().toString()) <= 0){
+                    editHeight.setError("Height cannot be 0 or less!");
+                    editHeight.requestFocus();
+                    return;
+                }
+                if(editWeight.getText().toString().isEmpty()){
+                    editWeight.setError("Weight cannot be empty!");
+                    editWeight.requestFocus();
+                    return;
+                }else if (Integer.parseInt(editWeight.getText().toString()) <= 0){
+                    editHeight.setError("Weight cannot be 0 or less!");
+                    editHeight.requestFocus();
+                    return;
+                }
 
-               Float  height =  Float.valueOf(editHeight.getText().toString()) / 100;
+                myWeight = editWeight.getText().toString();
+                myHeight = editHeight.getText().toString();
 
-               myHeight = editHeight.getText().toString();
 
-                float result = weight / (height * height);
 
-                resultBMI = Float.toString(result);
-                editResult.setText("Your BMI is: " + resultBMI);
+
                 updateDb();
 
             }

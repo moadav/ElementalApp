@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.BMIKalkulatorFragment">
 
@@ -15,9 +14,9 @@
         android:id="@+id/bmi_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit_your_bmi"
+        android:text="@string/change_weight_and_height"
         android:textSize="30sp"
-        android:layout_marginVertical="0dp"
+        android:layout_marginVertical="40dp"
         app:layout_constraintTop_toTopOf="parent"
         />
 
@@ -72,23 +71,4 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/BMIresult"
-        android:textAlignment="center"
-        android:textSize="23sp"
-
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/Bmi_Result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 </LinearLayout>

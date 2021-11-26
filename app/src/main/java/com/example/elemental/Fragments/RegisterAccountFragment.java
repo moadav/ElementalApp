@@ -48,7 +48,7 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
     private String mParam2;
 
 
-    private EditText username, password, email, height,weight;
+    private EditText username, password, email, height,weight,age;
     private ProgressBar progresscircle;
     private Button registerbutton;
     private ImageView imageView2;
@@ -110,6 +110,8 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
 
         weight = (EditText) getView().findViewById(R.id.weight);
 
+        age = (EditText) getView().findViewById(R.id.age);
+
         progresscircle = (ProgressBar) getView().findViewById(R.id.progresscircle);
 
         fireBase = FirebaseFirestore.getInstance();
@@ -138,6 +140,7 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
         email.setText("");
         height.setText("");
         weight.setText("");
+        age.setText(0);
     }
 
     private void registerUser() {
@@ -147,12 +150,26 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
         String weightText = weight.getText().toString().trim();
         String heightText = height.getText().toString().trim();
         String passwordText = password.getText().toString().trim();
+        String agenumber = age.getText().toString().trim();
+
+        if (agenumber.isEmpty()) {
+            age.setError("Age is required!");
+            age.requestFocus();
+            return;
+        }else if (Integer.parseInt(agenumber) <= 0){
+            age.setError("Age cannot be 0 or less!");
+            age.requestFocus();
+            return;
+        }
 
         if (emailText.isEmpty()) {
             email.setError("Email is required");
             email.requestFocus();
             return;
         }
+
+
+
         if (usernameText.isEmpty()) {
             username.setError("Username is required");
             username.requestFocus();
@@ -189,7 +206,7 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
         progresscircle.setVisibility(View.VISIBLE);
 
 
-        User user = new User(weightText, heightText, usernameText, emailText);
+        User user = new User(weightText, heightText, usernameText, emailText,agenumber);
 
 
 

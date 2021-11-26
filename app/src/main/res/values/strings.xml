@@ -121,6 +121,10 @@
 
     <string name="bmichart_text">This picture shows you an indication of how healthy you are in terms of bodyweight. Though the BMI calculation is not always correct. For example the bmi takes in your raw weight, which mean that it does not take your muscle weight and only gives u an estimation of your bmi.</string>
     <string name="reset">Reset</string>
+    <string name="age">Age</string>
+    <string name="calorie_bmr">This page helps you to find out your calorie goals. By selecting your activity level and clicking the button you get an estimation of calorie levels</string>
+    <string name="option_spinner">Option spinner of activity estimation</string>
+    <string name="change_weight_and_height">Change weight and height</string>
 
     <string-array name="activitylevel">
         <item> No exercise</item>

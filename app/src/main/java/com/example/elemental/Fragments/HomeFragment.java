@@ -16,10 +16,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.elemental.MainActivity;
 import com.example.elemental.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -42,11 +44,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private TextView welcometext,yourbmi,healthyresult,calorie;
+    private TextView welcometext,calorie;
     private FirebaseFirestore db;
     private Button getCalorie;
     private float height,weight;
-    float result;
+    float bmr;
+    int age;
     private Spinner myspinner;
     private DecimalFormat format = new DecimalFormat("0.#");
 
@@ -93,8 +96,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         db = FirebaseFirestore.getInstance();
         welcometext = getView().findViewById(R.id.welcometext);
-        yourbmi = getView().findViewById(R.id.yourbmi);
-        healthyresult = getView().findViewById(R.id.healthyresult);
 
         myspinner = getView().findViewById(R.id.myspinner);
         calorie = getView().findViewById(R.id.calorie);
@@ -115,42 +116,25 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return calorie-500;
     }
 
-    private double currentCalorisBodyWeight(int activty){
-        Double newweight = weight * 2.2;
-        return newweight * activty;
+    private double currentCalorisBodyWeight(double activty){
+        return bmr * activty;
     }
 
     private void caloriePlan(){
         if(myspinner.getSelectedItemId() == 0) {
-            calorie.setText(String.format("If you want to keep your weight: " + format.format(currentCalorisBodyWeight(13))
-                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(13)))
-                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(13)))));
+            calorie.setText(String.format("If you want to keep your weight: " + format.format(currentCalorisBodyWeight(1.3))
+                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(1.3)))
+                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(1.3)))));
         }
         else if(myspinner.getSelectedItemId() == 1) {
-            calorie.setText("If you want to keep your weight: "+format.format(currentCalorisBodyWeight(15))
-                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(15)))
-                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(15))));
+            calorie.setText("If you want to keep your weight: "+format.format(currentCalorisBodyWeight(1.5))
+                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(1.5)))
+                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(1.5))));
         }
         else{
-            calorie.setText("If you want to keep your weight: "+format.format(currentCalorisBodyWeight(18))
-                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(18)))
-                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(18))));
-        }
-    }
-
-    private void displayIfUserHealhty(){
-        if(result > 25) {
-            healthyresult.setText("You are considered overweight!");
-            healthyresult.setBackgroundColor(Color.RED);
-            healthyresult.setBackgroundResource(R.drawable.textviewshape);
-        }else if (result < 18){
-            healthyresult.setText("You are considered underweight!");
-            healthyresult.setBackgroundColor(Color.BLUE);
-            healthyresult.setBackgroundResource(R.drawable.textviewshape);
-        }else{
-            healthyresult.setText("You are considered normal!");
-            healthyresult.setBackgroundColor(Color.GREEN);
-            healthyresult.setBackgroundResource(R.drawable.textviewshape);
+            calorie.setText("If you want to keep your weight: "+format.format(currentCalorisBodyWeight(1.8))
+                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(1.8)))
+                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(1.8))));
         }
     }
 
@@ -166,13 +150,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         if (document.getData().containsValue(MainActivity.sharedPreferences.getString("email",null))) {
                             welcometext.setText("Welcome " +document.getString("username"));
                             weight = Float.parseFloat(document.getString("weight"));
-                            height = Float.parseFloat(document.getString("height")) / 100;
-                            result = weight / (height * height);
-                            yourbmi.setText("Your Bmi is: "+format.format(result));
-                            displayIfUserHealhty();
+                            height = Float.parseFloat(document.getString("height"));
+                            age = Integer.parseInt(document.getString("age"));
+                            bmr = (10*weight) + (6 * height) - (5 * age) +5;
+
                         }
                     }
                 }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "Failed to get values from database", Toast.LENGTH_LONG).show();
             }
         });
     }

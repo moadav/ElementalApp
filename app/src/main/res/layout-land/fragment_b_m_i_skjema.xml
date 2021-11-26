@@ -8,24 +8,30 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
-    <ImageView
-        android:id="@+id/image2"
+    <TextView
+        android:id="@+id/yourbmi"
+        android:layout_marginVertical="80dp"
         android:layout_width="match_parent"
-        android:layout_height="263dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/bmicharter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:ignore="MissingConstraints"
+        />
 
     <TextView
+        android:id="@+id/healthyresult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="50dp"
-        android:text="@string/bmichart_text"
+        android:layout_marginVertical="40dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image2"
+        app:layout_constraintTop_toBottomOf="@+id/yourbmi"
         tools:ignore="MissingConstraints" />
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
