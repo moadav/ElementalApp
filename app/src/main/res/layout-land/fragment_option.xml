@@ -84,6 +84,7 @@
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/lightmode"
+            android:theme="@style/springertheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="60dp"

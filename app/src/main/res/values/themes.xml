@@ -18,6 +18,11 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="springertheme">
+        <item name="colorSecondary">#00FFFF</item>
+
+
+    </style>
 
     <style name="CustomToolbarTheme">
         <item name="android:textColorPrimary">@color/white</item>

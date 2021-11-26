@@ -163,8 +163,6 @@ public class CalendarFragment extends Fragment implements OnItemListener,View.On
         if(!(day == null))
         {
             CalendarFragment.selectedDate = day;
-            String message = "Selected Date " + day + " " + monthYearFromDate(selectedDate);
-            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
             setMonthView();
         }
     }
