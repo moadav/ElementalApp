@@ -89,10 +89,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit_name"
+        android:textSize="18sp"
+        android:layout_marginVertical="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/date"
         app:layout_constraintTop_toBottomOf="@+id/time"
         app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="174dp"
         tools:ignore="MissingConstraints"
         android:layout_gravity="center"
         />
@@ -114,15 +115,15 @@
         />
 
     <TextView
+        android:layout_marginVertical="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit_description"
         app:layout_constraintBottom_toTopOf="@+id/myplanedittext"
         app:layout_constraintTop_toBottomOf="@+id/titleEditText"
-        app:layout_constraintVertical_bias="0.591"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="147dp"
         android:layout_gravity="center"
+        android:textSize="18sp"
         />
 
 
@@ -130,7 +131,6 @@
         android:id="@+id/myplanedittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="@string/your_new_description"
         android:inputType="text"
@@ -150,7 +150,7 @@
         android:layout_marginTop="46dp"
         android:background="@drawable/button_shape"
         android:text="Select time"
-        android:textSize="25sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -162,32 +162,30 @@
         android:id="@+id/savebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/button_shape"
         android:text="@string/update"
-        android:textSize="25sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timebutton"
         android:layout_gravity="center"
         />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/deleteworkout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="30dp"
-        android:background="@drawable/button_shape"
-        android:text="@string/delete"
-        android:backgroundTint="#FF0000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/savebutton"
-        app:layout_constraintVertical_bias="0.212"
-        android:layout_gravity="center"
-        />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/deleteworkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="40dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="#FF0000"
+            android:text="@string/delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/savebutton"
+            />
 
     </LinearLayout>
     </ScrollView>

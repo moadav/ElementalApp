@@ -17,7 +17,8 @@
         android:id="@+id/appbarlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/design_default_color_primary"
+        android:backgroundTint="@color/black"
+
         android:theme="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
         app:liftOnScroll="true"
         >
@@ -29,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleGravity="bottom"
+            app:expandedTitleGravity="center"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:scrimAnimationDuration="50"
             android:layout_gravity="center"
@@ -66,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:foreground="?attr/selectableItemBackground"
-        app:itemBackground="@color/purple_700"
+        app:itemBackground="@color/black"
         app:itemIconTint="@android:color/tab_indicator_text"
         app:itemRippleColor="@android:color/transparent"
         app:itemTextColor="@android:color/tab_indicator_text"

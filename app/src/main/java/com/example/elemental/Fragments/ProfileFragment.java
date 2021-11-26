@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
     public ListView listView;
-    private TextView editBMI;
+    private Button editBMI;
     public static WorkoutPlan singleworkout;
     public static int workoutposition;
     public static WorkoutAdapter workoutAdapter;
@@ -123,8 +124,5 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.BMIKalkulatorFragment);
                 break;
         }
-
-
-
     }
 }

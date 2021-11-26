@@ -35,8 +35,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         layoutParams.height = (int) (parent.getHeight() * 0.13);
 
-
-
         return new CalendarViewHolder(view, onItemListener, daysOfMonth);
 
     }
@@ -50,7 +48,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
         {
             holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
             if(date.equals(CalendarFragment.selectedDate))
-                holder.parentView.setBackgroundColor(Color.RED);
+                holder.parentView.setBackgroundColor(Color.DKGRAY);
         }
 
 

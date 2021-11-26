@@ -65,21 +65,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit_name"
-        app:layout_constraintBottom_toBottomOf="@+id/date"
-        app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="174dp"
+        app:layout_constraintBottom_toTopOf="@+id/titleEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/titleEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
         android:ems="10"
+        android:hint="@string/your_plan_title"
         android:inputType="text"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:hint="@string/your_plan_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,12 +90,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit_description"
-
         app:layout_constraintBottom_toTopOf="@+id/myplanedittext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleEditText"
         app:layout_constraintVertical_bias="0.591"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="147dp" />
+        tools:ignore="MissingConstraints" />
 
 
     <EditText
@@ -119,7 +120,7 @@
         android:layout_marginTop="156dp"
         android:background="@drawable/button_shape"
         android:text="Select time"
-        android:textSize="25sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +133,7 @@
         android:layout_marginTop="36dp"
         android:background="@drawable/button_shape"
         android:text="@string/update"
-        android:textSize="25sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timebutton" />
@@ -142,14 +143,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_shape"
-        android:text="@string/delete"
         android:backgroundTint="#FF0000"
+        android:text="@string/delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/savebutton"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintVertical_bias="0.263" />
 
     <ProgressBar
         android:id="@+id/progresscircle"
