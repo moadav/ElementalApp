@@ -1,6 +1,7 @@
 package com.example.elemental.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -20,13 +21,19 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.elemental.LoginActivity;
 import com.example.elemental.MainActivity;
 import com.example.elemental.R;
+import com.example.elemental.Service;
+import com.example.elemental.WorkoutPlan;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -46,12 +53,17 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private TextView resetyourpass,editusername,deleteAccount,editBMI;
+    private TextView resetyourpass,editusername,deleteAccount;
     private SwitchCompat lightmode;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences,sharedPreferences2;
     private FirebaseAuth mAuth;
-    private FirebaseFirestore fireStore;
+    private FirebaseFirestore fireStore  = FirebaseFirestore.getInstance();
     private ProgressBar progressbar;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String email;
+    private Service service  = new Service();
+
+
     public OptionFragment() {
         // Required empty public constructor
     }
@@ -97,7 +109,8 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
             sharedPreferences = getContext().getSharedPreferences("isNight", Context.MODE_PRIVATE);
             Boolean tet = sharedPreferences.getBoolean("night_mode",false);
 
-        fireStore = FirebaseFirestore.getInstance();
+            sharedPreferences2 = getContext().getSharedPreferences("userLogin", Context.MODE_PRIVATE);
+            email = sharedPreferences2.getString("email",null);
         mAuth = FirebaseAuth.getInstance();
 
         progressbar = getView().findViewById(R.id.progressbar);
@@ -175,9 +188,63 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
         });
 
         progressbar.setVisibility(View.GONE);
-
-
     }
+  
+    private void deleteUser(){
+        progressbar.setVisibility(View.VISIBLE);
+
+
+        fireStore.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (document.getString("email").equals(email)) {
+                            fireStore.collection("users").document(document.getId()).collection("workouts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                        service.cancelAlarm((documentSnapshot.getLong("workoutNumber")).intValue(),getContext());
+                                        fireStore.collection("users").document(document.getId()).collection("workouts").document(documentSnapshot.getId()).delete();
+                                    }
+                                    fireStore.collection("users").document(document.getId()).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Toast.makeText(getActivity(), "Delete successful!", Toast.LENGTH_LONG).show();
+
+                                                }
+                                            });
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(getContext(), "Could not delete user", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d("DELETE", "could not get collection");
+                                }
+                            });
+                        }else
+                            Log.d("ERROR", email);
+                    }
+                }
+            }
+        });
+
+
+        progressbar.setVisibility(View.GONE);
+    }
+
+
+
 
     @Override
     public void onClick(View view) {
@@ -188,6 +255,14 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
             case R.id.editusername:
                 Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.editUsernameFragment);
                 break;
+            case R.id.deleteAccount:
+                deleteUser();
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                MainActivity.removeSharedPreference();
+                Intent login = new Intent(getContext(),LoginActivity.class);
+                startActivity(login);
+                break;
+
         }
     }
 }

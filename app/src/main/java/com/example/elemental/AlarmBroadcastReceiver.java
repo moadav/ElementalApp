@@ -16,7 +16,11 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
 
         Intent mainactivity = new Intent(context,MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+
         PendingIntent contentIntent = PendingIntent.getActivity(context,0,mainactivity,0);
+
+
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"workoutandroid")
                 .setSmallIcon(R.drawable.ic_launcher_background)
@@ -26,6 +30,10 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(contentIntent);
+
+
+
+
 
         NotificationManagerCompat compat = NotificationManagerCompat.from(context);
         compat.notify(511,builder.build());

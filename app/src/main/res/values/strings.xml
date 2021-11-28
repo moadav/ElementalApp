@@ -125,6 +125,7 @@
     <string name="calorie_bmr">This page helps you to find out your calorie goals. By selecting your activity level and clicking the button you get an estimation of calorie levels</string>
     <string name="option_spinner">Option spinner of activity estimation</string>
     <string name="change_weight_and_height">Change weight and height</string>
+    <string name="diet">Diet</string>
 
     <string-array name="activitylevel">
         <item> No exercise</item>

@@ -156,22 +156,21 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
         progresscircle.setVisibility(View.VISIBLE);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        LocalTime time = LocalTime.parse(timebutton.getText().toString());
-
-        LocalTime nowTime = LocalTime.now();
-
-        time.format(formatter);
-        nowTime.format(formatter);
-
-
 
         if(CalendarFragment.selectedDate.isBefore(LocalDate.now())){
             Toast.makeText(getActivity(), "Please select a date later than todays time!", Toast.LENGTH_LONG).show();
         }else {
 
-            if (timebutton.getText().equals("Select Time") || titleEditText.getText().toString().isEmpty() || PlantEditText.getText().toString().isEmpty()) {
+            if (timebutton.getText().toString().equals("Select time") || titleEditText.getText().toString().isEmpty() || PlantEditText.getText().toString().isEmpty()) {
                 Toast.makeText(getActivity(), "The fields cannot be left empty!!", Toast.LENGTH_LONG).show();
             } else {
+
+                LocalTime time = LocalTime.parse(timebutton.getText().toString());
+
+                LocalTime nowTime = LocalTime.now();
+
+                time.format(formatter);
+                nowTime.format(formatter);
 
                 if (CalendarFragment.selectedDate.equals(LocalDate.now()) && time.isBefore(nowTime)) {
                     Toast.makeText(getContext(), "Time cannot be less than todays time!", Toast.LENGTH_SHORT).show();
@@ -241,9 +240,6 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
 
             }
         };
-
-
-
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),onTimeSetListener,hour,minute,true);
         timePickerDialog.setTitle("Select Time");

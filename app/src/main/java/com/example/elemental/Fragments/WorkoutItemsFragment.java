@@ -66,8 +66,7 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
     private EditText myplanedittext,titleEditText;
     private TextView date,time,description,name;
     private Service service = new Service();
-    private ProfileFragment profileFragment = new ProfileFragment();
-    private ProfileFragment profileFragment2;
+
 
     public WorkoutItemsFragment() {
         // Required empty public constructor
@@ -142,16 +141,19 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        LocalTime time = LocalTime.parse(timebutton.getText().toString());
 
-        LocalTime nowTime = LocalTime.now();
 
-        time.format(formatter);
-        nowTime.format(formatter);
-
-        if (timebutton.getText().equals("Select Time") || titleEditText.getText().toString().isEmpty() || myplanedittext.getText().toString().isEmpty() ) {
+        if (timebutton.getText().toString().equals("Select time") || titleEditText.getText().toString().isEmpty() || myplanedittext.getText().toString().isEmpty() ) {
             Toast.makeText(getActivity(), "The fields cannot be left empty!!", Toast.LENGTH_LONG).show();
         } else{
+
+            LocalTime time = LocalTime.parse(timebutton.getText().toString());
+
+            LocalTime nowTime = LocalTime.now();
+
+            time.format(formatter);
+            nowTime.format(formatter);
+
             if(theDate.equals(LocalDate.now()) &&   time.isBefore(nowTime) ) {
                 Toast.makeText(getActivity(), "The time cannot be lower than todays time!", Toast.LENGTH_LONG).show();
 

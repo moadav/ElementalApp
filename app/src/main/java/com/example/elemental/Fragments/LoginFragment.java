@@ -210,7 +210,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         });
 
                     } else {
-                        Toast.makeText(getActivity(), "Fault with the authentication!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "User does not exist!", Toast.LENGTH_LONG).show();
                         progresscircle.setVisibility(View.GONE);
                         FirebaseAuthException e = (FirebaseAuthException) task.getException();
                         Log.e("LoginActivity", "Failed Registration", e);

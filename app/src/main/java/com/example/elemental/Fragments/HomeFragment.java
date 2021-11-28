@@ -122,19 +122,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void caloriePlan(){
         if(myspinner.getSelectedItemId() == 0) {
-            calorie.setText(String.format("If you want to keep your weight: " + format.format(currentCalorisBodyWeight(1.3))
-                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(1.3)))
-                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(1.3)))));
+            calorie.setText(String.format("If you want to keep your weight: " + format.format(currentCalorisBodyWeight(1.3))+ " Calories"
+                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(1.3)))+ " Calories"
+                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(1.3))))+ " Calories");
         }
         else if(myspinner.getSelectedItemId() == 1) {
-            calorie.setText("If you want to keep your weight: "+format.format(currentCalorisBodyWeight(1.5))
-                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(1.5)))
-                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(1.5))));
+            calorie.setText("If you want to keep your weight: "+format.format(currentCalorisBodyWeight(1.5))+ " Calories"
+                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(1.5)))+ " Calories"
+                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(1.5))) + " Calories");
         }
         else{
-            calorie.setText("If you want to keep your weight: "+format.format(currentCalorisBodyWeight(1.8))
-                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(1.8)))
-                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(1.8))));
+            calorie.setText("If you want to keep your weight: "+format.format(currentCalorisBodyWeight(1.8))+ " Calories"
+                    + "\nIf you want to lose weight: " + format.format(getLoseWeightCalorie(currentCalorisBodyWeight(1.8)))+ " Calories"
+                    + "\nIf you want to gain weight: " + format.format(getGainWeightCalorie(currentCalorisBodyWeight(1.8)))+ " Calories") ;
         }
     }
 

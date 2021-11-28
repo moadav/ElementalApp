@@ -140,10 +140,11 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
         email.setText("");
         height.setText("");
         weight.setText("");
-        age.setText(0);
+        age.setText("");
     }
 
     private void registerUser() {
+        progresscircle.setVisibility(View.VISIBLE);
 
         String emailText = email.getText().toString().trim();
         String usernameText = username.getText().toString().trim();
@@ -203,7 +204,7 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
             return;
         }
 
-        progresscircle.setVisibility(View.VISIBLE);
+
 
 
         User user = new User(weightText, heightText, usernameText, emailText,agenumber);
@@ -215,53 +216,51 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for(QueryDocumentSnapshot document : task.getResult()){
-                        if(document.getData().containsValue(user.username)){
+                        if(document.getString("username").equals(user.username)){
                             Toast.makeText(getActivity(), "This username is already taken!", Toast.LENGTH_LONG).show();
                             progresscircle.setVisibility(View.GONE);
                             return;
                         }
                     }
-
-                    mAuth.createUserWithEmailAndPassword(emailText,passwordText).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-
-                                fireBase.collection("users")
-                                        .add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        emptyTexts();
-                                        Toast.makeText(getActivity(), "User has been registered!", Toast.LENGTH_LONG).show();
-                                        progresscircle.setVisibility(View.GONE);
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(getActivity(), "Failed to register! Please try again", Toast.LENGTH_LONG).show();
-                                        Log.e("LoginActivity", "Failed Registration", e);
-                                        progresscircle.setVisibility(View.GONE);
-                                    }
-                                });
-
-                            }else{
-                                Toast.makeText(getActivity(), "Fault with the authentication!", Toast.LENGTH_LONG).show();
-                                progresscircle.setVisibility(View.GONE);
-                                FirebaseAuthException e = (FirebaseAuthException)task.getException();
-                                Log.e("LoginActivity", "Failed Registration", e);
-
-                            }
-                        }
-                    });
-
-
-                }else{
-                    Toast.makeText(getActivity(), "Error getting data from database", Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
 
+        fireBase.collection("users")
+                .add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+
+
+                mAuth.createUserWithEmailAndPassword(emailText,passwordText).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+
+
+
+                        }else{
+                            Toast.makeText(getActivity(), "Fault with the authentication!", Toast.LENGTH_LONG).show();
+                            FirebaseAuthException e = (FirebaseAuthException)task.getException();
+                            Log.e("LoginActivity", "Failed Registration", e);
+
+                        }
+                    }
+                });
+
+
+
+                emptyTexts();
+                Toast.makeText(getActivity(), "User has been registered!", Toast.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "Failed to register! Please try again", Toast.LENGTH_LONG).show();
+                Log.e("LoginActivity", "Failed Registration", e);
+            }
+        });
+
+        progresscircle.setVisibility(View.GONE);
     }
 }

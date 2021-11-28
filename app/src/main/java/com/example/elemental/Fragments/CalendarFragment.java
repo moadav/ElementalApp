@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elemental.CalendarAdapter;
+import com.example.elemental.MainActivity;
 import com.example.elemental.OnItemListener;
 import com.example.elemental.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -89,6 +90,7 @@ public class CalendarFragment extends Fragment implements OnItemListener,View.On
 
         workoutplan = getView().findViewById(R.id.workoutplan);
         workoutplan.setOnClickListener(this);
+
 
         calenderRecyclerView = getView().findViewById(R.id.recyclerview);
 

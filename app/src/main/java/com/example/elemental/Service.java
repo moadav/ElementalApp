@@ -26,7 +26,6 @@ import java.util.Date;
 
 
 public class Service extends android.app.Service {
-    private static PendingIntent pendingIntent;
     private static Calendar calendar = Calendar.getInstance();
     private AlarmManager alarmManager;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();

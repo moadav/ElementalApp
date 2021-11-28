@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
 
@@ -10,23 +11,34 @@
         >
         <item
             android:id="@+id/homedrawmenu"
-            android:icon="@drawable/ic_baseline_house_24"
-            android:title="@string/Home"
+            android:icon="@drawable/ic_baseline_food_bank_24"
+            android:title="@string/diet"
             android:checked="true"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
             />
 
         <item
             android:id="@+id/calendardrawmenu"
             android:icon="@drawable/ic_baseline_calendar_today_24"
-            android:title="@string/Calendar" />
+            android:title="@string/Calendar"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <item
             android:id="@+id/sportdrawmenu"
             android:icon="@drawable/ic_baseline_sports_handball_24"
-            android:title="@string/Sport" />
+            android:title="@string/Sport"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
         <item
             android:id="@+id/bmidrawmenu"
             android:icon="@drawable/ic_baseline_sports_24"
-            android:title="@string/bmi_schema" />
+            android:title="@string/bmi_schema"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
     </group>
         <item
             android:title="@string/settings">
@@ -39,16 +51,22 @@
                         android:id="@+id/profile"
                         android:icon="@drawable/ic_baseline_supervisor_account_24"
                         android:title="@string/Profile"
+                        app:enterAnim="@android:anim/fade_in"
+                        app:exitAnim="@android:anim/fade_out"
                         />
                     <item
                         android:id="@+id/options"
                         android:icon="@drawable/ic_baseline_settings_24"
                         android:title="@string/Options"
+                        app:enterAnim="@android:anim/fade_in"
+                        app:exitAnim="@android:anim/fade_out"
                         />
                     <item
                         android:id="@+id/logout"
                         android:icon="@drawable/ic_baseline_assignment_return_24"
                         android:title="@string/Logout"
+                        app:enterAnim="@android:anim/fade_in"
+                        app:exitAnim="@android:anim/fade_out"
                         />
 
                 </group>

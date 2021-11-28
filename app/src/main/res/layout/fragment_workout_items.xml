@@ -60,22 +60,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time" />
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_name"
-        app:layout_constraintBottom_toTopOf="@+id/titleEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date"
-        tools:ignore="MissingConstraints" />
-
     <EditText
         android:id="@+id/titleEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="26dp"
         android:ems="10"
         android:hint="@string/your_plan_title"
         android:inputType="text"
@@ -86,23 +75,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_description"
-        app:layout_constraintBottom_toTopOf="@+id/myplanedittext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleEditText"
-        app:layout_constraintVertical_bias="0.591"
-        tools:ignore="MissingConstraints" />
-
-
     <EditText
         android:id="@+id/myplanedittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/your_new_description"
         android:inputType="text"
@@ -117,7 +94,7 @@
         android:id="@+id/timebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="126dp"
         android:background="@drawable/button_shape"
         android:text="Select time"
         android:textSize="17sp"
@@ -130,7 +107,7 @@
         android:id="@+id/savebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="26dp"
         android:background="@drawable/button_shape"
         android:text="@string/update"
         android:textSize="17sp"
