@@ -47,7 +47,7 @@
         android:layout_gravity="center"
         android:layout_marginVertical="25dp"
         android:text="@string/your_plans"
-        android:textSize="20sp"
+        android:textSize="19sp"
         android:layout_marginHorizontal="120dp"
         app:layout_constraintBottom_toTopOf="@+id/workoutadapter"
         app:layout_constraintEnd_toEndOf="parent"
