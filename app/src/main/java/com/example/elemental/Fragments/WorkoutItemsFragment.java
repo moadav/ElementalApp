@@ -185,6 +185,7 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
                                                                 WorkoutPlan.workoutPlans.get(ProfileFragment.workoutposition).setTime(time);
                                                                 ProfileFragment.workoutAdapter.notifyDataSetChanged();
                                                                 Toast.makeText(getContext(), "Workout updated!", Toast.LENGTH_SHORT).show();
+                                                                Navigation.findNavController(getView()).navigate(R.id.action_workoutItemsFragment_to_profileFragment);
                                                                 return;
                                                             }
                                                         });
@@ -229,11 +230,9 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
                 break;
             case R.id.savebutton:
                 Update();
-                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.profileFragment);
                 break;
             case R.id.deleteworkout:
                 delete();
-                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.profileFragment);
                 break;
         }
     }
@@ -260,6 +259,7 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
                                                         WorkoutPlan.workoutPlans.remove(ProfileFragment.workoutposition);
                                                         ProfileFragment.workoutAdapter.notifyDataSetChanged();
                                                         Toast.makeText(getContext(), "Workout deleted!", Toast.LENGTH_SHORT).show();
+                                                        Navigation.findNavController(getView()).navigate(R.id.action_workoutItemsFragment_to_profileFragment);
                                                     }
                                                 }).addOnFailureListener(new OnFailureListener() {
                                                     @Override

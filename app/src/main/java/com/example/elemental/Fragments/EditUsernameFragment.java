@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class EditUsernameFragment extends Fragment implements View.OnClickListen
     private String mParam2;
     private EditText resetusername;
     private Button resetbutton;
+    private ImageView training;
     private ProgressBar progressBar;
     private FirebaseFirestore fireBase;
 
@@ -86,6 +88,10 @@ public class EditUsernameFragment extends Fragment implements View.OnClickListen
 
         resetbutton = getView().findViewById(R.id.resetbutton);
         resetbutton.setOnClickListener(this);
+
+        training = getView().findViewById(R.id.training);
+        training.setOnClickListener(this);
+
         resetusername = getView().findViewById(R.id.resetusername);
         fireBase = FirebaseFirestore.getInstance();
         progressBar = getView().findViewById(R.id.progressbar);
@@ -103,7 +109,9 @@ public class EditUsernameFragment extends Fragment implements View.OnClickListen
         switch (view.getId()){
             case R.id.resetbutton:
                 resetUsername();
-                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.optionFragment);
+                break;
+            case R.id.training:
+                Navigation.findNavController(getView()).navigate(R.id.action_editUsernameFragment_to_optionFragment);
                 break;
         }
     }
@@ -133,6 +141,7 @@ public class EditUsernameFragment extends Fragment implements View.OnClickListen
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(getContext(), "Username updated!", Toast.LENGTH_SHORT).show();
+                                            Navigation.findNavController(getView()).navigate(R.id.action_editUsernameFragment_to_optionFragment);
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override

@@ -15,7 +15,13 @@
         >
 
 
+        <action
+            android:id="@+id/action_BMIKalkulatorFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
 
+            />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -59,12 +65,6 @@
         <action
             android:id="@+id/action_homeFragment_to_optionFragment"
             app:destination="@id/optionFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            />
-        <action
-            android:id="@+id/action_homeFragment_to_BMISkjemaFragment"
-            app:destination="@id/BMISkjemaFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             />
@@ -355,6 +355,12 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             />
+        <action
+            android:id="@+id/action_profileFragment_to_BMIKalkulatorFragment"
+            app:destination="@id/BMIKalkulatorFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
     </fragment>
     <fragment
         android:id="@+id/optionFragment"
@@ -363,7 +369,14 @@
         tools:layout="@layout/fragment_option"
         app:enterAnim="@android:anim/fade_in"
         app:exitAnim="@android:anim/fade_out"
-        />
+        >
+        <action
+            android:id="@+id/action_optionFragment_to_editUsernameFragment"
+            app:destination="@id/editUsernameFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
+    </fragment>
     <fragment
         android:id="@+id/workoutItemsFragment"
         android:name="com.example.elemental.Fragments.WorkoutItemsFragment"
@@ -391,8 +404,12 @@
         android:name="com.example.elemental.Fragments.EditUsernameFragment"
         android:label="fragment_edit_username"
         tools:layout="@layout/fragment_edit_username" >
+
         <action
-            android:id="@+id/action_editUsernameFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_editUsernameFragment_to_optionFragment"
+            app:destination="@id/optionFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            />
     </fragment>
 </navigation>

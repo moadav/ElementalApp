@@ -200,45 +200,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             //Bottom navigation navigation
             case R.id.sportTipsFragment:
+            case R.id.sportdrawmenu:
                 navigationView.setCheckedItem(R.id.sportdrawmenu);
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.sportTipsFragment);
                 break;
 
             case R.id.homeFragment:
+
+                //navigation drawer navigation
+            case R.id.homedrawmenu:
                 navigationView.setCheckedItem(R.id.homedrawmenu);
+               // Navigation.findNavController(item.getActionView()).navigate(R.id.t_to_tricepsOutsideFragment);
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.homeFragment);
                 break;
 
             case R.id.BMISkjemaFragment:
+            case R.id.bmidrawmenu:
                 navigationView.setCheckedItem(R.id.bmidrawmenu);
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.BMISkjemaFragment);
                 break;
 
             case R.id.calendarFragment:
-                navigationView.setCheckedItem(R.id.calendardrawmenu);
-                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.calendarFragment);
-                break;
-
-                //navigation drawer navigation
-            case R.id.homedrawmenu:
-                navigationView.setCheckedItem(R.id.homedrawmenu);
-                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.homeFragment);
-                break;
-            case R.id.sportdrawmenu:
-                navigationView.setCheckedItem(R.id.sportdrawmenu);
-                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.sportTipsFragment);
-                break;
-            case R.id.bmidrawmenu:
-                navigationView.setCheckedItem(R.id.bmidrawmenu);
-                Navigation.findNavController(this, R.id.Nav_container).navigate(R.id.BMISkjemaFragment);
-                break;
             case R.id.calendardrawmenu:
                 navigationView.setCheckedItem(R.id.calendardrawmenu);
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.calendarFragment);
                 break;
 
 
-                case R.id.profile:
+            case R.id.profile:
                     navigationView.setCheckedItem(R.id.profile);
                     Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.profileFragment);
                     break;

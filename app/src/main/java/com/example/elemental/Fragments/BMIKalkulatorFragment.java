@@ -35,7 +35,7 @@ import java.lang.ref.PhantomReference;
  * Use the {@link BMIKalkulatorFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BMIKalkulatorFragment extends Fragment {
+public class BMIKalkulatorFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,6 +50,7 @@ public class BMIKalkulatorFragment extends Fragment {
     private EditText editWeight;
     private FirebaseFirestore db;
     private String myWeight,myHeight;
+
     public BMIKalkulatorFragment() {
         // Required empty public constructor
     }
@@ -103,46 +104,34 @@ public class BMIKalkulatorFragment extends Fragment {
         editWeight = getView().findViewById(R.id.weight_result);
 
 
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-
-                if(editHeight.getText().toString().isEmpty()){
-                    editHeight.setError("Height cannot be empty!");
-                    editHeight.requestFocus();
-                    return;
-                }else if (Integer.parseInt(editHeight.getText().toString()) <= 0){
-                    editHeight.setError("Height cannot be 0 or less!");
-                    editHeight.requestFocus();
-                    return;
-                }
-                if(editWeight.getText().toString().isEmpty()){
-                    editWeight.setError("Weight cannot be empty!");
-                    editWeight.requestFocus();
-                    return;
-                }else if (Integer.parseInt(editWeight.getText().toString()) <= 0){
-                    editHeight.setError("Weight cannot be 0 or less!");
-                    editHeight.requestFocus();
-                    return;
-                }
-
-                myWeight = editWeight.getText().toString();
-                myHeight = editHeight.getText().toString();
-
-
-
-
-                updateDb();
-                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.profileFragment);
-
-            }
-        });
+        button.setOnClickListener(this);
     }
 
+    private void updateValues(){
+        if(editHeight.getText().toString().isEmpty()){
+            editHeight.setError("Height cannot be empty!");
+            editHeight.requestFocus();
+            return;
+        }else if (Integer.parseInt(editHeight.getText().toString()) <= 0){
+            editHeight.setError("Height cannot be 0 or less!");
+            editHeight.requestFocus();
+            return;
+        }
+        if(editWeight.getText().toString().isEmpty()){
+            editWeight.setError("Weight cannot be empty!");
+            editWeight.requestFocus();
+            return;
+        }else if (Integer.parseInt(editWeight.getText().toString()) <= 0){
+            editHeight.setError("Weight cannot be 0 or less!");
+            editHeight.requestFocus();
+            return;
+        }
 
-    private void updateDb(){
+        myWeight = editWeight.getText().toString();
+        myHeight = editHeight.getText().toString();
+    }
+
+    private void updateWeightAndHeight(){
         db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -153,6 +142,8 @@ public class BMIKalkulatorFragment extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(getContext(), "Updated!", Toast.LENGTH_SHORT).show();
+                                    Navigation.findNavController(getView()).navigate(R.id.action_BMIKalkulatorFragment_to_profileFragment);
+
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -170,5 +161,19 @@ public class BMIKalkulatorFragment extends Fragment {
                 Log.d("updatingDB","Failed to get database values");
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.button_id:
+                updateValues();
+                updateWeightAndHeight();
+                break;
+        }
+
+
+
     }
 }

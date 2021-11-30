@@ -111,6 +111,7 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
 
             sharedPreferences2 = getContext().getSharedPreferences("userLogin", Context.MODE_PRIVATE);
             email = sharedPreferences2.getString("email",null);
+
         mAuth = FirebaseAuth.getInstance();
 
         progressbar = getView().findViewById(R.id.progressbar);
@@ -253,7 +254,7 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
                 resetPass();
                 break;
             case R.id.editusername:
-                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.editUsernameFragment);
+                Navigation.findNavController(view).navigate(R.id.action_optionFragment_to_editUsernameFragment);
                 break;
             case R.id.deleteAccount:
                 deleteUser();

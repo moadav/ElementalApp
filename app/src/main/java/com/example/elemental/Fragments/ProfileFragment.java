@@ -1,7 +1,10 @@
 package com.example.elemental.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
@@ -14,9 +17,16 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.elemental.MainActivity;
 import com.example.elemental.R;
 import com.example.elemental.WorkoutAdapter;
 import com.example.elemental.WorkoutPlan;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -40,6 +50,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public static WorkoutPlan singleworkout;
     public static int workoutposition;
     public static WorkoutAdapter workoutAdapter;
+    private TextView useroverview;
+    private FirebaseFirestore db;
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -75,22 +88,39 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-
-
-
-
-
     @Override
     public void onResume() {
         super.onResume();
-
+        db = FirebaseFirestore.getInstance();
+        useroverview = getView().findViewById(R.id.useroverview);
+        getUserOverview();
         editBMI = getView().findViewById(R.id.editBMI);
         editBMI.setOnClickListener(this);
-        getParentFragmentManager().beginTransaction().detach(this).attach(this).commit();
         workoutAdapter = new WorkoutAdapter(getContext(),WorkoutPlan.getWorkoutPlans());
         listView = getView().findViewById(R.id.workoutadapter);
         listAdapter();
 
+    }
+
+    private void getUserOverview(){
+        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                for(QueryDocumentSnapshot document : task.getResult()){
+                    if(document.getString("email").equals(MainActivity.sharedPreferences.getString("email", null))){
+                        useroverview.setText("Weight: " + document.getString("weight") +" kg"+ "\n\n Height: " + document.getString("height") +" cm");
+                        return;
+
+                    }
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
     }
 
     public void listAdapter(){
@@ -102,7 +132,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 workoutposition = position;
 
                 singleworkout = WorkoutPlan.getWorkoutPlans().get(position);
-                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.workoutItemsFragment);
+                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_workoutItemsFragment);
                 workoutAdapter.notifyDataSetChanged();
             }
         });
@@ -121,7 +151,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         switch (view.getId()){
             case R.id.editBMI:
-                Navigation.findNavController(getActivity(),  R.id.Nav_container).navigate(R.id.BMIKalkulatorFragment);
+                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_BMIKalkulatorFragment);
                 break;
         }
     }
