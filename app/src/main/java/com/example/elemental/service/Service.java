@@ -1,4 +1,4 @@
-package com.example.elemental;
+package com.example.elemental.service;
 
 
 import android.app.AlarmManager;
@@ -12,17 +12,18 @@ import android.os.IBinder;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.elemental.AlarmManager.AlarmBroadcastReceiver;
+import com.example.elemental.models.WorkoutPlan;
+import com.example.elemental.activities.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
-import java.util.Date;
 
 
 public class Service extends android.app.Service {
@@ -39,7 +40,7 @@ public class Service extends android.app.Service {
 
     public void cancelAlarm(int id,Context context){
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context,AlarmBroadcastReceiver.class);
+        Intent intent = new Intent(context, AlarmBroadcastReceiver.class);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context,id,intent,PendingIntent.FLAG_ONE_SHOT);
 

@@ -1,4 +1,4 @@
-package com.example.elemental;
+package com.example.elemental.Adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,10 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import com.example.elemental.Fragments.CalendarFragment;
-import com.example.elemental.Fragments.WorkoutPlanFragment;
+import com.example.elemental.R;
+import com.example.elemental.models.WorkoutPlan;
 
-import java.lang.reflect.WildcardType;
 import java.util.List;
 
 public class WorkoutAdapter extends ArrayAdapter<WorkoutPlan> {

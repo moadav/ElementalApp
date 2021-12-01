@@ -110,7 +110,7 @@
     </fragment>
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.example.elemental.LoginActivity"
+        android:name="com.example.elemental.activities.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
     <fragment

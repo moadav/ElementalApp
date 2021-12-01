@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="19sp"
-        android:text="@string/calorie_bmr"
+        android:text="@string/bmr"
         app:layout_constraintBottom_toTopOf="@+id/myspinner"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="50dp"

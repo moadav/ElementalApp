@@ -1,8 +1,5 @@
-package com.example.elemental;
+package com.example.elemental.models;
 
-import com.google.firebase.database.Exclude;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class WorkoutPlan {
@@ -14,11 +11,6 @@ public class WorkoutPlan {
     private long workoutNumber;
 
     public static ArrayList<WorkoutPlan> workoutPlans = new ArrayList<>();
-
-
-    public static ArrayList<WorkoutPlan> getWorkoutPlans(){
-        return  workoutPlans;
-    }
 
     public WorkoutPlan(String name,String date, String description,String time, long workoutNumber) {
         this.name = name;

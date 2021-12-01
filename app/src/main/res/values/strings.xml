@@ -126,6 +126,7 @@
     <string name="option_spinner">Option spinner of activity estimation</string>
     <string name="change_weight_and_height">Change weight and height</string>
     <string name="diet">Diet</string>
+    <string name="bmr">The Basal Metabolic Rate (bmr) is the number of calories your body needs to perform your everyday activities. Which is then used to calculate the needs to either remain,lose or gain weight. Select your activity level below and get your bmr</string>
 
     <string-array name="activitylevel">
         <item> No exercise</item>

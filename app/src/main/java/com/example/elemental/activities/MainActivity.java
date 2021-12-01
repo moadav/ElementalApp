@@ -1,4 +1,4 @@
-package com.example.elemental;
+package com.example.elemental.activities;
 
 
 import androidx.annotation.NonNull;
@@ -7,9 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -17,42 +15,21 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
-import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.elemental.Fragments.CalendarFragment;
-import com.example.elemental.Fragments.OptionFragment;
-import com.example.elemental.Fragments.ProfileFragment;
-import com.example.elemental.databinding.ActivityMainBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
+import com.example.elemental.R;
+import com.example.elemental.service.Service;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Calendar;
 import java.util.Objects;
 
 
@@ -69,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startService(new Intent(getApplicationContext(),Service.class));
+        startService(new Intent(getApplicationContext(), Service.class));
         workoutplan = findViewById(R.id.workoutplan);
 
         toolbar = findViewById(R.id.main_Toolbar);
@@ -175,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void signOut(){
         removeDarkmodeOptions();
         FirebaseAuth.getInstance().signOut();
-        Intent login = new Intent(this,LoginActivity.class);
+        Intent login = new Intent(this, LoginActivity.class);
         startActivity(login);
     }
 

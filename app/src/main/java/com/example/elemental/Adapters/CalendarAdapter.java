@@ -1,16 +1,17 @@
-package com.example.elemental;
+package com.example.elemental.Adapters;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elemental.Fragments.CalendarFragment;
+import com.example.elemental.interfaces.OnItemListener;
+import com.example.elemental.R;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

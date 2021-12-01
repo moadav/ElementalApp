@@ -12,11 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.elemental.CalendarAdapter;
-import com.example.elemental.MainActivity;
-import com.example.elemental.OnItemListener;
+import com.example.elemental.Adapters.CalendarAdapter;
+import com.example.elemental.interfaces.OnItemListener;
 import com.example.elemental.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

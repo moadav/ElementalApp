@@ -18,7 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.elemental.R;
-import com.example.elemental.User;
+import com.example.elemental.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -236,22 +236,17 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-
-
-
+                            Toast.makeText(getActivity(), "User has been registered!", Toast.LENGTH_LONG).show();
                         }else{
-                            Toast.makeText(getActivity(), "Fault with the authentication!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Failed to register!", Toast.LENGTH_LONG).show();
                             FirebaseAuthException e = (FirebaseAuthException)task.getException();
                             Log.e("LoginActivity", "Failed Registration", e);
 
                         }
                     }
                 });
-
-
-
                 emptyTexts();
-                Toast.makeText(getActivity(), "User has been registered!", Toast.LENGTH_LONG).show();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -1,12 +1,13 @@
-package com.example.elemental;
+package com.example.elemental.Adapters;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.elemental.R;
+import com.example.elemental.interfaces.OnItemListener;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

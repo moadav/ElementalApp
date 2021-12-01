@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.HomeWorkout.ShoulderHomeFragment">
+    tools:context=".Fragments.HomeWorkout.QuadsHomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -21,21 +21,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Elevatedpike"
+                android:text="@string/squat"
                 android:textAlignment="center"
                 android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp"
+                android:layout_marginVertical="15dp"
                 >
 
                 <TextView
                     android:layout_width="190dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="@string/Elevatedpikeinfo"
+                    android:text="@string/squater"
                     android:textAlignment="center"
                     android:textSize="13sp"
                     />
@@ -43,25 +43,25 @@
                 <pl.droidsonroids.gif.GifImageView
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
-                    android:src="@drawable/pikepress" />
+                    android:src="@drawable/squat" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/declinepushup"
+                android:text="@string/forwardlung"
                 android:textAlignment="center"
                 android:textSize="12sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp">
+                android:layout_marginVertical="15dp">
 
                 <TextView
                     android:layout_width="190dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="@string/declinepushupinfo"
+                    android:text="@string/forwardlunging"
                     android:textAlignment="center"
                     android:textSize="13sp"
                     />
@@ -69,51 +69,25 @@
                 <pl.droidsonroids.gif.GifImageView
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
-                    android:src="@drawable/declinepush" />
+                    android:src="@drawable/forwardlung" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/benchdip"
-                android:textAlignment="center"
-                android:textSize="12sp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp">
-
-                <TextView
-                    android:layout_width="190dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:text="@string/benchdipinfo"
-                    android:textAlignment="center"
-                    android:textSize="13sp"
-                    />
-
-                <pl.droidsonroids.gif.GifImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="95dp"
-                    android:src="@drawable/benchdip" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Elevatedpikeshoulder"
+                android:text="@string/jumpsquat"
                 android:textAlignment="center"
                 android:textSize="12sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginVertical="20dp">
+                android:layout_marginVertical="15dp">
 
                 <TextView
                     android:layout_width="190dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="@string/Elevatedpikeshoulderinfo"
+                    android:text="@string/jumpsquating"
                     android:textAlignment="center"
                     android:textSize="13sp"
                     />
@@ -121,11 +95,13 @@
                 <pl.droidsonroids.gif.GifImageView
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
-                    android:src="@drawable/pikeshoulder" />
+                    android:src="@drawable/jumpsquat" />
             </LinearLayout>
-        </LinearLayout>
 
+        </LinearLayout>
     </ScrollView>
+
+
 
 
 </androidx.core.widget.NestedScrollView>

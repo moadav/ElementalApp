@@ -1,4 +1,4 @@
-package com.example.elemental;
+package com.example.elemental.models;
 
 public class User {
 

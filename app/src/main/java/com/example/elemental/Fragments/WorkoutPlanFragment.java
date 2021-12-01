@@ -1,6 +1,5 @@
 package com.example.elemental.Fragments;
 
-import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,32 +16,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.elemental.R;
-import com.example.elemental.Service;
-import com.example.elemental.WorkoutPlan;
+import com.example.elemental.service.Service;
+import com.example.elemental.models.WorkoutPlan;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -64,7 +56,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
     private Button timebutton,savebutton;
     private int hour,minute;
     private Service service = new Service();
-    public static EditText titleEditText,PlantEditText;
+    private EditText titleEditText,PlantEditText;
     private FirebaseFirestore db;
     private SharedPreferences sharedPreferences;
     private ProgressBar progresscircle;
@@ -140,7 +132,6 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.savebutton:
                 saveWorkout();
-                Navigation.findNavController(view).navigate(R.id.action_workoutPlanFragment_to_calendarFragment);
                 break;
 
 
@@ -196,6 +187,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                                                             WorkoutPlan.workoutPlans.add(workoutPlan);
                                                             service.fixPendingintent(getContext(), id, CalendarFragment.selectedDate.getMonthValue(), hour, minute, CalendarFragment.selectedDate.getDayOfMonth(), CalendarFragment.selectedDate.getYear());
                                                             Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
+                                                            Navigation.findNavController(getView()).navigate(R.id.action_workoutPlanFragment_to_calendarFragment);
                                                         }
                                                     }).addOnFailureListener(new OnFailureListener() {
                                                         @Override
