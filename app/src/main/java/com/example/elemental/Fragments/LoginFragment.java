@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elemental.R;
+import com.example.elemental.activities.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -48,6 +49,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private EditText emailadr,passord;
     private Button login;
     private FirebaseFirestore fireStore;
+    private LoginActivity loginActivity = new LoginActivity();
     private FirebaseAuth mAuth;
     private ProgressBar progresscircle;
     private SharedPreferences sharedPreferences;
@@ -113,8 +115,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         passord = (EditText) getView().findViewById(R.id.passord);
 
         progresscircle = (ProgressBar) getView().findViewById(R.id.progresscircle);
+
         fireStore = FirebaseFirestore.getInstance();
+
         mAuth = FirebaseAuth.getInstance();
+
         Login();
     }
 
@@ -123,15 +128,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.registeraccount:
+                removeString();
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerAccountFragment);
                 break;
             case R.id.login:
                 Login();
                 break;
             case R.id.forgotpassword:
+                removeString();
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_forgotPasswordFragment);
                 break;
         }
+    }
+
+    private void removeString(){
+        emailadr.getText().clear();
+        passord.getText().clear();
     }
 
     private void Login() {
@@ -139,11 +151,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         String emailRemember = sharedPreferences.getString("email", null);
         String passwordRemember = sharedPreferences.getString("password", null);
 
+
         if (emailRemember != null || passwordRemember != null) {
-            Toast.makeText(getActivity(), "Logging on...", Toast.LENGTH_LONG).show();
-
+            removeString();
             Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
-
         } else {
 
 
@@ -188,6 +199,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                                         editor.putString("email", emailadr.getText().toString());
                                         editor.putString("password", passord.getText().toString());
                                         editor.commit();
+                                        removeString();
 
                                         Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
 

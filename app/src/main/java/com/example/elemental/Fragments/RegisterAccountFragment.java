@@ -52,6 +52,7 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
     private ProgressBar progresscircle;
     private Button registerbutton;
     private ImageView imageView2;
+    private boolean usernameExist = false;
 
     private FirebaseFirestore fireBase;
     private FirebaseAuth mAuth;
@@ -209,7 +210,45 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
 
         User user = new User(weightText, heightText, usernameText, emailText,agenumber);
 
+        if(checkIfUsernameExist(user)){
+            Toast.makeText(getContext(), "This username is already taken!", Toast.LENGTH_SHORT).show();
+            return;
+        }else {
 
+            mAuth.createUserWithEmailAndPassword(emailText, passwordText).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+
+                        fireBase.collection("users")
+                                .add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(getActivity(), "User has been registered!", Toast.LENGTH_LONG).show();
+                                emptyTexts();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getActivity(), "Failed to register! Please try again", Toast.LENGTH_LONG).show();
+                                Log.e("LoginActivity", "Failed Registration", e);
+                            }
+                        });
+
+                    } else {
+                        Toast.makeText(getActivity(), "User already registered with this email!", Toast.LENGTH_LONG).show();
+                        FirebaseAuthException e = (FirebaseAuthException) task.getException();
+                        Log.e("LoginActivity", "User already exist", e);
+
+                    }
+                }
+            });
+        }
+        progresscircle.setVisibility(View.GONE);
+    }
+
+
+    private boolean checkIfUsernameExist(User user){
 
         fireBase.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -219,43 +258,14 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
                         if(document.getString("username").equals(user.username)){
                             Toast.makeText(getActivity(), "This username is already taken!", Toast.LENGTH_LONG).show();
                             progresscircle.setVisibility(View.GONE);
-                            return;
+                            usernameExist = true;
                         }
                     }
                 }
+
             }
+
         });
-
-        fireBase.collection("users")
-                .add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-
-
-                mAuth.createUserWithEmailAndPassword(emailText,passwordText).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "User has been registered!", Toast.LENGTH_LONG).show();
-                        }else{
-                            Toast.makeText(getActivity(), "Failed to register!", Toast.LENGTH_LONG).show();
-                            FirebaseAuthException e = (FirebaseAuthException)task.getException();
-                            Log.e("LoginActivity", "Failed Registration", e);
-
-                        }
-                    }
-                });
-                emptyTexts();
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "Failed to register! Please try again", Toast.LENGTH_LONG).show();
-                Log.e("LoginActivity", "Failed Registration", e);
-            }
-        });
-
-        progresscircle.setVisibility(View.GONE);
+return usernameExist;
     }
 }

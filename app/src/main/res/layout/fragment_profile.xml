@@ -54,10 +54,11 @@
     <ListView
         android:id="@+id/workoutadapter"
         android:layout_width="411dp"
-        android:layout_height="297dp"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
         tools:ignore="MissingConstraints"
+        android:layout_marginBottom="70dp"
         tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

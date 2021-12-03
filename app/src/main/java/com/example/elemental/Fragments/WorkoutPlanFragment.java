@@ -147,14 +147,14 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
         progresscircle.setVisibility(View.VISIBLE);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-
-        if(CalendarFragment.selectedDate.isBefore(LocalDate.now())){
-            Toast.makeText(getActivity(), "Please select a date later than todays time!", Toast.LENGTH_LONG).show();
-        }else {
-
             if (timebutton.getText().toString().equals("Select time") || titleEditText.getText().toString().isEmpty() || PlantEditText.getText().toString().isEmpty()) {
                 Toast.makeText(getActivity(), "The fields cannot be left empty!!", Toast.LENGTH_LONG).show();
             } else {
+
+                if(CalendarFragment.selectedDate.isBefore(LocalDate.now())){
+                    Toast.makeText(getActivity(), "Please select a date later than todays time!", Toast.LENGTH_LONG).show();
+                    Navigation.findNavController(getView()).navigate(R.id.action_workoutPlanFragment_to_calendarFragment);
+                }else {
 
                 LocalTime time = LocalTime.parse(timebutton.getText().toString());
 
@@ -205,7 +205,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                                         });
 
 
-                                        progresscircle.setVisibility(View.GONE);
+
 
                                         return;
                                     }
@@ -216,6 +216,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                 }
             }
         }
+        progresscircle.setVisibility(View.GONE);
     }
 
 

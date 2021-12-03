@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -18,13 +20,20 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.elemental.Fragments.OptionFragment;
 import com.example.elemental.R;
 import com.example.elemental.service.Service;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -41,11 +50,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public NavigationView navigationView;
     public static SharedPreferences sharedPreferences,sharedPreferences2;
     public static FloatingActionButton workoutplan;
+    public static MainActivity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        nightmode();
+
+
         setContentView(R.layout.activity_main);
+
+        LoginActivity.loginActivity.finish();
+
+        mainActivity = this;
+
         startService(new Intent(getApplicationContext(), Service.class));
         workoutplan = findViewById(R.id.workoutplan);
 
@@ -59,8 +77,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.Nav_container);
         NavController navController = navHostFragment.getNavController();
 
-
-       // NavController navController = Navigation.findNavController(this,  R.id.Nav_container);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
         bottomNavigationView.setOnItemSelectedListener(this);
         getSupportActionBar().setTitle("ELEMENTAL");
@@ -71,28 +87,56 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
+
         drawerLayout = (DrawerLayout) findViewById(R.id.myDrawerMenu);
-        nightmode();
         actionBarToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open_drawer,R.string.close_drawer);
         actionBarToggle.setDrawerIndicatorEnabled(true);
         drawerLayout.addDrawerListener(actionBarToggle);
         actionBarToggle.syncState();
+
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
-
         sharedPreferences = getApplicationContext().getSharedPreferences("userLogin", Context.MODE_PRIVATE);
+
 
     }
 
+
+/*
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        Intent intent = getIntent();
+
+
+        if(newConfig.uiMode > Configuration.UI_MODE_NIGHT_YES) {
+            Toast.makeText(getApplicationContext(), "nightmode on", Toast.LENGTH_SHORT).show();
+
+            setTheme(R.style.themeNight);
+            recreate();
+
+        }else {
+            Toast.makeText(getApplicationContext(), "nightmode off", Toast.LENGTH_SHORT).show();
+            setTheme(R.style.ThemeLight);
+           recreate();
+
+        }
+    }
+
+ */
 
     private void nightmode(){
         sharedPreferences2 = getApplicationContext().getSharedPreferences("isNight",Context.MODE_PRIVATE);
         Boolean nightmode = sharedPreferences2.getBoolean("night_mode",false);
 
-        if (nightmode)
+
+        if (nightmode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        else
+        }
+        else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     @Override
@@ -103,8 +147,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void removeDarkmodeOptions(){
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+    private void setLightToDefault(){
+        setTheme(R.style.ThemeLight);
     }
 
     @Override
@@ -113,10 +157,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()){
             case R.id.logout_app:
-                removeDarkmodeOptions();
+                setLightToDefault();
                 removeSharedPreference();
                 stopMyService();
                 signOut();
+                finish();
                 break;
             case R.id.profile_app:
                 navigationView.setCheckedItem(R.id.profile);
@@ -150,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void signOut(){
-        removeDarkmodeOptions();
+        setLightToDefault();
         FirebaseAuth.getInstance().signOut();
         Intent login = new Intent(this, LoginActivity.class);
         startActivity(login);
@@ -214,12 +259,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.optionFragment);
                 break;
             case R.id.logout:
+                setLightToDefault();
                 removeSharedPreference();
                 stopMyService();
                 signOut();
+                finish();
                 break;
 
         }
         return false;
     }
+
 }

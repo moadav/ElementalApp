@@ -18,6 +18,26 @@
         <item name="windowActionBar">false</item>
     </style>
 
+
+    <style name="ThemeLight" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <item name="colorPrimary">#090909</item>
+        <item name="colorPrimaryVariant">#090909</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <item name="android:textViewStyle">@color/black</item>
+        <!-- Customize your theme here. -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+    </style>
+
     <style name="springertheme">
         <item name="colorSecondary">#00FFFF</item>
 

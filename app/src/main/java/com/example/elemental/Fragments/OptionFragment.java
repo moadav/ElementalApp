@@ -57,7 +57,7 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String email;
     private Service service  = new Service();
-
+    private MainActivity mainActivity = new MainActivity();
 
     public OptionFragment() {
         // Required empty public constructor
@@ -93,8 +93,10 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_option, container, false);
+
+
     }
 
 
@@ -111,20 +113,19 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
 
         progressbar = getView().findViewById(R.id.progressbar);
 
-         resetyourpass = getView().findViewById(R.id.resetyourpass);
-         resetyourpass.setOnClickListener(this);
+        resetyourpass = getView().findViewById(R.id.resetyourpass);
+        resetyourpass.setOnClickListener(this);
 
-         editusername = getView().findViewById(R.id.editusername);
-         editusername.setOnClickListener(this);
+        editusername = getView().findViewById(R.id.editusername);
+        editusername.setOnClickListener(this);
 
-         deleteAccount = getView().findViewById(R.id.deleteAccount);
-         deleteAccount.setOnClickListener(this);
+        deleteAccount = getView().findViewById(R.id.deleteAccount);
+        deleteAccount.setOnClickListener(this);
 
 
 
-         lightmode = getView().findViewById(R.id.lightmode);
-         lightmode.setOnCheckedChangeListener(this);
-
+        lightmode = getView().findViewById(R.id.lightmode);
+        lightmode.setOnCheckedChangeListener(this);
 
 
          if (tet)
@@ -133,25 +134,30 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
              lightmode.setChecked(false);
 
     }
+
+
+
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
         if(!b) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("night_mode",false);
-            editor.commit();
-
+            editor.apply();
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
         }
         else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("night_mode",true);
-            editor.commit();
-        }
+            editor.apply();
 
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+
+        }
     }
+
+
 
     private void resetPass(){
     progressbar.setVisibility(View.VISIBLE);
@@ -211,6 +217,10 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     Toast.makeText(getActivity(), "Delete successful!", Toast.LENGTH_LONG).show();
 
+                                                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                                                    MainActivity.removeSharedPreference();
+                                                    Intent login = new Intent(getContext(),LoginActivity.class);
+                                                    startActivity(login);
                                                 }
                                             });
                                         }
@@ -253,10 +263,7 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
                 break;
             case R.id.deleteAccount:
                 deleteUser();
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                MainActivity.removeSharedPreference();
-                Intent login = new Intent(getContext(),LoginActivity.class);
-                startActivity(login);
+
                 break;
 
         }
