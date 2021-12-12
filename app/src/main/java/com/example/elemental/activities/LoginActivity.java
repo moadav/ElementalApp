@@ -3,9 +3,11 @@ package com.example.elemental.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.elemental.R;
+import com.example.elemental.service.Service;
 
 public class LoginActivity extends AppCompatActivity  {
 
@@ -21,5 +23,9 @@ public class LoginActivity extends AppCompatActivity  {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+    }
 }

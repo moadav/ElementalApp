@@ -1,6 +1,7 @@
 package com.example.elemental.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.elemental.R;
 import com.example.elemental.activities.LoginActivity;
+import com.example.elemental.activities.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -49,7 +51,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private EditText emailadr,passord;
     private Button login;
     private FirebaseFirestore fireStore;
-    private LoginActivity loginActivity = new LoginActivity();
     private FirebaseAuth mAuth;
     private ProgressBar progresscircle;
     private SharedPreferences sharedPreferences;
@@ -155,6 +156,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         if (emailRemember != null || passwordRemember != null) {
             removeString();
             Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
+            LoginActivity.loginActivity.finish();
         } else {
 
 
@@ -202,6 +204,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                                         removeString();
 
                                         Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
+                                        LoginActivity.loginActivity.finish();
 
                                     } else {
                                         user.sendEmailVerification();

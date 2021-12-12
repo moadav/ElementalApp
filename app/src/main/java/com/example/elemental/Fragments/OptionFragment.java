@@ -57,7 +57,6 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String email;
     private Service service  = new Service();
-    private MainActivity mainActivity = new MainActivity();
 
     public OptionFragment() {
         // Required empty public constructor
@@ -221,6 +220,7 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
                                                     MainActivity.removeSharedPreference();
                                                     Intent login = new Intent(getContext(),LoginActivity.class);
                                                     startActivity(login);
+                                                    MainActivity.mainActivity.finish();
                                                 }
                                             });
                                         }

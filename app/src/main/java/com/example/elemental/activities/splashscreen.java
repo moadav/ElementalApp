@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import com.example.elemental.R;
 
@@ -14,17 +15,20 @@ public class splashscreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
+        Thread background = new Thread() {
             public void run() {
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(intent);
-                finish();
+                try {
+                    sleep(2*1000);
+                    Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                    startActivity(intent);
+                    finish();
 
+                } catch (Exception e) {
+                    Log.d("ERROR", e.toString());
+                }
             }
-        },1000);
-
-
+        };
+        // start thread
+        background.start();
     }
 }

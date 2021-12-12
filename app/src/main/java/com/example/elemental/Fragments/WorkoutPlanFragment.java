@@ -187,6 +187,7 @@ public class WorkoutPlanFragment extends Fragment implements View.OnClickListene
                                                             WorkoutPlan.workoutPlans.add(workoutPlan);
                                                             service.fixPendingintent(getContext(), id, CalendarFragment.selectedDate.getMonthValue(), hour, minute, CalendarFragment.selectedDate.getDayOfMonth(), CalendarFragment.selectedDate.getYear());
                                                             Toast.makeText(getActivity(), "Workout has been saved!", Toast.LENGTH_LONG).show();
+
                                                             Navigation.findNavController(getView()).navigate(R.id.action_workoutPlanFragment_to_calendarFragment);
                                                         }
                                                     }).addOnFailureListener(new OnFailureListener() {

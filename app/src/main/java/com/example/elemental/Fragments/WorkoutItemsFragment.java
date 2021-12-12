@@ -250,6 +250,7 @@ public class WorkoutItemsFragment extends Fragment implements View.OnClickListen
                                                         ProfileFragment.workoutAdapter.notifyDataSetChanged();
                                                         Toast.makeText(getContext(), "Workout deleted!", Toast.LENGTH_SHORT).show();
                                                         Navigation.findNavController(getView()).navigate(R.id.action_workoutItemsFragment_to_profileFragment);
+
                                                     }
                                                 }).addOnFailureListener(new OnFailureListener() {
                                                     @Override

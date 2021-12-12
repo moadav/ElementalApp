@@ -68,7 +68,7 @@
         android:id="@+id/savebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/button_shape"
         android:text="@string/save"
         android:textSize="30sp"
@@ -83,10 +83,11 @@
         android:layout_width="111dp"
         android:layout_height="85dp"
         app:layout_constraintBottom_toBottomOf="parent"
-       
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:indeterminateTint="#E2DCE5"
 
         />
 

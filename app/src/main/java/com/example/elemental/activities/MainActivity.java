@@ -7,10 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -20,22 +19,19 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.elemental.Fragments.OptionFragment;
 import com.example.elemental.R;
+import com.example.elemental.models.WorkoutPlan;
 import com.example.elemental.service.Service;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -45,27 +41,25 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnItemSelectedListener {
 
     private Toolbar toolbar;
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle actionBarToggle;
-    public NavigationView navigationView;
-    public static SharedPreferences sharedPreferences,sharedPreferences2;
-    public static FloatingActionButton workoutplan;
+    private DrawerLayout drawerLayout;
     public static MainActivity mainActivity;
+    private ActionBarDrawerToggle actionBarToggle;
+    public NavigationView navigationView;
+    private static boolean startOnce = false;
+    public static SharedPreferences sharedPreferences,sharedPreferences2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         nightmode();
-
-
         setContentView(R.layout.activity_main);
 
-        LoginActivity.loginActivity.finish();
-
         mainActivity = this;
+        if(!startOnce) {
+            startService(new Intent(getApplicationContext(), Service.class));
+            startOnce = true;
+        }
 
-        startService(new Intent(getApplicationContext(), Service.class));
-        workoutplan = findViewById(R.id.workoutplan);
 
         toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
@@ -80,9 +74,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
         bottomNavigationView.setOnItemSelectedListener(this);
         getSupportActionBar().setTitle("ELEMENTAL");
-
-
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    private void nightmode(){
+        sharedPreferences2 = getApplicationContext().getSharedPreferences("isNight",Context.MODE_PRIVATE);
+        Boolean nightmode = sharedPreferences2.getBoolean("night_mode",false);
+
+
+        if (nightmode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+
+
 
     @Override
     protected void onResume() {
@@ -101,44 +114,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-/*
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-        Intent intent = getIntent();
-
-
-        if(newConfig.uiMode > Configuration.UI_MODE_NIGHT_YES) {
-            Toast.makeText(getApplicationContext(), "nightmode on", Toast.LENGTH_SHORT).show();
-
-            setTheme(R.style.themeNight);
-            recreate();
-
-        }else {
-            Toast.makeText(getApplicationContext(), "nightmode off", Toast.LENGTH_SHORT).show();
-            setTheme(R.style.ThemeLight);
-           recreate();
-
-        }
-    }
-
- */
-
-    private void nightmode(){
-        sharedPreferences2 = getApplicationContext().getSharedPreferences("isNight",Context.MODE_PRIVATE);
-        Boolean nightmode = sharedPreferences2.getBoolean("night_mode",false);
-
-
-        if (nightmode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -147,17 +122,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void setLightToDefault(){
-        setTheme(R.style.ThemeLight);
-    }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
 
         switch (item.getItemId()){
             case R.id.logout_app:
-                setLightToDefault();
                 removeSharedPreference();
                 stopMyService();
                 signOut();
@@ -183,10 +153,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.remove("password");
         editor.remove("email");
         editor.apply();
-
-        SharedPreferences.Editor editor2 = sharedPreferences2.edit();
-        editor2.remove("night_mode");
-        editor2.apply();
     }
 
 
@@ -195,7 +161,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void signOut(){
-        setLightToDefault();
         FirebaseAuth.getInstance().signOut();
         Intent login = new Intent(this, LoginActivity.class);
         startActivity(login);
@@ -259,7 +224,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.optionFragment);
                 break;
             case R.id.logout:
-                setLightToDefault();
                 removeSharedPreference();
                 stopMyService();
                 signOut();

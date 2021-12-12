@@ -15,6 +15,7 @@
         android:layout_height="300dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"
+        android:contentDescription="@string/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -31,7 +31,6 @@ public class Service extends android.app.Service {
     private AlarmManager alarmManager;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -78,11 +77,7 @@ public class Service extends android.app.Service {
 
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
-
-
         }
-
-
     }
 
     private void getWorkouts(){
@@ -108,6 +103,7 @@ public class Service extends android.app.Service {
                                             long workoutNumber = document.getLong("workoutNumber");
                                             WorkoutPlan workoutPlan = new WorkoutPlan(name, date, desc, time, workoutNumber);
                                             WorkoutPlan.workoutPlans.add(workoutPlan);
+
                                         }
                                     }
 

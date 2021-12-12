@@ -127,6 +127,12 @@
     <string name="change_weight_and_height">Change weight and height</string>
     <string name="diet">Diet</string>
     <string name="bmr">The Basal Metabolic Rate (bmr) is the number of calories your body needs to perform your everyday activities. Which is then used to calculate the needs to either remain,lose or gain weight. Select your activity level below and get your bmr</string>
+    <string name="logo">Logo</string>
+    <string name="weight_wriabletext">Weight wriabletext</string>
+    <string name="enter_your_height_in_cm_here">Enter your height in cm here</string>
+    <string name="enter_your_weight_in_kg_here">Enter your weight in kg here</string>
+    <string name="_149cm">149cm</string>
+    <string name="_66kg">66kg</string>
 
     <string-array name="activitylevel">
         <item> No exercise</item>

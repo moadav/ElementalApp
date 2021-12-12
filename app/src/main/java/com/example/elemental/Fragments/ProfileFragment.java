@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.elemental.activities.MainActivity;
 import com.example.elemental.R;
@@ -95,6 +96,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         workoutAdapter = new WorkoutAdapter(getContext(),WorkoutPlan.workoutPlans);
         listView = getView().findViewById(R.id.workoutadapter);
         listAdapter();
+        if(WorkoutPlan.workoutPlans.size() > 1)
+            Toast.makeText(getContext(),"rerro",Toast.LENGTH_SHORT);
 
     }
 

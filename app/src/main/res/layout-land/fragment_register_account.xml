@@ -49,14 +49,14 @@
                 android:id="@+id/age"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                android:layout_gravity="center"
                 android:hint="@string/age"
                 android:inputType="number"
+                android:minHeight="48dp"
                 android:textAlignment="center"
-                android:layout_gravity="center"
-                />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <EditText
                 android:id="@+id/username"
