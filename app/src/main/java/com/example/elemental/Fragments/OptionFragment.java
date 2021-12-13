@@ -190,6 +190,17 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
 
         progressbar.setVisibility(View.GONE);
     }
+    private void removeSharedPreference(){
+        SharedPreferences.Editor editor = sharedPreferences2.edit();
+        editor.remove("password");
+        editor.remove("email");
+        editor.apply();
+
+        SharedPreferences.Editor editor2 = sharedPreferences2.edit();
+        editor2.remove("night_mode");
+        editor2.apply();
+
+    }
   
     private void deleteUser(){
         progressbar.setVisibility(View.VISIBLE);
@@ -215,7 +226,8 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
                                                     Toast.makeText(getActivity(), "Delete successful!", Toast.LENGTH_LONG).show();
 
                                                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                                                    MainActivity.removeSharedPreference();
+                                                    removeSharedPreference();
+
                                                     Intent login = new Intent(getContext(),LoginActivity.class);
                                                     startActivity(login);
                                                     FirebaseAuth.getInstance().signOut();
@@ -247,6 +259,9 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
 
         progressbar.setVisibility(View.GONE);
     }
+
+
+
 
 
 

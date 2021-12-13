@@ -153,8 +153,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         String passwordRemember = sharedPreferences.getString("password", null);
 
 
-        if (emailRemember != null || passwordRemember != null) {
-            removeString();
+        if (emailRemember != null && passwordRemember != null ) {
+
             Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainActivity);
             LoginActivity.loginActivity.finish();
         } else {
