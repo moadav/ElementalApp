@@ -43,6 +43,7 @@
 
             <EditText
                 android:id="@+id/emailadr"
+                android:drawableStart="@drawable/ic_baseline_email_24"
                 android:layout_width="match_parent"
                 android:layout_marginVertical="10dp"
                 android:layout_height="wrap_content"
@@ -53,6 +54,7 @@
 
             <EditText
                 android:id="@+id/passord"
+                android:drawableStart="@drawable/ic_baseline_lock_24"
                 android:layout_width="match_parent"
                 android:layout_marginVertical="10dp"
                 android:layout_height="wrap_content"
@@ -109,7 +111,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:indeterminateTint="#E2DCE5"
+
          />
 
 

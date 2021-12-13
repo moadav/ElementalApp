@@ -93,6 +93,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:ems="10"
+        android:drawableStart="@drawable/ic_baseline_description_24"
+
         android:inputType="text"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -111,6 +113,8 @@
         android:layout_marginVertical="10dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:drawableStart="@drawable/ic_baseline_description_24"
+
         android:hint="@string/your_new_description"
         android:inputType="text"
         android:textAlignment="center"

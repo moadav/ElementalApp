@@ -40,6 +40,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnItemSelectedListener {
 
+    //activity
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     public static MainActivity mainActivity;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setTitle("ELEMENTAL");
     }
 
+    //funksjon som da sjekker om det skal være natt tema eller ikke
     private void nightmode(){
         sharedPreferences2 = getApplicationContext().getSharedPreferences("isNight",Context.MODE_PRIVATE);
         Boolean nightmode = sharedPreferences2.getBoolean("night_mode",false);
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 stopMyService();
                 signOut();
                 finish();
+                removeDarkmode();
                 break;
             case R.id.profile_app:
                 navigationView.setCheckedItem(R.id.profile);
@@ -142,19 +145,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
+//funksjon som fjerner alle sharedpreferences
     public static void removeSharedPreference(){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("password");
         editor.remove("email");
         editor.apply();
+
+        SharedPreferences.Editor editor2 = sharedPreferences2.edit();
+        editor2.remove("night_mode");
+        editor2.apply();
+
     }
 
-
+//funksjon som stopper service
     private void stopMyService(){
         stopService(new Intent(getApplicationContext(),Service.class));
     }
 
+    //funksjon som håndterer ting som må logges ut
     public void signOut(){
         FirebaseAuth.getInstance().signOut();
         Intent login = new Intent(this, LoginActivity.class);
@@ -168,6 +177,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawerLayout.closeDrawer(GravityCompat.START);
         else
         super.onBackPressed();
+    }
+
+    //funksjon som fjerner natt tema
+    private void removeDarkmode(){
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     @Override
@@ -217,6 +231,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 stopMyService();
                 signOut();
                 finish();
+                removeDarkmode();
                 break;
 
         }

@@ -24,6 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
+        android:drawableStart="@drawable/ic_baseline_description_24"
+
         android:ems="10"
         android:hint="@string/your_plan_title"
         android:inputType="text"
@@ -41,6 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
         android:ems="10"
+        android:drawableStart="@drawable/ic_baseline_description_24"
+
         android:hint="@string/your_description"
         android:inputType="text"
         android:textAlignment="center"

@@ -24,6 +24,7 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
 
 
 
+        //Notifikasjonsmeldingen som jeg redigerer for å få ønsket verdi
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"workoutandroid")
                 .setSmallIcon(R.drawable.elemental_icon)
                 .setContentTitle("Elemental")

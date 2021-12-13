@@ -48,6 +48,7 @@
             <EditText
                 android:id="@+id/age"
                 android:layout_width="300dp"
+                android:drawableStart="@drawable/ic_baseline_supervisor_account_24"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="@string/age"
@@ -61,6 +62,7 @@
             <EditText
                 android:id="@+id/username"
                 android:layout_width="300dp"
+                android:drawableStart="@drawable/ic_baseline_supervisor_account_24"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
                 android:hint="@string/username"
@@ -76,6 +78,7 @@
             <EditText
                 android:id="@+id/email"
                 android:layout_width="300dp"
+                android:drawableStart="@drawable/ic_baseline_email_24"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
@@ -90,6 +93,7 @@
             <EditText
                 android:id="@+id/password"
                 android:layout_width="300dp"
+                android:drawableStart="@drawable/ic_baseline_lock_24"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
@@ -104,6 +108,7 @@
             <EditText
                 android:id="@+id/weight"
                 android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_baseline_monitor_weight_24"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
@@ -118,6 +123,7 @@
             <EditText
                 android:id="@+id/height"
                 android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_baseline_supervisor_account_24"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
@@ -155,7 +161,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:indeterminateTint="#E2DCE5"
+
         />
 
 

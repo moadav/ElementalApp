@@ -131,18 +131,21 @@ public class EditUsernameFragment extends Fragment implements View.OnClickListen
                                             return;
                                         }
                                     }
-                                    fireBase.collection("users").document(document.getId()).update("username",resetusername.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(getContext(), "Username updated!", Toast.LENGTH_SHORT).show();
-                                            Navigation.findNavController(getView()).navigate(R.id.action_editUsernameFragment_to_optionFragment);
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(getContext(), "Failed to update username", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+                                    if(resetusername.getText().toString().length() < 12) {
+                                        fireBase.collection("users").document(document.getId()).update("username", resetusername.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(getContext(), "Username updated!", Toast.LENGTH_SHORT).show();
+                                                Navigation.findNavController(getView()).navigate(R.id.action_editUsernameFragment_to_optionFragment);
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(getContext(), "Failed to update username", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }else
+                                        Toast.makeText(getContext(), "Username cannot be longer than 12 letters", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override

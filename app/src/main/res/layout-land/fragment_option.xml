@@ -7,6 +7,16 @@
     tools:context=".Fragments.OptionFragment">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
     <TextView
         android:id="@+id/textView4"
@@ -44,7 +54,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reset_username"
-            android:layout_marginVertical="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/resetyourpass"
@@ -73,7 +82,6 @@
             android:theme="@style/springertheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editusername"
@@ -87,7 +95,6 @@
             android:layout_height="wrap_content"
             android:text="@string/delete_account"
             android:textSize="20sp"
-
             android:textColor="@color/black"
             android:background="@drawable/button_shape"
             android:backgroundTint="#FF0000"
@@ -97,6 +104,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lightmode"
             android:layout_gravity="center"/>
+
+    </LinearLayout>
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progressbar"

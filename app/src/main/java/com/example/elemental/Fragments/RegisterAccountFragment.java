@@ -145,7 +145,7 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
     }
 
     private void registerUser() {
-        progresscircle.setVisibility(View.VISIBLE);
+
 
         String emailText = email.getText().toString().trim();
         String usernameText = username.getText().toString().trim();
@@ -170,10 +170,12 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
             return;
         }
 
-
-
         if (usernameText.isEmpty()) {
             username.setError("Username is required");
+            username.requestFocus();
+            return;
+        }else if (usernameText.length() > 12){
+            username.setError("Username is too long!");
             username.requestFocus();
             return;
         }
@@ -181,14 +183,26 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
             weight.setError("Weight is required");
             weight.requestFocus();
             return;
+        }else if (Integer.parseInt(weightText) < 0 || Integer.parseInt(weightText) > 500){
+            weight.setError("Weight not approved!");
+            weight.requestFocus();
+            return;
         }
         if (heightText.isEmpty()) {
             height.setError("Height is required");
             height.requestFocus();
             return;
+        }else if (Integer.parseInt(heightText) < 0 || Integer.parseInt(heightText) > 500){
+            height.setError("Height not approved!");
+            height.requestFocus();
+            return;
         }
         if (passwordText.isEmpty()) {
             password.setError("Password is required");
+            password.requestFocus();
+            return;
+        }else if (passwordText.length() < 6) {
+            password.setError("Password should have atleast 6 characters!");
             password.requestFocus();
             return;
         }
@@ -199,14 +213,10 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
             return;
         }
 
-        if (passwordText.length() < 6) {
-            password.setError("Password should have atleast 6 characters!");
-            password.requestFocus();
-            return;
-        }
 
 
 
+        progresscircle.setVisibility(View.VISIBLE);
 
         User user = new User(weightText, heightText, usernameText, emailText,agenumber);
 

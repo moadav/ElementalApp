@@ -193,8 +193,6 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
   
     private void deleteUser(){
         progressbar.setVisibility(View.VISIBLE);
-
-
         fireStore.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -220,6 +218,7 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
                                                     MainActivity.removeSharedPreference();
                                                     Intent login = new Intent(getContext(),LoginActivity.class);
                                                     startActivity(login);
+                                                    FirebaseAuth.getInstance().signOut();
                                                     MainActivity.mainActivity.finish();
                                                 }
                                             });

@@ -105,19 +105,19 @@ public class CalendarFragment extends Fragment implements OnItemListener,View.On
         setMonthView();
 
     }
-
+    //hentet fra https://www.youtube.com/watch?v=knpSbtbPz3o
     private String monthYearFromDate(LocalDate date)
     {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
         return date.format(formatter);
     }
-
+    //hentet fra https://www.youtube.com/watch?v=knpSbtbPz3o
     public void previousMonthAction()
     {
         selectedDate = selectedDate.minusMonths(1);
         setMonthView();
     }
-
+    //hentet fra https://www.youtube.com/watch?v=knpSbtbPz3o
     public void nextMonthAction()
     {
         selectedDate = selectedDate.plusMonths(1);
@@ -125,7 +125,8 @@ public class CalendarFragment extends Fragment implements OnItemListener,View.On
     }
 
 
-    private ArrayList<LocalDate> daysInMonthArray(LocalDate date)
+    //hentet fra https://www.youtube.com/watch?v=knpSbtbPz3o
+    public ArrayList<LocalDate> daysInMonthArray(LocalDate date)
     {
         ArrayList<LocalDate> daysInMonthArray = new ArrayList<>();
         YearMonth yearMonth = YearMonth.from(date);
@@ -145,7 +146,7 @@ public class CalendarFragment extends Fragment implements OnItemListener,View.On
         return  daysInMonthArray;
     }
 
-
+    //hentet fra https://www.youtube.com/watch?v=knpSbtbPz3o
     private void setMonthView()
     {
         MonthYear.setText(monthYearFromDate(selectedDate));
@@ -157,7 +158,7 @@ public class CalendarFragment extends Fragment implements OnItemListener,View.On
         calenderRecyclerView.setAdapter(calendarAdapter);
 
     }
-
+    //hentet fra https://www.youtube.com/watch?v=knpSbtbPz3o
     @Override
     public void onItemClick(int position, LocalDate day) {
         if(!(day == null))
