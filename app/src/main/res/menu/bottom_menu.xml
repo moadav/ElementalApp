@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_baseline_food_bank_24"
         />
 
-    <item android:id="@+id/BMISkjemaFragment"
+    <item android:id="@+id/BMIFragment"
         android:title="@string/Bmi"
         android:icon="@drawable/ic_baseline_sports_24"
         />

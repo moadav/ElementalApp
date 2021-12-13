@@ -391,14 +391,7 @@
 
             />
     </fragment>
-    <fragment
-        android:id="@+id/BMISkjemaFragment"
-        android:name="com.example.elemental.Fragments.BMISkjemaFragment"
-        android:label="fragment_b_m_i_skjema"
-        tools:layout="@layout/fragment_b_m_i_skjema"
-        app:enterAnim="@android:anim/fade_in"
-        app:exitAnim="@android:anim/fade_out"
-        />
+
     <fragment
         android:id="@+id/editUsernameFragment"
         android:name="com.example.elemental.Fragments.EditUsernameFragment"
@@ -412,4 +405,9 @@
             app:exitAnim="@android:anim/fade_out"
             />
     </fragment>
+    <fragment
+        android:id="@+id/BMIFragment"
+        android:name="com.example.elemental.Fragments.BMIFragment"
+        android:label="fragment_b_m_i"
+        tools:layout="@layout/fragment_b_m_i" />
 </navigation>

@@ -204,10 +204,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.homeFragment);
                 break;
 
-            case R.id.BMISkjemaFragment:
+            case R.id.BMIFragment:
             case R.id.bmidrawmenu:
                 navigationView.setCheckedItem(R.id.bmidrawmenu);
-                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.BMISkjemaFragment);
+                Navigation.findNavController(this,  R.id.Nav_container).navigate(R.id.BMIFragment);
                 break;
 
             case R.id.calendarFragment:
