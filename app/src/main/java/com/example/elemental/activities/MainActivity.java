@@ -76,11 +76,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setTitle("ELEMENTAL");
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
     private void nightmode(){
         sharedPreferences2 = getApplicationContext().getSharedPreferences("isNight",Context.MODE_PRIVATE);
         Boolean nightmode = sharedPreferences2.getBoolean("night_mode",false);
@@ -174,12 +169,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else
         super.onBackPressed();
     }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        return super.onSupportNavigateUp();
-    }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

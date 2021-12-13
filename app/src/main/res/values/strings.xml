@@ -133,6 +133,14 @@
     <string name="enter_your_weight_in_kg_here">Enter your weight in kg here</string>
     <string name="_149cm">149cm</string>
     <string name="_66kg">66kg</string>
+    <string name="quads_section">Quads section</string>
+    <string name="calves_section">Calves section</string>
+    <string name="abdomin_section">Abdomin section</string>
+    <string name="chest_section">Chest section</string>
+    <string name="shoulder_setion">Shoulder setion</string>
+    <string name="trap_section">Trap section</string>
+    <string name="tricep_section">Tricep section</string>
+    <string name="bmi">Bmi</string>
 
     <string-array name="activitylevel">
         <item> No exercise</item>

@@ -30,6 +30,7 @@
 
                 <ImageButton
                     android:id="@+id/calvespic"
+                    android:contentDescription="@string/calves_section"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
@@ -55,6 +56,7 @@
                     android:id="@+id/quadpic"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
+                    android:contentDescription="@string/quads_section"
                     android:layout_marginTop="15dp"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/quadpic" />
@@ -76,6 +78,7 @@
 
                 <ImageButton
                     android:id="@+id/abdominpic"
+                    android:contentDescription="@string/abdomin_section"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
@@ -101,6 +104,7 @@
                     android:id="@+id/chestpic"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
+                    android:contentDescription="@string/chest_section"
                     android:layout_marginTop="15dp"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/chestrealpic" />
@@ -122,6 +126,7 @@
 
                 <ImageButton
                     android:id="@+id/shoulderpic"
+                    android:contentDescription="@string/shoulder_setion"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
@@ -145,6 +150,7 @@
 
                 <ImageButton
                     android:id="@+id/trappic"
+                    android:contentDescription="@string/trap_section"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
                     android:layout_marginTop="15dp"
@@ -170,6 +176,7 @@
                     android:id="@+id/triceppic"
                     android:layout_width="match_parent"
                     android:layout_height="171dp"
+                    android:contentDescription="@string/tricep_section"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="125dp"
                     android:scaleType="centerCrop"

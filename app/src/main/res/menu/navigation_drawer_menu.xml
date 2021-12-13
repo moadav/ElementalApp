@@ -35,7 +35,7 @@
         <item
             android:id="@+id/bmidrawmenu"
             android:icon="@drawable/ic_baseline_sports_24"
-            android:title="@string/bmi_schema"
+            android:title="@string/bmi"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             />
