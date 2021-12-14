@@ -225,10 +225,10 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
             return;
         }else {
 
-            mAuth.createUserWithEmailAndPassword(emailText, passwordText).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.createUserWithEmailAndPassword(emailText, passwordText).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
+                public void onSuccess(AuthResult authResult) {
+
 
                         fireBase.collection("users")
                                 .add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -244,13 +244,12 @@ public class RegisterAccountFragment extends Fragment implements View.OnClickLis
                                 Log.e("LoginActivity", "Failed Registration", e);
                             }
                         });
-
-                    } else {
-                        Toast.makeText(getActivity(), "User already registered with this email!", Toast.LENGTH_LONG).show();
-                        FirebaseAuthException e = (FirebaseAuthException) task.getException();
-                        Log.e("LoginActivity", "User already exist", e);
-
-                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getActivity(), "User already registered with this email!", Toast.LENGTH_LONG).show();
+                    Log.e("LoginActivity", "User already exist", e);
                 }
             });
         }

@@ -24,6 +24,8 @@ import com.example.elemental.R;
 import com.example.elemental.activities.LoginActivity;
 import com.example.elemental.activities.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -184,10 +186,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
             progresscircle.setVisibility(View.VISIBLE);
 
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
+                public void onSuccess(AuthResult authResult) {
+
                         fireStore.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -219,15 +221,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             }
 
                         });
-
-                    } else {
-                        Toast.makeText(getActivity(), "User does not exist!", Toast.LENGTH_LONG).show();
-                        progresscircle.setVisibility(View.GONE);
-                        FirebaseAuthException e = (FirebaseAuthException) task.getException();
-                        Log.e("LoginActivity", "Failed Registration", e);
-
-                    }
-
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getActivity(), "User with this input combination does not exist!", Toast.LENGTH_LONG).show();
+                    progresscircle.setVisibility(View.GONE);
+                    Log.e("LoginActivity", "Failed Registration", e);
                 }
             });
 
