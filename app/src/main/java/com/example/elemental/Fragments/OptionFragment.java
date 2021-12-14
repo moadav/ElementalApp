@@ -26,6 +26,7 @@ import com.example.elemental.R;
 import com.example.elemental.service.Service;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -190,17 +191,6 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
 
         progressbar.setVisibility(View.GONE);
     }
-    private void removeSharedPreference(){
-        SharedPreferences.Editor editor = sharedPreferences2.edit();
-        editor.remove("password");
-        editor.remove("email");
-        editor.apply();
-
-        SharedPreferences.Editor editor2 = sharedPreferences2.edit();
-        editor2.remove("night_mode");
-        editor2.apply();
-
-    }
   
     private void deleteUser(){
         progressbar.setVisibility(View.VISIBLE);
@@ -220,18 +210,23 @@ public class OptionFragment extends Fragment implements CompoundButton.OnChecked
                                     fireStore.collection("users").document(document.getId()).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
+                                                public void onSuccess(Void unused) {
                                                     Toast.makeText(getActivity(), "Delete successful!", Toast.LENGTH_LONG).show();
 
                                                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                                                    removeSharedPreference();
+                                                    MainActivity.removeSharedPreference();
 
                                                     Intent login = new Intent(getContext(),LoginActivity.class);
                                                     startActivity(login);
                                                     FirebaseAuth.getInstance().signOut();
                                                     MainActivity.mainActivity.finish();
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(getContext(), "Could not delete user", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                         }
